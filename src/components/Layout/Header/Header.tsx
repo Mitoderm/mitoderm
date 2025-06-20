@@ -5,7 +5,7 @@ import Image from 'next/image';
 import LanguageSwitch from '../LanguageSwitch/LanguageSwitch';
 import Navigation from '../Navigation/Navigation';
 import { useMediaQuery } from 'react-responsive';
-import BurgerButton from '@/components/Shared/BurgerButton/BurgerButton';
+import BurgerButton from '@/components/sharedUI/BurgerButton/BurgerButton';
 import Link from 'next/link';
 import { usePathname } from '@/i18n/routing';
 

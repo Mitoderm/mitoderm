@@ -61,8 +61,11 @@
   "intro": {
     "title": "V-Tech System",
     "text": "Новое поколение в космецевтике - прорыв в уходе за кожей для косметологов",
-    "eventSubtitle": "Интимная и вдохновляющая конференция",
-    "eventTitle": "Присоединяйтесь к конференции от MITODERM"
+    "eventSubtitle1": "Cosmetologist? Aesthetician? Working with equipment?",
+    "eventSubtitle2": "The company that brings the next generation of aesthetics.",
+    "eventTitleP1": "This ",
+    "eventTitleP2": "conference ",
+    "eventTitleP3": "is exactly for you!"
   },
   "chevron": {
     "text1": "V Tech System ",
@@ -72,6 +75,26 @@
     "title3": "Безопасный",
     "subtitle": "Mitoderm представляет передовую технологию, основанную на уникальной разработке из Италии от экспертов vm corporation, предназначенную для достижения результатов упругости, обновления и биологического восстановления кожи.",
     "button": "Подробнее о продуктах"
+  },
+  "fastResult": {
+    "titleP1": "Have you heard about",
+    "titleP2": " exosomes?",
+    "subtitle": "Faster results are here!",
+    "text": "This is a product that until now was only available to doctors, and now also for cosmetologists!"
+  },
+  "unique": {
+    "titleP1": "What",
+    "titleP2": " makes you unique ",
+    "titleP3": "compared to competitors?",
+    "textP1": "MitoDerm company is the",
+    "textP2": " only company in Israel working with exosomes ",
+    "textP3": "that can connect and trigger a chain reaction of natural cell actions, allowing the skin to enjoy great benefits"
+  },
+  "invite": {
+    "titleP1": "MitoDerm company invites you to a",
+    "titleP2": " boutique conference for leaders ",
+    "titleP3": "in the field of aesthetics in Israel",
+    "text": "At the conference, you'll be introduced to this breakthrough technology! This conference will open the door for you to the world of innovative treatments, which are what clients really want and look for,along with a significant reduction in working time, corresponding increase in profits, and faster recovery time compared to traditional and simpler treatments"
   },
   "synergy": {
     "title": "Сочетание активных компонентов для синергетического действия",
@@ -273,7 +296,8 @@
     "item1": "Инновационные технологии",
     "item2": "Практические навыки",
     "item3": "Нетворкинг",
-    "item4": "Сертификат об участии"
+    "item4": "Сертификат об участии",
+    "item5": "Official Italian Distributor in Israel"
   },
   "toTop": {
     "title": "И в завершение:",

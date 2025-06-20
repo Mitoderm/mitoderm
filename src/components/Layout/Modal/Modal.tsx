@@ -2,8 +2,8 @@
 import { FC, useEffect } from 'react';
 import styles from './Modal.module.scss';
 import useAppStore from '@/store/store';
-import PrivatePolicy from '@/components/PrivatePolicy/PrivatePolicy';
-import Accessibility from '@/components/Accessibility/Accessibility';
+import PrivatePolicy from '@/components/layout/PrivatePolicy/PrivatePolicy';
+import Accessibility from '@/components/layout/Accessibility/Accessibility';
 
 const Modal: FC = () => {
   const { modalIsOpen, toggleModal, modalContent } = useAppStore(

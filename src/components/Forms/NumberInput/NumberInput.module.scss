@@ -13,7 +13,7 @@
   border-radius: 12px;
   outline: none;
   border: none;
-  background-color: var(--colorBG);
+  background-color: var(--colorLightBG);
   font-size: var(--fontSizeP2);
   margin-top: 5px;
   border: 1px solid transparent;
@@ -66,9 +66,5 @@
     height: 42px;
     width: 42px;
     min-width: 42px;
-  }
-  .container button img {
-    width: 16px;
-    height: 16px;
   }
 }

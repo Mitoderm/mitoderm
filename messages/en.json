@@ -61,8 +61,11 @@
   "intro": {
     "title": "V-Tech System",
     "text": "A new generation in cosmeceuticals - a breakthrough in skincare for cosmeticians",
-    "eventSubtitle": "Intimate and Inspiring Conference",
-    "eventTitle": "Join Conference by Mitoderm"
+    "eventSubtitle1": "Cosmetologist? Aesthetician? Working with equipment?",
+    "eventSubtitle2": "The company that brings the next generation of aesthetics.",
+    "eventTitleP1": "This ",
+    "eventTitleP2": "conference ",
+    "eventTitleP3": "is exactly for you!"
   },
   "chevron": {
     "text1": "V Tech System ",
@@ -72,6 +75,26 @@
     "title3": "Safe",
     "subtitle": "Mitoderm presents an advanced technology based on a unique combination from Italy, developed by vm corporation experts, designed to provide results of firming, renewal, and biological skin rejuvenation.",
     "button": "More information about the products"
+  },
+  "fastResult": {
+    "titleP1": "Have you heard about",
+    "titleP2": " exosomes?",
+    "subtitle": "Faster results are here!",
+    "text": "This is a product that until now was only available to doctors, and now also for cosmetologists!"
+  },
+  "unique": {
+    "titleP1": "What",
+    "titleP2": " makes you unique ",
+    "titleP3": "compared to competitors?",
+    "textP1": "MitoDerm company is the",
+    "textP2": " only company in Israel working with exosomes ",
+    "textP3": "that can connect and trigger a chain reaction of natural cell actions, allowing the skin to enjoy great benefits"
+  },
+  "invite": {
+    "titleP1": "MitoDerm company invites you to a",
+    "titleP2": " boutique conference for leaders ",
+    "titleP3": "in the field of aesthetics in Israel",
+    "text": "At the conference, you'll be introduced to this breakthrough technology! This conference will open the door for you to the world of innovative treatments, which are what clients really want and look for,along with a significant reduction in working time, corresponding increase in profits, and faster recovery time compared to traditional and simpler treatments"
   },
   "synergy": {
     "title": "Combination of active ingredients for synergistic action",
@@ -240,7 +263,7 @@
     "obligationsText": "This declaration is made in accordance with the legal requirements of Israel and international accessibility standards. It will be updated as website functionality changes."
   },
   "event": {
-    "title": "What’s in the event?",
+    "title": "Agenda",
     "item1": {
       "title": "Welcome & Networking",
       "text": "Meet industry colleagues, enjoy great food and fine wine.",
@@ -270,10 +293,11 @@
     "text": "MITODERM is a subsidiary of a global group specializing in the distribution of medical equipment and advanced aesthetic solutions in Asia, Australia, and the USA. Combining innovation, expertise, and years of experience, we are here to lead the next generation of professional aesthetics – now in Israel."
   },
   "eventBullets": {
-    "item1": "Innovative Technologies",
-    "item2": "Practical Skills",
-    "item3": "Networking",
-    "item4": "Certificate of Participation"
+    "item1": "Innovative Products",
+    "item2": "Limited Offer",
+    "item3": "Networking with professionals",
+    "item4": "Personal Growth",
+    "item5": "Official Italian Distributor in Israel"
   },
   "toTop": {
     "title": "To top it off",

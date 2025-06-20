@@ -66,6 +66,7 @@ const Price: FC<Props> = ({ total, setTotal }) => {
         <span className={styles.promo}>{t('form.promo')}</span>
         <div className={`${styles.inputBox} ${locale === 'he' && styles.he}`}>
           <input
+            name='promo'
             placeholder='Promo432'
             type='text'
             value={value}

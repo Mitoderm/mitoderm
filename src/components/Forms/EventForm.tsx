@@ -8,15 +8,15 @@ import {
 } from '@/utils/validateFormFields';
 import styles from './Form.module.scss';
 import Image from 'next/image';
-import Button from '../Shared/Button/Button';
+import Button from '../sharedUI/Button/Button';
 import { useLocale, useTranslations } from 'next-intl';
-import FormInput from '../Forms/FormInput/FormInput';
+import FormInput from './FormInput/FormInput';
 import { useMediaQuery } from 'react-responsive';
 import useAppStore from '@/store/store';
 import type { EventFormDataType } from '@/types';
-import Loader from '../Shared/Loader/Loader';
-import NumberInput from '../Forms/NumberInput/NumberInput';
-import Price from '../Forms/Price/Price';
+import Loader from '../sharedUI/Loader/Loader';
+import NumberInput from './NumberInput/NumberInput';
+import Price from './Price/Price';
 import { usePathname } from 'next/navigation';
 import { sendPaymentDataToCRM } from '@/utils/sendPayment';
 import type { NameTypeMain, NameTypeEvent } from '@/types';
@@ -198,7 +198,7 @@ const EventForm: FC = () => {
           <Image
             className={styles.desktopImage}
             fill
-            src='/images/formImage.png'
+            src='/images/formEventImage.png'
             alt='background with exosome'
           />
         </div>

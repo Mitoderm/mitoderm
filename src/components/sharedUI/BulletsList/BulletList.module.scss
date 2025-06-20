@@ -1,0 +1,21 @@
+.itemList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+  margin-block: 40px;
+  gap: 30px;
+}
+
+.eventPageItemList {
+  gap: 10px;
+  justify-content: center;
+}
+
+@media screen and (max-width: 600px) {
+  .itemList {
+    flex-direction: column;
+    align-items: center;
+  }
+}

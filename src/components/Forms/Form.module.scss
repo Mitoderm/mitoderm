@@ -109,6 +109,10 @@
   overflow: hidden;
 }
 
+.desktopImage {
+  object-fit: cover;
+}
+
 @media screen and (max-width: 1224px) {
   .container {
     width: 92%;

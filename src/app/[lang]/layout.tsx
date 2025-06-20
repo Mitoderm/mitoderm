@@ -7,14 +7,14 @@ import '../globals.scss';
 import { Rubik } from 'next/font/google';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
-import Footer from '@/components/Layout/Footer/Footer';
+import Footer from '@/components/layout/Footer/Footer';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
-const Header = dynamic(() => import('@/components/Layout/Header/Header'), {
+const Header = dynamic(() => import('@/components/layout/Header/Header'), {
   ssr: false,
 });
 
-const Modal = dynamic(() => import('@/components/Layout/Modal/Modal'), {
+const Modal = dynamic(() => import('@/components/layout/Modal/Modal'), {
   ssr: false,
 });
 

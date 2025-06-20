@@ -27,11 +27,11 @@ const NumberInput: FC = () => {
       <span>{t('form.numberTickets')}</span>
       <div className={styles.inputContainer}>
         <button type='button' onClick={() => handleChange('dec')}>
-          <Image src='/images/minus.svg' width={18} height={18} alt='minus' />
+          -
         </button>
         <input type='number' readOnly value={numberOfTickets} min={1} />
         <button type='button' onClick={() => handleChange('inc')}>
-          <Image src='/images/plus.svg' width={18} height={18} alt='plus' />
+          +
         </button>
       </div>
     </div>
