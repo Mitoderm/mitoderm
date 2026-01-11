@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import { FC } from 'react';
 import styles from './Mission.module.scss';
 import { useTranslations } from 'next-intl';

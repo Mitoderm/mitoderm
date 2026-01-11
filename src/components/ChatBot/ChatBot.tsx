@@ -119,7 +119,7 @@ const ContactFormInMessage = React.memo(
 );
 
 const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
-  const [isOpen, setIsOpen] = useState(true); // מתחיל פתוח
+  const [isOpen, setIsOpen] = useState(false); // מתחיל פתוח
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);

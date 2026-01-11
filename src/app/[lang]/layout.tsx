@@ -10,6 +10,7 @@ import { notFound } from 'next/navigation';
 import Footer from '@/components/layout/Footer/Footer';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
+import { getOrganizationSchema } from '@/utils/structuredData';
 
 const Header = dynamic(() => import('@/components/layout/Header/Header'), {
   ssr: false,
@@ -95,44 +96,41 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    images: 'https://mitoderm.com/images/v-tech-social.jpg',
+    title: 'אקסוזומים V-Tech | מיטודרם - מערכת מתקדמת לקוסמטיקאיות בישראל',
+    description:
+      'מערכת V-Tech - אקסוזומים סינתטיים + PDRN פולינוקלאוטידים לקוסמטיקאיות. תוצאות מהטיפול הראשון | הכשרות מקצועיות | מיטודרם ישראל 054-762-1889',
     url: 'https://mitoderm.com/he',
+    siteName: 'Mitoderm',
+    locale: 'he_IL',
     type: 'website',
+    images: [
+      {
+        url: 'https://mitoderm.com/images/v-tech-social.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'V-Tech System - Synthetic Exosomes + PDRN Polynucleotides',
+        type: 'image/jpeg',
+      },
+    ],
+    alternateLocale: ['en_US', 'ru_RU'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'אקסוזומים V-Tech | מיטודרם - מערכת מתקדמת לקוסמטיקאיות בישראל',
+    description:
+      'מערכת V-Tech - אקסוזומים סינתטיים + PDRN פולינוקלאוטידים לקוסמטיקאיות. תוצאות מהטיפול הראשון | הכשרות מקצועיות | מיטודרם ישראל 054-762-1889',
+    images: [
+      {
+        url: 'https://mitoderm.com/images/v-tech-social.jpg',
+        alt: 'V-Tech System - Synthetic Exosomes + PDRN Polynucleotides',
+      },
+    ],
+    creator: '@mitoderm',
+    site: '@mitoderm',
   },
 };
 
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'MedicalBusiness',
-  name: 'מיטודרם - Mitoderm',
-  description:
-    'מומחים בטכנולוגיית אקסוזומים מתקדמת למקצועות האסתטיקה. מערכת V-Tech - אקסוזומים סינתטיים ו-PDRN פולינוקלאוטידים',
-  url: 'https://mitoderm.com',
-  telephone: '+972-54-762-1889',
-  email: 'info@mitoderm.com',
-  address: {
-    '@type': 'PostalAddress',
-    addressCountry: 'IL',
-  },
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'V-Tech System Professional Products',
-    itemListElement: [
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Product',
-          name: 'V-Tech System',
-          description: 'אקסוזומים סינתטיים עם PDRN פולינוקלאוטידים',
-          brand: {
-            '@type': 'Brand',
-            name: 'VM Corporation',
-          },
-        },
-      },
-    ],
-  },
-};
+// Structured data will be generated per page
 
 export default async function RootLayout({
   children,
@@ -189,7 +187,9 @@ export default async function RootLayout({
           <WhatsappLink />
           <script
             type='application/ld+json'
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(getOrganizationSchema(params.lang)),
+            }}
           />
         </body>
       </NextIntlClientProvider>
