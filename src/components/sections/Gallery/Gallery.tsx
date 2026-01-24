@@ -38,6 +38,8 @@ const Gallery: FC<Props> = async ({ isHairPage }) => {
 
   if (sliderItemsArray) itemList = sliderItemsArray;
 
+console.log(itemList)
+
   return (
     <section id='gallery' className={styles.container}>
       <h2 className={styles.title}>{t('title')}</h2>
