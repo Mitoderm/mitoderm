@@ -38,6 +38,10 @@ const GalleryWrapper: FC<Props> = ({ itemList }) => {
     }
   };
 
+useEffect(() => {
+  setGalleryPage(0);
+}, [])
+
   useEffect(() => {
     isTabletOrMobile ? null : scrollTo();
   }, [galleryPage]);

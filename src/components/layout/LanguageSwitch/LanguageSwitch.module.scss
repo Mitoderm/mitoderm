@@ -48,9 +48,18 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  bottom: -90px;
+  bottom: -88px;
   left: 0;
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
 }
+
+.popup.opened {
+  pointer-events: all;
+  opacity: 1;
+  bottom: -90px;
+} 
 
 .containerMobile .popup {
   bottom: -62px;

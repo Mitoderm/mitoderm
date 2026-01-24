@@ -2,6 +2,7 @@ import { FC } from 'react';
 import styles from './GalleryDesktop.module.scss';
 import ArrowButton from '@/components/sharedUI/ArrowButton/ArrowButton';
 import { useLocale, useTranslations } from 'next-intl';
+import Image from 'next/image';
 
 interface Props {
   disabledLeft: boolean;
@@ -32,10 +33,12 @@ const GalleryDesktop: FC<Props> = ({
         <div id='galleryItemBox' className={styles.imageBox}>
           {items.map((item, i) => (
             <div className={styles.item} key={i}>
-              <img
+              <Image
                 className={styles.image}
                 src={`/images/beforeAfter/${item}`}
                 alt='Example of Exosomes effect'
+                fill
+                style={{ objectFit: 'contain' }}
               />
             </div>
           ))}

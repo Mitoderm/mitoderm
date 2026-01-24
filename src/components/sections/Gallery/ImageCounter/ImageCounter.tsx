@@ -1,3 +1,4 @@
+'use client'
 import { FC } from 'react';
 import styles from './ImageCounter.module.scss';
 import useAppStore from '@/store/store';

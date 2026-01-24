@@ -95,8 +95,7 @@ const LanguageSwitch: FC = () => {
           height={5.5}
           alt='arrow icon'
         />
-        {isOpen ? (
-          <div className={styles.popup}>
+          <div className={`${styles.popup} + ${isOpen ? styles.opened : ''}`}>
             {locale === 'en' ? (
               <>
                 <SwitchItem
@@ -144,7 +143,6 @@ const LanguageSwitch: FC = () => {
               </>
             )}
           </div>
-        ) : null}
       </div>
     </div>
   );
