@@ -39,6 +39,8 @@ const rubik = Rubik({
   subsets: ['latin', 'cyrillic', 'hebrew'],
 });
 
+const baseUrl = 'https://mitoderm.com';
+
 export async function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'he' }, { lang: 'ru' }];
 }
@@ -88,24 +90,24 @@ export const metadata: Metadata = {
     },
   ],
   alternates: {
-    canonical: '/he',
+    canonical: `${baseUrl}/he`,
     languages: {
-      he: '/he',
-      en: '/en',
-      ru: '/ru',
+      he: `${baseUrl}/he`,
+      en: `${baseUrl}/he`,
+      ru: `${baseUrl}/he`,
     },
   },
   openGraph: {
     title: 'אקסוזומים V-Tech | מיטודרם - מערכת מתקדמת לקוסמטיקאיות בישראל',
     description:
       'מערכת V-Tech - אקסוזומים סינתטיים + PDRN פולינוקלאוטידים לקוסמטיקאיות. תוצאות מהטיפול הראשון | הכשרות מקצועיות | מיטודרם ישראל 054-762-1889',
-    url: 'https://mitoderm.com/he',
+    url: `${baseUrl}/he`,
     siteName: 'Mitoderm',
     locale: 'he_IL',
     type: 'website',
     images: [
       {
-        url: 'https://mitoderm.com/images/v-tech-social.jpg',
+        url: `${baseUrl}/images/introBG.png`,
         width: 1200,
         height: 630,
         alt: 'V-Tech System - Synthetic Exosomes + PDRN Polynucleotides',
@@ -121,7 +123,7 @@ export const metadata: Metadata = {
       'מערכת V-Tech - אקסוזומים סינתטיים + PDRN פולינוקלאוטידים לקוסמטיקאיות. תוצאות מהטיפול הראשון | הכשרות מקצועיות | מיטודרם ישראל 054-762-1889',
     images: [
       {
-        url: 'https://mitoderm.com/images/v-tech-social.jpg',
+        url: `${baseUrl}/images/introBG.png`,
         alt: 'V-Tech System - Synthetic Exosomes + PDRN Polynucleotides',
       },
     ],
@@ -129,8 +131,6 @@ export const metadata: Metadata = {
     site: '@mitoderm',
   },
 };
-
-// Structured data will be generated per page
 
 export default async function RootLayout({
   children,

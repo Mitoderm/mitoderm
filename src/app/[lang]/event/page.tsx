@@ -115,7 +115,7 @@ export async function generateMetadata({
       type: 'website',
       images: [
         {
-          url: 'https://mitoderm.com/images/v-tech-social.jpg',
+          url: `${baseUrl}/images/introBG.png`,
           width: 1200,
           height: 630,
           alt: meta.title,
@@ -134,7 +134,7 @@ export async function generateMetadata({
       description: meta.description,
       images: [
         {
-          url: 'https://mitoderm.com/images/v-tech-social.jpg',
+          url: `${baseUrl}/images/introBG.png`,
           alt: meta.title,
         },
       ],
