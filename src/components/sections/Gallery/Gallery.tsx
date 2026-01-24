@@ -33,12 +33,10 @@ const Gallery: FC<Props> = async ({ isHairPage }) => {
   let itemList: string[] = [];
 
   if (env == 'development') {
-    sliderItemsArray = imageFilenames.filter((file) => file !== '.DS_Store' && file !== 'hair');
+    sliderItemsArray = imageFilenames.filter((file) => file !== '.DS_Store' && /\.(jpe?g|png|webp|avif)$/i.test(file));
   } else sliderItemsArray = imageFilenames;
 
   if (sliderItemsArray) itemList = sliderItemsArray;
-
-console.log(itemList)
 
   return (
     <section id='gallery' className={styles.container}>
