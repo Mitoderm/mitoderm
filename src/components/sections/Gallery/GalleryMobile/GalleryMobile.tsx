@@ -16,7 +16,7 @@ const GalleryMobile: FC<Props> = ({ items, isHairPage }) => {
   const locale = useLocale();
   const t = useTranslations();
 
-  const handleScroll = () => {
+  const handleScroll = (value: number | Event) => {
     const container = document.getElementById('galleryItemBox');
     if (!container) return;
 
@@ -24,8 +24,15 @@ const GalleryMobile: FC<Props> = ({ items, isHairPage }) => {
     const scrollDistance =
       locale === 'he' ? -container.scrollLeft : container.scrollLeft;
 
-    const page = Math.round(scrollDistance / itemWidth);
-    setGalleryPage(page);
+    let page: number;
+    if (typeof value === 'number') {
+      const scrollDestination =
+        locale === 'he' ? -itemWidth * value : itemWidth * value;
+      container.scrollTo({ left: scrollDestination });
+    } else {
+      page = Math.round(scrollDistance / itemWidth);
+      setGalleryPage(page);
+    }
   };
 
   useEffect(() => {
@@ -45,8 +52,12 @@ const GalleryMobile: FC<Props> = ({ items, isHairPage }) => {
     <>
       <div className={styles.itemWrapper}>
         <span className={styles.zoomLabel}>{t('gallery.zoom')}</span>
-        <div id='galleryItemBox' className={styles.imageBox}>
-          <PhotoProvider>
+        <div id="galleryItemBox" className={styles.imageBox}>
+          <PhotoProvider
+            onIndexChange={(index) => {
+              handleScroll(index);
+            }}
+          >
             {items.map((item, i) => (
               <div className={styles.item} key={i}>
                 <PhotoView
@@ -59,7 +70,7 @@ const GalleryMobile: FC<Props> = ({ items, isHairPage }) => {
                     src={`/images/beforeAfter/${
                       isHairPage ? `hair/` : ''
                     }${item}`}
-                    alt='Example of Exosomes effect'
+                    alt="Example of Exosomes effect"
                   />
                 </PhotoView>
               </div>

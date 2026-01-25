@@ -81,4 +81,15 @@
     flex: 0 1 48%;
     max-width: 50%;
   }
+  .container {
+    padding: 10px;
+  }
+  .container img {
+    width: 60px;
+    height: auto;
+  }
+  .container span {
+    text-align: start;
+    margin: 10px;
+  }
 }

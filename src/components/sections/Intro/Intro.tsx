@@ -93,11 +93,11 @@ const Intro: FC = () => {
   }, [introPage]);
 
   return (
-    <section id='intro' className={styles.section}>
+    <section id="intro" className={styles.section}>
       <div
-        aria-live='polite'
+        aria-live="polite"
         ref={ref}
-        id='scroller'
+        id="scroller"
         className={styles.scrollBox}
       >
         <div
@@ -105,7 +105,7 @@ const Intro: FC = () => {
             locale === 'he' ? styles.reversed : ''
           }`}
         >
-          <div dir='ltr' className={styles.introMainContent}>
+          <div dir="ltr" className={styles.introMainContent}>
             <div className={styles.container}>
               <h1
                 className={`${styles.title} ${
@@ -125,10 +125,10 @@ const Intro: FC = () => {
               />
               <Image
                 className={styles.leaves}
-                src='/images/leaves.svg'
+                src="/images/leaves.svg"
                 width={90}
                 height={100}
-                alt='leavest pattern'
+                alt="leavest pattern"
               />
             </div>
           </div>
@@ -142,7 +142,7 @@ const Intro: FC = () => {
               muted
               playsInline
             >
-              <source src='/videos/eventIntroVideo.webm' type='video/webm' />
+              <source src="/videos/eventIntroVideo.webm" type="video/webm" />
               Your browser does not support the video tag.
             </video>
             <div className={styles.textContainer}>
@@ -170,7 +170,7 @@ const Intro: FC = () => {
             locale === 'he' ? styles.reversed : ''
           }`}
         >
-          <div dir='ltr' className={styles.introProductsContent}>
+          <div dir="ltr" className={styles.introProductsContent}>
             <div className={styles.container}>
               <h1
                 className={`${styles.title} ${
@@ -196,10 +196,10 @@ const Intro: FC = () => {
               />
               <Image
                 className={styles.leaves}
-                src='/images/leaves.svg'
+                src="/images/leaves.svg"
                 width={90}
                 height={100}
-                alt='leavest pattern'
+                alt="leavest pattern"
               />
             </div>
           </div>
@@ -209,7 +209,7 @@ const Intro: FC = () => {
             locale === 'he' ? styles.reversed : ''
           }`}
         >
-          <div dir='ltr' className={styles.introProductsContent}>
+          <div dir="ltr" className={styles.introProductsContent}>
             <div className={styles.container}>
               <h1
                 className={`${styles.title} ${
@@ -233,10 +233,10 @@ const Intro: FC = () => {
               />
               <Image
                 className={styles.leaves}
-                src='/images/leaves.svg'
+                src="/images/leaves.svg"
                 width={90}
                 height={100}
-                alt='leavest pattern'
+                alt="leavest pattern"
               />
             </div>
           </div>
@@ -246,7 +246,7 @@ const Intro: FC = () => {
             locale === 'he' ? styles.reversed : ''
           }`}
         >
-          <div dir='ltr' className={styles.introProductsContent}>
+          <div dir="ltr" className={styles.introProductsContent}>
             <div className={styles.container}>
               <h1
                 className={`${styles.title} ${
@@ -272,10 +272,10 @@ const Intro: FC = () => {
               />
               <Image
                 className={styles.leaves}
-                src='/images/leaves.svg'
+                src="/images/leaves.svg"
                 width={90}
                 height={100}
-                alt='leavest pattern'
+                alt="leavest pattern"
               />
             </div>
           </div>
