@@ -7,3 +7,5 @@ export const combinedArray = (arr: Array<any>) =>
       return null;
     })
     .filter((item): item is [any, any] => item !== null && item !== undefined);
+
+    export const randomString = () => (Math.random() + 1).toString(36).substring(7);

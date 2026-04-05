@@ -31,10 +31,10 @@ const Success: FC = () => {
       <div className={styles.containerInner}>
         <h1 className={styles.title}>{t('success.title')}</h1>
         <Image
-          src='/images/success.svg'
+          src="/images/icons/success.svg"
           width={150}
           height={150}
-          alt='success icon'
+          alt="success icon"
           style={{ marginBlock: 30 }}
         />
         <>
@@ -50,7 +50,7 @@ const Success: FC = () => {
             <span className={styles.text}>{t('success.email')}</span>
             {email}
           </span>
-          <span dir='ltr'>
+          <span dir="ltr">
             <span className={styles.text}>{t('success.phone')}</span>
             {phone}
           </span>

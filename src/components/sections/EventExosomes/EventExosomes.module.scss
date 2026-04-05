@@ -1,0 +1,81 @@
+@use 'variables' as *;
+
+.exosomes {
+  background: $colorNavyDark;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  @media (max-width: $breakpointXl) {
+    padding-inline: 2rem;
+  }
+}
+
+.container {
+  max-width: calc($contentWidthDesktop - 4rem);
+  margin: 0 auto;
+}
+
+.sectionHead {
+  margin-bottom: 3rem;
+  text-align: center;
+  p {
+    font-size: 2.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    @media (max-width: $breakpointTablet) {
+      font-size: 2rem;
+    }
+  }
+  h2 {
+    margin-bottom: 1.5rem;
+    font-size: 5rem;
+    font-weight: 700;
+    color: $colorGold;
+
+    @media (max-width: $breakpointTablet) {
+      font-size: 3rem;
+    }
+  }
+}
+
+.grid {
+  margin-top: 6rem;
+  display: grid;
+  gap: 3rem;
+
+  @media (min-width: $breakpointTablet) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4rem;
+  text-align: start;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s;
+
+  .cardTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $colorGold;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+    line-height: 1.625;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.footer {
+  margin-top: 5rem;
+  text-align: center;
+  font-size: 1.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}

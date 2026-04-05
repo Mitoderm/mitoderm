@@ -1,12 +1,14 @@
 'use client';
 import { FC, useEffect, useRef } from 'react';
+import { motion } from 'motion/react';
 import dynamic from 'next/dynamic';
 import styles from './Intro.module.scss';
 import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
-import { usePathname, useRouter } from '@/i18n/routing';
+import { Link, usePathname, useRouter } from '@/i18n/routing';
 import DotPagination from '../../sharedUI/DotPagination/DotPagination';
 import useAppStore from '@/store/store';
+import EventButton from '@/components/sharedUI/EventButton/EventButton';
 
 const Button = dynamic(() => import('@/components/sharedUI/Button/Button'), {
   ssr: false,
@@ -19,73 +21,73 @@ const Intro: FC = () => {
   const pathname = usePathname();
   const ref = useRef<HTMLDivElement>(null);
   const isEventPage = pathname.includes('event');
-  const isSignalPage = pathname.includes('exosignalhair');
+  const isSignalPage = pathname.includes('exosignal_hair');
   const isGelPage = pathname.includes('exotechgel');
   const isSprayPage = pathname.includes('exosignalhairspray');
   const { introPage, setIntroPage } = useAppStore((state) => state);
 
-  const scrollToNextChild = () => {
+  useEffect(() => {
+    if (isEventPage) {
+      scrollTo(1);
+      setIntroPage(1);
+    } else if (isSprayPage) {
+      scrollTo(2);
+      setIntroPage(2);
+    } else if (isGelPage) {
+      scrollTo(3);
+      setIntroPage(3);
+    } else if (isSignalPage) {
+      scrollTo(4);
+      setIntroPage(4);
+    } else setIntroPage(0);
+  }, []);
+
+  const scrollTo = (page: number, smooth: boolean = false) => {
     const container = document.getElementById('scroller');
-    const scrollPosition = introPage * window.innerWidth;
+    const scrollPosition = page * window.innerWidth;
     if (locale === 'he') {
       container?.scrollTo({
         left: -scrollPosition,
-        behavior: 'smooth',
+        behavior: smooth ? 'smooth' : 'auto',
       });
     } else {
       container?.scrollTo({
         left: scrollPosition,
-        behavior: 'smooth',
+        behavior: smooth ? 'smooth' : 'auto',
       });
     }
   };
 
   useEffect(() => {
-    if (isEventPage) {
-      setIntroPage(1);
-    } else if (isSprayPage) {
-      setIntroPage(2);
-    } else if (isGelPage) {
-      setIntroPage(3);
-    } else if (isSignalPage) {
-      setIntroPage(4);
-    } else setIntroPage(0);
-  }, []);
-
-  useEffect(() => {
     const container = ref.current;
 
-    const handleScroll = () => {
-      const containerWidth = ref.current?.clientWidth;
-      if (locale === 'he' && container?.scrollLeft && containerWidth) {
-        if (container?.scrollLeft === -containerWidth) setIntroPage(1);
-        else if (container?.scrollLeft === -containerWidth * 2) setIntroPage(2);
-        else if (container?.scrollLeft === -containerWidth * 3) setIntroPage(3);
-        else if (container?.scrollLeft === -containerWidth * 4) setIntroPage(4);
-      } else if (container?.scrollLeft === 0) {
-        setIntroPage(0);
-      }
-      if (locale !== 'he' && container?.scrollLeft && containerWidth) {
-        if (container?.scrollLeft === containerWidth) setIntroPage(1);
-        else if (container?.scrollLeft === containerWidth * 2) setIntroPage(2);
-        else if (container?.scrollLeft === containerWidth * 3) setIntroPage(3);
-        else if (container?.scrollLeft === containerWidth * 4) setIntroPage(4);
-      } else if (container?.scrollLeft === 0) {
-        setIntroPage(0);
+    const handleScroll = (value: number | Event) => {
+      const container = document.getElementById('scroller');
+      if (!container) return;
+
+      const itemWidth = container.clientWidth;
+      const scrollDistance =
+        locale === 'he' ? -container.scrollLeft : container.scrollLeft;
+
+      let page: number;
+      if (typeof value === 'number') {
+        const scrollDestination =
+          locale === 'he' ? -itemWidth * value : itemWidth * value;
+        container.scrollTo({ left: scrollDestination });
+      } else {
+        page = Math.round(scrollDistance / itemWidth);
+        setIntroPage(page);
       }
     };
 
-    container?.addEventListener('scroll', handleScroll);
+    container?.addEventListener('scroll', handleScroll, { passive: true });
     return () => container?.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
-    scrollToNextChild();
-  }, [introPage]);
-
-  useEffect(() => {
     const currentValue = introPage < 4 ? introPage + 1 : 0;
     const interval = setInterval(() => {
+      scrollTo(currentValue, true);
       setIntroPage(currentValue);
     }, 15000);
 
@@ -134,34 +136,86 @@ const Intro: FC = () => {
           </div>
         </div>
         <div className={styles.introEvent}>
-          <div className={`${styles.container} ${styles.eventPageContainer}`}>
-            <video
-              className={`${styles.eventVideo} ${locale === 'he' && styles.he}`}
-              autoPlay
-              loop
-              muted
-              playsInline
-            >
-              <source src="/videos/eventIntroVideo.webm" type="video/webm" />
-              Your browser does not support the video tag.
-            </video>
-            <div className={styles.textContainer}>
-              <span className={styles.subtitleEvent}>
-                {t('intro.eventSubtitle1')}
-              </span>
-              <h1
-                className={`${styles.eventTitle} ${
-                  locale === 'ru' ? styles.ru : ''
-                }`}
+          <div className={styles.eventBG}>
+            <motion.div
+              animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
+              transition={{ duration: 20, repeat: Infinity }}
+              className={styles.blur1}
+            />
+            <motion.div
+              animate={{ scale: [1.2, 1, 1.2], rotate: [0, -90, 0] }}
+              transition={{ duration: 25, repeat: Infinity }}
+              className={styles.blur2}
+            />
+          </div>
+          <div className={styles.eventContent}>
+            <div className={styles.contentWrapper}>
+              <motion.video
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className={`${styles.eventVideo} ${locale === 'he' && styles.he}`}
+                autoPlay
+                loop
+                muted
+                playsInline
               >
-                {t('intro.eventTitleP1')}
-                <span>{t('intro.eventTitleP2')}</span>
-                {t('intro.eventTitleP3')}
-              </h1>
-              <span className={styles.subtitleEvent}>
-                {t('intro.eventSubtitle2')}
-              </span>
-              <Button text={t('buttons.seat')} formPage={'event'} />
+                <source src="/videos/eventIntroVideo.webm" type="video/webm" />
+                Your browser does not support the video tag.
+              </motion.video>
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                className={styles.eventTextContainer}
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                  className={styles.badge}
+                >
+                  <div
+                    className={styles.badgeDot + ' ' + styles.animatePulse}
+                  />
+                  {t('intro.eventBadge')}
+                </motion.div>
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.8 }}
+                  className={styles.eventTitle}
+                >
+                  <span style={{ color: 'white' }}>
+                    {t('intro.eventTitleP1')}
+                  </span>
+                  <span className={styles.eventTitleAccent}>
+                    {t('intro.eventTitleP2')}
+                  </span>
+                  <span style={{ color: 'white' }}>
+                    {t('intro.eventTitleP3')}
+                  </span>
+                </motion.h1>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                  className={styles.eventSubtitle}
+                >
+                  <p className={styles.eventSubtitleText}>
+                    {t('intro.eventSubtitle')}
+                  </p>
+                </motion.div>
+                <EventButton
+                  text={t('buttons.cta')}
+                  url={isEventPage ? '#about' : undefined}
+                  onClick={() => {
+                    if (!isEventPage) {
+                      router.push('/event');
+                    }
+                  }}
+                />
+              </motion.div>
             </div>
           </div>
         </div>
@@ -282,10 +336,11 @@ const Intro: FC = () => {
         </div>
       </div>
       <div className={styles.paginationBox}>
-        <DotPagination count={5} intro />
+        <DotPagination count={5} intro handleIntroSwitch={scrollTo} />
       </div>
     </section>
   );
 };
+``;
 
 export default Intro;

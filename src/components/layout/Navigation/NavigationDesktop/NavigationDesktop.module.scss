@@ -1,0 +1,22 @@
+@use 'variables' as *;
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 67rem;
+}
+
+.button {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.875rem;
+  line-height: 3rem;
+  padding-inline: 10px;
+  transition: font-size 0.3s linear;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: rgba(255, 255, 255, 1);
+  font-size: 2rem;
+}

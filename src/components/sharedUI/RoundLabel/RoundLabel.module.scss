@@ -1,16 +1,17 @@
+@use 'variables' as *;
 .container {
   position: absolute;
-  width: 56px;
-  height: 56px;
+  width: 7rem;
+  height: 7rem;
   border-radius: 50%;
   background-color: #dfba74;
-  color: var(--colorWhite);
+  color: $colorWhite;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
+  font-size: 5rem;
   font-weight: 300;
-  line-height: 40px;
+  line-height: 5rem;
   top: 50%;
   right: -5px;
   transform: translate(50%, -50%);

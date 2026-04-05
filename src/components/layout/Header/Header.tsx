@@ -14,6 +14,8 @@ const Header: FC = () => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
   const pathname = usePathname();
   const isSuccessPage = pathname.includes('success');
+  const isEventPage = pathname.includes('event') && !pathname.includes('form');
+  const isAdminPage = pathname.includes('admin');
   const handleClose = (e: MouseEvent) => {
     const { target } = e;
     if ((target as HTMLDivElement).id === 'overlay') setIsOpen(false);
@@ -27,31 +29,41 @@ const Header: FC = () => {
   }, [isOpen]);
 
   return (
-    <header className={styles.header}>
-      <div
-        className={`${styles.overlay} ${isOpen ? styles.active : ''}`}
-        id='overlay'
-      />
-      <div className={styles.container}>
-        <Link
-          className={styles.logoContainer}
-          href={pathname.length > 1 ? '/' : '#intro'}
+    <>
+      {isAdminPage ? null : (
+        <header
+          className={`${styles.header} ${isEventPage ? styles.eventPage : ''}`}
         >
-          <Image
-            src='/images/logo.svg'
-            width={isTabletOrMobile ? 96 : 120}
-            height={isTabletOrMobile ? 32 : 40}
-            quality={100}
-            alt='mitoderm logo'
+          <div
+            className={`${styles.overlay} ${isOpen ? styles.active : ''}`}
+            id="overlay"
           />
-        </Link>
-        <Navigation setIsOpen={setIsOpen} isOpen={isOpen} />
-        {!isSuccessPage ? <LanguageSwitch /> : <div style={{ width: 120 }} />}
-        {isTabletOrMobile && (
-          <BurgerButton isOpen={isOpen} setIsOpen={setIsOpen} />
-        )}
-      </div>
-    </header>
+          <div className={styles.container}>
+            <Link
+              className={styles.logoContainer}
+              href={pathname.length > 1 ? '/' : '#intro'}
+            >
+              <Image
+                src="/images/logo.svg"
+                width={isTabletOrMobile ? 96 : 120}
+                height={isTabletOrMobile ? 32 : 40}
+                quality={100}
+                alt="mitoderm logo"
+              />
+            </Link>
+            <Navigation setIsOpen={setIsOpen} isOpen={isOpen} />
+            {!isSuccessPage ? (
+              <LanguageSwitch />
+            ) : (
+              <div style={{ width: 120 }} />
+            )}
+            {isTabletOrMobile && (
+              <BurgerButton isOpen={isOpen} setIsOpen={setIsOpen} />
+            )}
+          </div>
+        </header>
+      )}
+    </>
   );
 };
 

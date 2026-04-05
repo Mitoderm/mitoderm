@@ -1,4 +1,5 @@
 import { unstable_setRequestLocale } from 'next-intl/server';
+import { getDoctors } from '@/lib/mongodb';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Script from 'next/script';
@@ -15,7 +16,7 @@ const Solution = dynamic(
   () => import('@/components/sections/Solution/Solution'),
   {
     ssr: false,
-  }
+  },
 );
 
 const Mission = dynamic(() => import('@/components/sections/Mission/Mission'), {
@@ -51,7 +52,8 @@ export async function generateMetadata({
       ogLocale: 'he_IL',
     },
     en: {
-      title: 'V-Tech Exosomes | Mitoderm - Advanced System for Cosmetologists in Israel',
+      title:
+        'V-Tech Exosomes | Mitoderm - Advanced System for Cosmetologists in Israel',
       description:
         'V-Tech System - Synthetic exosomes + PDRN polynucleotides for cosmetologists. Results from the first treatment | Professional training | Mitoderm Israel 054-762-1889',
       keywords:
@@ -59,7 +61,8 @@ export async function generateMetadata({
       ogLocale: 'en_US',
     },
     ru: {
-      title: 'Экзосомы V-Tech | Митодерм - Продвинутая система для косметологов в Израиле',
+      title:
+        'Экзосомы V-Tech | Митодерм - Продвинутая система для косметологов в Израиле',
       description:
         'Система V-Tech - синтетические экзосомы + PDRN полинуклеотиды для косметологов. Результаты с первого лечения | Профессиональное обучение | Митодерм Израиль 054-762-1889',
       keywords:
@@ -92,7 +95,7 @@ export async function generateMetadata({
       type: 'website',
       images: [
         {
-          url: `${baseUrl}/images/introBG.png`,
+          url: `${baseUrl}/images/backgrounds/introBG.png`,
           width: 1200,
           height: 630,
           alt: meta.title,
@@ -111,7 +114,7 @@ export async function generateMetadata({
       description: meta.description,
       images: [
         {
-          url: `${baseUrl}/images/introBG.png`,
+          url: `${baseUrl}/images/backgrounds/introBG.png`,
           alt: meta.title,
         },
       ],
@@ -124,6 +127,7 @@ export async function generateMetadata({
 export default async function HomePage({ params: { lang } }: any) {
   unstable_setRequestLocale(lang);
   const t = await getTranslations({ locale: lang });
+  const doctors = await getDoctors();
 
   // FAQ schema
   const faqs = [
@@ -156,21 +160,21 @@ export default async function HomePage({ params: { lang } }: any) {
 
   return (
     <>
-      <main id='mainpage'>
+      <main id="mainpage">
         <Intro />
-        <Chevron page='intro' imageName='chevronImage' />
+        <Chevron page="intro" imageName="chevronImage" />
         <Synergy />
-        <HowCanBeUsed page='main' />
-        <Solution page='main' />
+        <HowCanBeUsed page="main" />
+        <Solution page="main" />
         <Gallery />
         <Mission />
-        <CenterList />
+        <CenterList doctors={doctors} />
         <Faq />
         <Contact />
       </main>
       <Script
-        id='faq-schema'
-        type='application/ld+json'
+        id="faq-schema"
+        type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(faqSchema),
         }}

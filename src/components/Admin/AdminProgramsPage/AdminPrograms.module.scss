@@ -1,0 +1,354 @@
+// Dark admin surface tokens (replaces Tailwind / shadcn semantic classes)
+$border: rgba(148, 163, 184, 0.28);
+$borderSoft: rgba(148, 163, 184, 0.14);
+$mutedFg: #94a3b8;
+$background: #0f172a;
+$cardBg: rgba(30, 41, 59, 0.55);
+$hoverRow: rgba(255, 255, 255, 0.06);
+$sectionTint: rgba(255, 255, 255, 0.04);
+$footerTint: rgba(255, 255, 255, 0.06);
+$destructive: #f87171;
+$destructiveBorder: rgba(248, 113, 113, 0.35);
+$destructiveHoverBg: rgba(248, 113, 113, 0.12);
+$accent: #818cf8;
+$accentHover: #6366f1;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.subtitle {
+  margin-top: 0.5rem;
+  font-size: 1.75rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 2.5rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1.7rem;
+  font-weight: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  color: #fff;
+  background-color: $accent;
+  box-shadow:
+    0 10px 15px -3px rgba(129, 140, 248, 0.2),
+    0 4px 6px -4px rgba(129, 140, 248, 0.15);
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: $accentHover;
+  }
+}
+
+.eventList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.programCard {
+  overflow: hidden;
+  border-radius: 1.5rem;
+  border: 1px solid $border;
+  background-color: $cardBg;
+}
+
+.cardHeaderRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2.5rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: $hoverRow;
+  }
+}
+
+.cardBodyMain {
+  flex: 1;
+  min-width: 0;
+}
+
+.badgeRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.statusBadge {
+  padding: 0.25rem 1rem;
+  border-radius: 9999px;
+  font-size: 1.4rem;
+  color: $accent;
+  background-color: rgba(129, 140, 248, 0.12);
+}
+
+.cityBadge {
+  padding: 0.25rem 1rem;
+  border-radius: 9999px;
+  font-size: 1.4rem;
+  text-transform: capitalize;
+  color: $mutedFg;
+  background-color: rgba(148, 163, 184, 0.12);
+}
+
+.idText {
+  font-size: 1.4rem;
+  color: $mutedFg;
+}
+
+.programTitle {
+  font-size: 1.9rem;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  color: $mutedFg;
+}
+
+.icon3 {
+  width: 1.5rem;
+  height: 1.5rem;
+  filter: brightness(0) saturate(100%) invert(70%) sepia(13%) saturate(1000%)
+    hue-rotate(180deg) brightness(95%) contrast(85%);
+}
+
+.cardActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.iconButton {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: $hoverRow;
+  }
+}
+
+.expandedPanel {
+  border-top: 1px solid $border;
+}
+
+.section {
+  padding: 1.25rem;
+  border-bottom: 1px solid $borderSoft;
+  background-color: $sectionTint;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  color: $mutedFg;
+}
+
+.sectionTitlePlain {
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  color: $mutedFg;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  color: $mutedFg;
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid $border;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  color: #e2e8f0;
+  background-color: $background;
+
+  &:focus {
+    outline: 2px solid rgba(129, 140, 248, 0.45);
+    outline-offset: 0;
+  }
+}
+
+.textarea {
+  resize: none;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.stackSpaced {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.locationsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.linkButton {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  border: none;
+  padding: 0;
+  font-size: 0.8rem;
+  font-family: inherit;
+  color: $accent;
+  background: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.footerActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem;
+  background-color: $footerTint;
+}
+
+.cancelButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid $border;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  color: #e2e8f0;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+}
+
+.footerButtons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.deleteButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid $destructiveBorder;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  color: $destructive;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: $destructiveHoverBg;
+  }
+}
+
+.saveButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  color: #fff;
+  background-color: $accent;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: $accentHover;
+  }
+}
+
+.icon4 {
+  width: 1rem;
+  height: 1rem;
+}
+
+.chevronIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: $mutedFg;
+}

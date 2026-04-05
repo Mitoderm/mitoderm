@@ -4,9 +4,10 @@ import {
   LanguageSwitchItem,
   SolutionItem,
   ScrollItems,
-  ReviewType,
   EventBulletItem,
-  CenterItemData,
+  WorkshopVariant,
+  InviteBulletItem,
+  StatItem,
 } from './types';
 
 export const navMainList: NavItem[] = [
@@ -15,7 +16,10 @@ export const navMainList: NavItem[] = [
   { text: 'navigation.info', scrollId: ScrollItems.moreInfo },
   { text: 'navigation.contact', scrollId: ScrollItems.contactUs },
   { text: 'navigation.event', url: '/event' },
-  { text: 'navigation.clinic', scrollId: ScrollItems.clinic },
+  { text: 'navigation.clinic', 
+    // url: '/doctors'
+    scrollId: ScrollItems.clinic
+   },
 ];
 
 export const navEventList: NavItem[] = [
@@ -27,9 +31,12 @@ export const navEventList: NavItem[] = [
 ];
 
 export const navFormList: NavItem[] = [
-  { text: 'navigation.product', url: '/' },
   { text: 'navigation.event', url: '/event' },
 ];
+
+export const navDoctorList: NavItem[] = [
+  { text: 'navigation.event', url: '/event' },
+]
 
 export const howToUseItemList: HowToUseItem[] = [
   { imagePath: '/images/howToUse/skin.png', text: 'howToUse.main.item1' },
@@ -135,93 +142,69 @@ export const solutionItems: SolutionItem[] = [
 
 export const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
-export const reviews: ReviewType[] = [
+export const courses = [
   {
-    name: 'reviews.item1.name',
-    rating: 5,
-    text: 'reviews.item1.text',
+    id: 0,
+    key: 'course1',
+    colorKey: 'from-[#c4a764] to-[#a68a4d]',
+    image: '/images/courses/card1.png',
   },
   {
-    name: 'reviews.item2.name',
-    rating: 5,
-    text: 'reviews.item2.text',
+    id: 1,
+    key: 'course2',
+    colorKey: 'from-[#dfba74] to-[#be800c]',
+    image: '/images/courses/card2.png',
+  },
+  {
+    id: 2,
+    key: 'course3',
+    colorKey: 'from-[#be800c] to-[#9a6600]',
+    image: '/images/courses/card3.png',
   },
 ];
 
-export const centerItemData: CenterItemData[] = [
+export  const variantToIndex: Record<WorkshopVariant, number> = {
+  '990': 0,
+  '180': 1,
+  '480': 2,
+};
+
+export const inviteBulletsItemList: InviteBulletItem[] = [
   {
-    name: 'גאל לוי קוסמטיקה בע״מ',
-    city: 'רמת השרון- מרכז',
-    contact: '054-539-3522',
+    imagePath: '/images/icons/award.svg',
+    alt: 'award icon on yellow background',
+    title: 'inviteEventSection.item1.title',
+    text: 'inviteEventSection.item1.text',
   },
   {
-    name: "ליידי די ביי דר' דיאנה קליניקה לאסתטיקה רפואית בעמ",
-    city: 'באר שבע- דרום',
-    contact: '052-605-3575',
+    imagePath: '/images/icons/users.svg',
+    alt: 'users icon on yellow background',
+    title: 'inviteEventSection.item2.title',
+    text: 'inviteEventSection.item2.text',
   },
   {
-    name: 'אורטל אוחיון קוסמטיקאית',
-    city: 'נתניה מרכז',
-    contact: '052-955-9155',
+    imagePath: '/images/icons/bookOpened.svg',
+    alt: 'opened book icon on yellow background',
+    title: 'inviteEventSection.item3.title',
+    text: 'inviteEventSection.item3.text',
   },
-  { name: 'דוניא קמוע', city: 'נצרת צפון', contact: '050-7592446' },
-  { name: 'חטיב נימר אמאני', city: 'נצרת צפון', contact: '052-5413528' },
-  { name: 'דר ויקטוריה אסלניאן', city: 'מרכז', contact: '050-8685444' },
   {
-    name: 'פרפקט סקין קוסמטיקה- אורן וקריסטינה',
-    city: 'מרכז',
-    contact: '052-8010223',
-  },
-  { name: 'אילונה שפקטור', city: 'מרכז', contact: '054-7621889' },
-  { name: 'לודמילה אגדרוב', city: 'ראשון לציון-מרכז', contact: '054-3264933' },
-  { name: 'אור מדיקל קוסמטיקס- אורלי ', city: 'מרכז', contact: '054-9451444' },
-  { name: 'לריסה קוסמטיקס', city: 'מרכז', contact: '054-5305240' },
-  { name: 'נטלי לוטטי', city: 'מרכז', contact: '054-6860072' },
-  { name: 'בוימל אורית', city: 'מרכז', contact: '054-4580605' },
-  { name: 'בת שבע טל', city: 'מרכז', contact: '050-7582668' },
-  { name: 'ציבי לוי', city: '', contact: '058-414-2637' },
-  { name: 'רווית וולפסון', city: 'אשדוד ', contact: '050-799-8457' },
+    imagePath: '/images/icons/micro.svg',
+    alt: 'microscope icon on yellow background',
+    title: 'inviteEventSection.item4.title',
+    text: 'inviteEventSection.item4.text',
+  }
+]
+
+export const indexToVariant: WorkshopVariant[] = ['990', '180', '480'];
+
+export const stats: StatItem[] = [
+  { icon: 'award.svg', value: 15, suffix: '+', labelKey: 'years' },
+  { icon: 'briefcase.svg', value: 50, suffix: '+', labelKey: 'workshops' },
   {
-    name: 'רייפיס א.א (אביטל איסקוב ) בע"מ',
-    city: 'שוהם',
-    contact: '052-832-5338',
+    icon: 'trendingup.svg',
+    value: 98,
+    suffix: '%',
+    labelKey: 'satisfaction',
   },
-  { name: 'מירב אסטון קוסמטיקאית', city: 'גן יבנה', contact: '052-660-1016' },
-  { name: 'אילי אברהמי', city: '', contact: '050-886-8614' },
-  { name: 'סיגל קוסמטיקה בניחוח אחר', city: 'מרכז', contact: '054-220-8391' },
-  { name: 'קטי מרדכי', city: 'חדרה', contact: '054-489-0451' },
-  { name: 'קסניה פנחסוב', city: 'מרכז', contact: '054-3450595' },
-  { name: 'תובה מנצור', city: '', contact: '050-377-7729' },
-  { name: 'מירב לזמי', city: '', contact: '054-782-2384' },
-  { name: 'אולגה שולמן', city: 'רחובות', contact: '050-306-9761' },
-  { name: 'סלבי אברהם', city: 'מרכז - ראשון לציון', contact: '054-281-8142' },
-  { name: 'חני יאיר פור', city: 'תל אביב', contact: '050-831-3895' },
-  { name: 'שלומית פדידה', city: 'אשדוד ', contact: '052-250-2563' },
-  { name: 'טלי ארזי', city: 'מרכז', contact: '052-330-7663' },
-  { name: 'נטלי בנדורה', city: 'פתח תקווה', contact: '054-764-5074' },
-  { name: 'שמית מלכה', city: 'צפון', contact: '054-202-0701' },
-  { name: 'דר איתי סקורניק', city: 'מרכז', contact: '054-7660964' },
-  { name: 'רחלי יוגב', city: 'אל עד מרכז', contact: '054-992-2699' },
-  { name: 'דר ניר גלאור', city: 'זכרון יעקב', contact: '054-5454636' },
-  { name: 'אסתר איליזרוב', city: 'פתח תקווה', contact: '054-5320240' },
-  { name: 'סופי אביב', city: 'פתח תקווה', contact: '054-7547111' },
-  { name: 'הלנה קלצקין', city: 'כפר סבא', contact: '050-4413135' },
-  { name: 'יפעת רבה', city: 'יבנה', contact: '052-5230499' },
-  { name: 'אילנית גבאי', city: 'אשדוד', contact: '052-5756724' },
-  { name: 'שני אברהם', city: 'קריית גת', contact: '050-7700234' },
-  { name: 'סימה פייר', city: 'צפון', contact: '050-8333654' },
-  { name: 'שרי לוי', city: 'יבנה', contact: '050-6667891' },
-  {
-    name: 'ליז שאולוב',
-    city: 'מושב כפר ברוך-עמק יזרעאל',
-    contact: '050-3888721',
-  },
-  { name: 'מקריאן סבטלנה', city: 'נתניה', contact: '053-2729020' },
-  { name: 'אוסנת סויסה', city: 'נתיבות', contact: '052-4703476' },
-  { name: 'יעל אבן צור', city: 'נתניה', contact: '054-7465227' },
-  { name: 'מאיה רומנוב', city: 'ראשלצ', contact: '052-7442818' },
-  { name: 'קטי מרדכי', city: 'חדרה', contact: '054-4890451' },
-  { name: 'אורלי ליאור', city: 'ניצני עוז', contact: '052-2567100' },
-  { name: 'פלנסיה אורנה', city: 'כפר סבא', contact: '050-3636362' },
-  { name: 'שרי כהני ', city: 'ירושלים', contact: '050-5536643' },
 ];

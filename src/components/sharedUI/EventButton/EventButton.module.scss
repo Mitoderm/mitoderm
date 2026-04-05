@@ -1,0 +1,44 @@
+@use 'variables' as *;
+
+.buttonWrapper {
+  margin-top: 6rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  @media (max-width: $breakpointTablet) {
+    width: 100%;
+  }
+}
+
+.buttonLink {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  border-radius: 9999px;
+  background: linear-gradient(to right, $colorGold, $colorGoldDark);
+  padding: 2rem 4rem;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: $colorWhite;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  border: none;
+  cursor: pointer;
+
+  @media (max-width: $breakpointTablet) {
+    width: calc(100% - 4rem);
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(223, 186, 116, 0.4);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+}

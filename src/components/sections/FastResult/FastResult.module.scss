@@ -1,43 +1,44 @@
+@use 'variables' as *;
 .container {
   display: flex;
   justify-content: center;
-  padding-block: 60px;
+  padding-block: 7.5rem;
 }
 
 .containerInner {
-  max-width: 1200px;
+  max-width: 150rem;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  border: 1px solid var(--colorWhite);
-  border-radius: 40px;
-  padding: 20px;
+  border: 1px solid $colorWhite;
+  border-radius: 5rem;
+  padding: 2.5rem;
 }
 
 .textBox {
-  padding-left: 10px;
+  padding-left: 1.25rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 430px;
-  color: var(--colorLightBG);
+  max-width: 53.75rem;
+  color: $colorLightBg;
 }
 
 .textBox h2 {
   font-weight: 500;
-  font-size: var(--fontSizeH2);
+  font-size: $fontSizeH2;
 }
 
 .textBox h2 span {
-  color: var(--colorAccentLight);
+  color: $colorAccentLight;
 }
 
 .subtitle {
-  margin-block: 20px;
+  margin-block: 2.5rem;
 }
 
 .text {
-  max-width: 280px;
+  max-width: 35rem;
 }
 
 @media screen and (max-width: 768px) {
@@ -51,7 +52,7 @@
   }
   .containerInner img {
     width: 100%;
-    margin-top: 30px;
+    margin-top: 3.75rem;
   }
   .textBox {
     max-width: 100%;
@@ -59,10 +60,10 @@
   }
   .textBox h2,
   .textBox h2 span {
-    font-size: var(--fontSizeMobH2);
+    font-size: $fontSizeMobH2;
   }
   .textBox span {
-    font-size: var(--fontSizeMobP2);
+    font-size: $fontSizeMobP2;
   }
   .text {
     max-width: 100%;

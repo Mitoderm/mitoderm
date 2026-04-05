@@ -61,12 +61,6 @@ export enum ScrollItems {
 
 export type ModalType = 'privatePolicy' | 'accessibility';
 
-export interface ReviewType {
-  name: string;
-  rating: number;
-  text: string;
-}
-
 export interface EventBulletItem {
   imagePath: string;
   text: string;
@@ -112,4 +106,48 @@ export interface ContactFormData {
   phone: string;
   email: string;
   subject: string;
+}
+
+export type Area = "צפון" | "מרכז" | "דרום";
+
+export interface DoctorType {
+  _id: string;       
+  name: string;
+
+  city: string;         
+  area: Area;
+
+  profession: "1" | "2" | "3";  
+
+  contact: string;
+  instagram: string;
+
+  createdAt: string;     
+  updatedAt: string;  
+}
+
+export type WorkshopVariant = "990" | "180" | "480"
+
+export interface InviteBulletItem {
+  imagePath: string;
+  alt: string;
+  title: string;
+  text: string;
+}
+
+export interface StatItem {
+  icon: string;
+  value: number;
+  suffix: string;
+  labelKey: string;
+}
+
+export interface Event {
+  id: string;
+  category: number;
+  city: string;
+  date: Date;
+  time: string;
+  isAvailable: boolean;
+  expireAt: Date;
 }

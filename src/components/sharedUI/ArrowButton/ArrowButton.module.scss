@@ -1,12 +1,13 @@
+@use 'variables' as *;
 .button,
 .button.colored {
   background-color: transparent;
-  border-radius: 16px;
+  border-radius: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 60px;
-  height: 60px;
+  height: 7.5rem;
 }
 
 .image {
@@ -15,8 +16,8 @@
 }
 
 .button .image {
-  width: 40px;
-  height: 40px;
+  width: 5rem;
+  height: 5rem;
   transition: all 0.2s linear;
 }
 
@@ -25,7 +26,7 @@
 }
 
 .button.colored:active {
-  background-color: var(--colorAccentDark);
+  background-color: $colorAccentDark;
 }
 
 .image.colored {
@@ -34,7 +35,7 @@
 }
 
 .button.dark {
-  background-color: var(--colorAccentDark);
+  background-color: $colorAccentDark;
 }
 
 .image.dark {
@@ -43,7 +44,7 @@
 }
 
 .button.dark:active {
-  background-color: var(--colorAccentDark);
+  background-color: $colorAccentDark;
 }
 
 .disabled {
@@ -62,7 +63,7 @@
       hue-rotate(288deg) brightness(102%) contrast(102%);
   }
   .button:hover {
-    background-color: var(--colorBG);
+    background-color: $colorBg;
   }
   .button:hover .image {
     filter: brightness(0) saturate(100%) invert(27%) sepia(86%) saturate(497%)

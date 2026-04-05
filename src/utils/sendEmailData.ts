@@ -1,9 +1,9 @@
 'use server';
 const nodemailer = require('nodemailer');
 
-const emailUsername = process.env.NEXT_PUBLIC_EMAIL_USERNAME;
-const emailPassword = process.env.NEXT_PUBLIC_EMAIL_PASSWORD;
-const myEmail = process.env.NEXT_PUBLIC_PERSONAL_EMAIL;
+const emailUsername = process.env.EMAIL_USERNAME;
+const emailPassword = process.env.EMAIL_PASSWORD;
+const myEmail = process.env.PERSONAL_EMAIL;
 
 export async function sendDataOnMail(formData: any) {
   const { name, email, phone } = {

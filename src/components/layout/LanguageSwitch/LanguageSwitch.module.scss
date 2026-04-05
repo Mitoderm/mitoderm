@@ -1,42 +1,43 @@
+@use 'variables' as *;
 .container,
 .containerMobile {
-  width: 90px;
-  height: 40px;
-  background-color: var(--colorWhite);
-  border-radius: 16px;
+  width: 11.25rem;
+  height: 5rem;
+  background-color: $colorWhite;
+  border-radius: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   user-select: none;
   position: relative;
-  z-index: 11;
+  z-index: 9;
 }
 
 .containerMobile {
   width: 60px;
-  height: 26px;
+  height: 3.25rem;
   margin-block: auto;
 }
 
 .currenSelection {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 0.625rem;
 }
 
 .localeText {
   text-transform: uppercase;
-  font-size: var(--fontSizeP2);
+  font-size: $fontSizeP2;
 }
 
 .localeText.mobile {
-  font-size: var(--fontSizeMobExtra);
+  font-size: $fontSizeMobExtra;
 }
 
 .switchIcon {
   transition: transform 0.2s linear;
-  transform: rotate(0deg);
+  width: auto;
 }
 
 .active {
@@ -47,8 +48,8 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  bottom: -88px;
+  gap: 0.625rem;
+  bottom: -11rem;
   left: 0;
   transition: all 0.3s ease-in-out;
   opacity: 0;
@@ -58,9 +59,9 @@
 .popup.opened {
   pointer-events: all;
   opacity: 1;
-  bottom: -90px;
-} 
+  bottom: -11.25rem;
+}
 
 .containerMobile .popup {
-  bottom: -62px;
+  bottom: -7.75rem;
 }

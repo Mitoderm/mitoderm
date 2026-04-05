@@ -1,0 +1,9 @@
+@use 'variables' as *;
+.container {
+  max-width: 150rem;
+  width: 100%;
+  padding: 3rem 40px;
+  background-color: $colorLightBg;
+  border-radius: 3.5rem;
+  position: relative;
+}

@@ -1,22 +1,23 @@
+@use 'variables' as *;
 .container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: var(--colorLightBG);
-  border-radius: 56px;
+  background-color: $colorLightBg;
+  border-radius: 7rem;
   flex: 1;
-  padding: 40px;
+  padding: 5rem;
   position: relative;
 }
 
 .title {
-  font-size: var(--fontSizeP1);
-  margin-block: 20px;
+  font-size: $fontSizeP1;
+  margin-block: 2.5rem;
   max-width: 60%;
 }
 
 .text {
-  font-size: var(--fontSizeP2);
+  font-size: $fontSizeP2;
   margin-block: 2px;
 }
 
@@ -31,21 +32,21 @@
 }
 
 .firstColumn {
-  padding-right: 10px;
-  margin-right: 10px;
-  border-right: 1px solid var(--colorAccentLight);
+  padding-right: 1.25rem;
+  margin-right: 1.25rem;
+  border-right: 1px solid $colorAccentLight;
 }
 
 .firstColumn.he {
   padding: 0 0 0 10px;
-  margin: 0 0 0 10px;
+  margin: 0 0 0 1.25rem;
   border: none;
-  border-left: 1px solid var(--colorAccentLight);
+  border-left: 1px solid $colorAccentLight;
 }
 
 @media screen and (max-width: 1224px) {
   .container {
-    padding: 30px;
+    padding: 3.75rem;
   }
   .container img {
     align-self: center;
@@ -53,25 +54,25 @@
   .title {
     max-width: 100%;
     width: 100%;
-    font-size: var(--fontSizeMobP1);
+    font-size: $fontSizeMobP1;
   }
   .textContainer {
     flex-direction: column;
-    font-size: var(--fontSizeMobP2);
+    font-size: $fontSizeMobP2;
     min-height: 120px;
   }
   .firstColumn {
     border: none;
-    border-bottom: 1px solid var(--colorAccentLight);
+    border-bottom: 1px solid $colorAccentLight;
     padding-right: 0px;
     padding-bottom: 5px;
     margin-right: 0px;
-    margin-bottom: 5px;
+    margin-bottom: 0.625rem;
   }
   .firstColumn.he {
     padding: 0 0 5px 5px;
     margin: 0 0 5px 5px;
     border: none;
-    border-bottom: 1px solid var(--colorAccentLight);
+    border-bottom: 1px solid $colorAccentLight;
   }
 }

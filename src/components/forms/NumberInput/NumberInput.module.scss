@@ -1,27 +1,28 @@
+@use 'variables' as *;
 .container span {
-  font-size: var(--fontSizeMobP2);
+  font-size: $fontSizeMobP2;
 }
 
 .container input,
 .container button {
-  height: 53px;
+  height: 6.625rem;
   width: 53px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-radius: 12px;
+  border-radius: 1.5rem;
   outline: none;
   border: none;
-  background-color: var(--colorLightBG);
-  font-size: var(--fontSizeP2);
-  margin-top: 5px;
+  background-color: $colorLightBg;
+  font-size: $fontSizeP2;
+  margin-top: 0.625rem;
   border: 1px solid transparent;
   transition: all 0.3s linear;
 }
 
 .container input {
-  color: var(--colorAccentDark);
+  color: $colorAccentDark;
   font-weight: 600;
   pointer-events: none;
 }
@@ -41,7 +42,7 @@
 .inputContainer {
   margin: 10px 0 20px 0;
   display: flex;
-  gap: 10px;
+  gap: 1.25rem;
 }
 
 .inputContainer button {
@@ -50,20 +51,20 @@
 }
 
 .inputContainer button:hover {
-  border: 1px solid var(--colorAccentLight);
+  border: 1px solid $colorAccentLight;
 }
 
 @media screen and (max-width: 1224px) {
   .container span {
-    font-size: var(--fontSizeMobExtra);
+    font-size: $fontSizeMobExtra;
   }
   .container input {
-    height: 42px;
+    height: 5.25rem;
     width: 100%;
-    font-size: var(--fontSizeMobExtra);
+    font-size: $fontSizeMobExtra;
   }
   .container button {
-    height: 42px;
+    height: 5.25rem;
     width: 42px;
     min-width: 42px;
   }

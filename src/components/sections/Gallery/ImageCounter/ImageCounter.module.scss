@@ -1,4 +1,5 @@
+@use 'variables' as *;
 .count {
-  font-size: var(--fontSizeP1);
-  color: var(--colorLightBG);
+  font-size: $fontSizeP1;
+  color: $colorLightBg;
 }

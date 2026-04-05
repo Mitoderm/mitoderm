@@ -1,33 +1,34 @@
+@use 'variables' as *;
 .section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 60px;
+  padding-top: 7.5rem;
 }
 
 .article {
-  max-width: 1200px;
+  max-width: 150rem;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  font-size: var(--fontSizeP2);
-  margin-bottom: 40px;
+  font-size: $fontSizeP2;
+  margin-bottom: 5rem;
 }
 
 .textContainer h2 {
-  font-size: var(--fontSizeH2);
+  font-size: $fontSizeH2;
   font-weight: 400;
-  margin-bottom: 24px;
-  color: var(--colorAccentLight);
+  margin-bottom: 3rem;
+  color: $colorAccentLight;
 }
 
 .textContainer h2 span,
 .textContainer p {
-  color: var(--colorLightBG);
+  color: $colorLightBg;
 }
 
 .textContainer p span {
-  color: var(--colorAccentLight);
+  color: $colorAccentLight;
 }
 
 .imageContainer {
@@ -44,15 +45,15 @@
 .itemContainer {
   display: flex;
   flex-wrap: wrap;
-  max-width: 1200px;
+  max-width: 150rem;
   width: 100%;
-  gap: 10px;
+  gap: 1.25rem;
 }
 
 @media screen and (max-width: 1224px) {
   .section {
-    padding-inline: 20px;
-    padding-bottom: 60px;
+    padding-inline: 2.5rem;
+    padding-bottom: 7.5rem;
   }
   .article {
     flex-direction: column;
@@ -62,13 +63,13 @@
     max-width: 100%;
   }
   .imageContainer {
-    margin-top: 40px;
+    margin-top: 5rem;
   }
   .textContainer h2 {
-    font-size: var(--fontSizeMobH2);
+    font-size: $fontSizeMobH2;
   }
   .textContainer p {
-    font-size: var(--fontSizeMobP2);
+    font-size: $fontSizeMobP2;
   }
   .itemContainer {
     flex-direction: column;

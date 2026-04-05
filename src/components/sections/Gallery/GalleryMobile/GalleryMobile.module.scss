@@ -1,23 +1,27 @@
+@use 'variables' as *;
 .itemWrapper {
   display: flex;
   flex-direction: column;
-  background-color: var(--colorWhite);
-  padding: 20px;
+  background-color: $colorWhite;
+  padding: 2.5rem;
   max-width: 100%;
   width: 100%;
-  border-radius: 32px;
+  border-radius: 4rem;
   position: relative;
+  background-color: $colorNavyDark;
 }
 
 .zoomLabel {
   position: absolute;
-  top: 35px;
-  right: 35px;
+  top: 4.375rem;
+  font-size: $fontSizeMobP2;
+  right: 4.375rem;
   z-index: 2;
   border-radius: 15px;
-  background-color: var(--colorWhite);
-  padding: 10px 20px;
+  background-color: $colorWhite;
+  padding: 1.25rem 2.5rem;
   pointer-events: none;
+  color: $colorTextDark;
 }
 
 .imageBox {
@@ -32,7 +36,7 @@
   position: relative;
   max-height: 600px;
   overflow-y: hidden;
-  border-radius: 24px;
+  border-radius: 3rem;
 }
 
 .imageBox::-webkit-scrollbar {
@@ -41,7 +45,7 @@
 
 .item {
   display: flex;
-  gap: 20px;
+  gap: 2.5rem;
   width: 100%;
   scroll-snap-align: start;
   flex-direction: column;
@@ -56,7 +60,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  border-radius: 24px;
+  border-radius: 3rem;
   flex: 1;
 }
 
@@ -73,7 +77,7 @@
 }
 
 .image {
-  max-height: 400px;
+  max-height: 50rem;
   height: 100%;
   object-fit: cover;
   object-position: center;
@@ -85,8 +89,8 @@
   align-items: center;
   width: 100%;
   min-height: 55px;
-  background-color: var(--colorBG);
-  font-size: var(--fontSizeMobP1);
+  background-color: $colorBg;
+  font-size: $fontSizeMobP1;
 }
 
 .roundLabel {
@@ -94,11 +98,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
-  background-color: var(--colorAccentLight);
-  font-size: var(--fontSizeMobP1);
-  color: var(--colorWhite);
+  width: 5rem;
+  height: 5rem;
+  background-color: $colorAccentLight;
+  font-size: $fontSizeMobP1;
+  color: $colorWhite;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,5 +112,5 @@
 
 .mobileButtonContainer {
   width: 100%;
-  padding-inline: 20px;
+  padding-inline: 2.5rem;
 }

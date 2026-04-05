@@ -1,0 +1,52 @@
+@use 'variables' as *;
+
+.stats {
+  background: linear-gradient(to bottom, $colorNavyDark, $colorNavy);
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+.container {
+  max-width: $contentWidthDesktopMd;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  @media (max-width: $breakpointTablet) {
+    padding-inline: 2rem;
+  }
+}
+
+.statsGrid {
+  width: 100%;
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (max-width: $breakpointTablet) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  @media (min-width: $breakpointDesktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.sectionHead {
+  margin-bottom: 6rem;
+
+  h2 {
+    font-size: 3.75rem;
+    color: $colorGold;
+
+    @media (min-width: $breakpointTablet) {
+      font-size: 4.5rem;
+    }
+  }
+  p {
+    margin-top: 1.5rem;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+}

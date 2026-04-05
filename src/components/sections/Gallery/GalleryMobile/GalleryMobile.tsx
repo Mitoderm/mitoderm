@@ -9,9 +9,10 @@ import useAppStore from '@/store/store';
 interface Props {
   items: string[];
   isHairPage?: boolean;
+  isEventPage?: boolean;
 }
 
-const GalleryMobile: FC<Props> = ({ items, isHairPage }) => {
+const GalleryMobile: FC<Props> = ({ items, isHairPage, isEventPage }) => {
   const setGalleryPage = useAppStore((state) => state.setGalleryPage);
   const locale = useLocale();
   const t = useTranslations();
@@ -38,7 +39,7 @@ const GalleryMobile: FC<Props> = ({ items, isHairPage }) => {
   useEffect(() => {
     const container = document.getElementById('galleryItemBox');
     if (container) {
-      container.addEventListener('scroll', handleScroll);
+      container.addEventListener('scroll', handleScroll, { passive: true });
     }
 
     return () => {
@@ -61,13 +62,13 @@ const GalleryMobile: FC<Props> = ({ items, isHairPage }) => {
             {items.map((item, i) => (
               <div className={styles.item} key={i}>
                 <PhotoView
-                  src={`/images/beforeAfter/${
+                  src={`/images/${isEventPage ? 'eventB' : 'b'}eforeAfter/${
                     isHairPage ? `hair/` : ''
                   }${item}`}
                 >
                   <img
                     className={styles.image}
-                    src={`/images/beforeAfter/${
+                    src={`/images/${isEventPage ? 'eventB' : 'b'}eforeAfter/${
                       isHairPage ? `hair/` : ''
                     }${item}`}
                     alt="Example of Exosomes effect"

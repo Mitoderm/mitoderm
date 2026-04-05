@@ -1,3 +1,45 @@
+@use 'variables' as *;
+
 .paginationBox {
   padding-block: 20px;
+}
+
+.eventPaginationBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.counterText {
+  font-size: 2rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 4rem 0 2rem 0;
+}
+
+.dotsRow {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.dotBtn {
+  height: 1rem;
+  border-radius: 9999px;
+  transition:
+    width 0.3s,
+    background 0.3s;
+  border: none;
+  padding: 0;
+}
+
+.dotInactive {
+  width: 1rem;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dotActive {
+  width: 3rem;
+  background: linear-gradient(to right, $colorGold, $colorGoldDark);
 }

@@ -9,23 +9,28 @@ type DotProps = {
   colored?: boolean;
   gallery?: boolean;
   intro?: boolean;
+  handleIntroSwitch?: (page: number, smooth?: boolean) => void;
 };
 
-const Dot: FC<DotProps> = ({ colored, index, active, gallery, intro }) => {
-  const { galleryPage, setGalleryPage, setIntroPage } = useAppStore(
-    (state) => state
-  );
+const Dot: FC<DotProps> = ({
+  colored,
+  index,
+  active,
+  gallery,
+  handleIntroSwitch,
+}) => {
+  const { galleryPage, setGalleryPage } = useAppStore((state) => state);
 
   const handleClick = () => {
-    intro && setIntroPage(index);
+    handleIntroSwitch && handleIntroSwitch(index, true);
     gallery && setGalleryPage(index);
   };
   return (
     <button
       aria-current={active}
-      type='button'
-      name='pagination dot'
-      aria-label='pagination dot'
+      type="button"
+      name="pagination dot"
+      aria-label="pagination dot"
       onClick={handleClick}
       className={`${colored ? styles.colored : ''} ${
         active ? styles.dotActive : styles.dot

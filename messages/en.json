@@ -6,8 +6,9 @@
     "info": "More info",
     "contact": "Contact us",
     "event": "Event",
-    "agenda": "Event program",
-    "clinic": "Local clinic"
+    "agenda": "Agenda",
+    "clinic": "Local clinic",
+    "homepage": "Back to website"
   },
   "buttons": {
     "intro": "Learn More",
@@ -20,7 +21,8 @@
     "requestCallback": "Request A Callback",
     "contactForSolutions": "Contact for personal solutions",
     "seat": "Reserve Seat",
-    "reserveSeat": "Reserve"
+    "reserveSeat": "Reserve",
+    "cta": "Learn More"
   },
   "form": {
     "titleP1": "Get Personalized",
@@ -68,11 +70,11 @@
     "signalTitle": "Exosignal Hair",
     "signalSubtitle": "Professional use ampoules",
     "text": "A new generation in cosmeceuticals - a breakthrough in skincare for cosmeticians",
-    "eventSubtitle1": "Are you a Cosmetologist? Aesthetician?  Working with professional devices?",
-    "eventSubtitle2": "The company that brings the next generation of aesthetics.",
-    "eventTitleP1": "This ",
-    "eventTitleP2": "event ",
-    "eventTitleP3": "is exactly for you!"
+    "eventTitleP1": "Choose the ",
+    "eventTitleP2": "training ",
+    "eventTitleP3": "that suits you",
+    "eventBadge": "Choose the right training for you",
+    "eventSubtitle": "Professional training in skills and expertise - for cosmetologists, hairdressers, veterinarians and paramedics"
   },
   "chevron": {
     "intro": {
@@ -304,21 +306,15 @@
     "item6": {
       "title": "What is unique about combining synthetic exosomes with biomimetic peptides?",
       "text": "Biomimetic peptides are lab-designed chains of amino acids that mimic natural growth factors in the body. However, when applied alone, many of them degrade quickly or fail to reach cellular receptors. Encapsulating them in synthetic exosomes changes everything: The exosome protects the peptide from early breakdown. It enables controlled, targeted delivery directly to the skin cells. It significantly enhances bioavailability—so a smaller dose delivers visible clinical effects. The result: increased collagen, elastin, and ECM production, reduced wrinkles, dermal repair, and a firmer, more youthful appearance—with maximum precision and minimal product."
-    }
-  },
-  "reviews": {
-    "title": "Real Reviews",
-    "item1": {
-      "name": "Victoria Aslanyan",
-      "text": "As a doctor and clinic owner, I integrate advanced exosome treatments into my practice. The results are outstanding! My patients see smoother, rejuvenated skin, and the products have become a cornerstone of my clinic’s offerings. I’m definitely continuing with these treatments!\""
-    },
-    "item2": {
-      "name": "Gregory Dyachenko",
-      "text": "I had an amazing experience with the exosome treatment for hair thinning, and I want to thank Ilona especially. In just a few months, my hair has gone from thinning to fuller and healthier. I’m truly impressed with the transformation."
+    }, 
+    "item7": {
+      "title": "What is the difference between MITODERM’s Synthetic Exosomes and PRP?",
+      "text": "PRP (Platelet-Rich Plasma) is based on the patient’s own blood. It is drawn, processed and then re-applied to the skin or scalp. Because of this, the quality and concentration of active factors vary greatly from person to person, depending on age, health, inflammation levels and lifestyle. In contrast, MITODERM’s synthetic exosomes are produced using advanced biomimetic biotechnology that replicates the natural communication system of young, healthy skin cells — in a controlled, standardized laboratory environment. Why is this a major advantage? Consistency and precision PRP varies from patient to patient. Synthetic exosomes provide a stable, programmed and reproducible biological signal in every treatment. Not dependent on the patient PRP depends entirely on the patient’s blood quality. MITODERM’s exosomes work independently of age, health or inflammation. Advanced biological mechanism PRP delivers general growth factors. Synthetic exosomes act as a cell-to-cell communication system, sending precise biological signals that activate skin and hair follicle regeneration. Stability and safety PRP requires blood handling and on-site preparation. Synthetic exosomes are laboratory-produced, purified and stabilized, ensuring consistent quality, cleanliness and safety."
     }
   },
   "gallery": {
     "title": "Gallery",
+    "eventTitle": "Our Students' Results",
     "before": "Before",
     "after": "After",
     "zoom": "Tap to zoom"
@@ -351,10 +347,21 @@
     "followUs": "Follow us on"
   },
   "footer": {
-    "copyright": "© 2024 Mitoderm. All Rights Reserved.",
+    "copyright": "©",
+    "copyrightText": "Mitoderm. All Rights Reserved.",
     "accessibility": "Accessibility Statement",
     "privacy": "Privacy Policy",
     "group": "SinoSciences Group"
+  },
+  "eventFooter": {
+    "copyright": "© ",
+    "accessibility": "Accessibility Statement",
+    "privacy": "Privacy Policy",
+    "group": "SinoSciences Group",
+    "made": "Made with",
+    "by": "by MitoDerm Team",
+    "rights": "MITODERM ACADEMY. All Rights Reserved.",
+    "subtitle": "A subsidiary of a global group specializing in medical equipment and advanced aesthetic solutions"
   },
   "accessibility": {
     "title": "Accessibility Declaration for mitoderm.com and mitoderm.co.il",
@@ -423,5 +430,170 @@
     "email": "Email: ",
     "phone": "Phone: ",
     "amount": "Amount: "
+  },
+  "doctorList": {
+    "name": "Name",
+    "city": "City",
+    "area": "Area",
+    "contact": "Contact",
+    "profession": {
+      "profession":"Expertise",
+      "1": "Facial treatments",
+      "2" : "Hair treatments",
+      "3": "Facial & Hair Treatments"
+    }
+  },
+  "benefits": {
+    "heading": "Why choose us?",
+    "subtitle": "Benefits that will help you succeed"
+  },
+  "courses": {
+    "prefix": "Professional Training",
+    "datesHeading" : "Master class  details",
+    "datesSubtitle" : "Choose your preferred location and date",
+    "heading": "Our Programs",
+    "headingSubtitle": "Training days and workshops in various fields",
+    "register": "More Details",
+    "course1": {
+      "title": "Training Day for Hair Stylists in the Scalp Field",
+      "subtitle": "We invite you to discover the world of scalp care from an advanced trichological perspective",
+      "items": "Understanding hair loss and hair growth processes|Fundamentals of microneedling and proper scalp work as part of hair treatment|Exosomes: integrating innovative solutions for scalp restoration and accelerating growth|Turning professional knowledge into a differentiation tool, results and added value for clients"
+    },
+    "course2": {
+      "title": "Training Day for Cosmeticians in the Facial Field",
+      "subtitle": "Innovative materials and technologies such as PDRN, synthetic exosomes and biomimetic peptides. Aging theories, latest research.",
+      "items": "Introduction to the world of exosomes and skin biology|How exosomes communicate with and renew cells|The clinical advantages of synthetic and stable exosomes|Protocols tailored for maximum effectiveness|Integrating treatments for clinic differentiation|Lectures delivered to many doctors from all over the world"
+    },
+    "course3": {
+      "title": "Training Day for Cosmeticians in the Scalp Field",
+      "subtitle": "Professional development and knowledge expansion",
+      "items": "Understanding biological processes and what affects hair loss, including blood tests and diseases|Using exosomes for scalp restoration and accelerating hair growth|Diagnosing scalp conditions and tailoring effective clinical protocols|Microneedling: proper and precise work with the scalp|Integrating treatments in the clinic to generate results and sales"
+    }
+  },
+  "stickyBar": {
+    "workshop": "Trichology",
+    "hours180": "Cosmetology",
+    "hours480": "Scalp Cosmetology"
+  },
+  "inviteEventSection" : {
+    "item1": {
+      "title":"Certificate of Participation",
+      "text": "Professional certification"
+    },
+    "item2": {
+      "title":"Clinical Practice",
+      "text":"Hands-on experience and protocol customization"
+    },
+    "item3": {
+      "title":"Expert Lectures",
+      "text": "Professional leadership and knowledge expansion"
+    },
+    "item4": {
+      "title":"Advanced Aesthetics",
+      "text": "Up-to-date and science-based techniques"
+    }
+  },
+  "exosomes": {
+    "heading": "What are exosomes?",
+    "subheading": "First introduction to the revolutionary technology changing the aesthetics industry",
+    "card1Title": "Why is it important?",
+    "card1Body": "Enable more effective treatments for hair loss, scalp recovery and growth acceleration",
+    "card2Title": "How does it work?",
+    "card2Body": "Transfer biological messages between cells, triggering natural renewal and recovery processes",
+    "card3Title": "What is it?",
+    "card3Body": "Nanometric particles naturally formed in body cells, used for intercellular communication",
+    "footer": "In the workshop you'll learn the scientific foundations and practical applications"
+  },
+   "v990": {
+    "benefits": "Innovative Products|Networking with professionals|Personal Growth|Official Italian Distributor in Israel|Limited offer",
+    "invite": {
+      "title": "MitoDerm company invites you to a ",
+      "titleAccent": "boutique training day for leaders",
+      "titleEnd": " in the field of aesthetics in Israel",
+      "body": "At the Seminar day, you'll be introduced to this ",
+      "bodyAccent": "breakthrough technology! ",
+      "bodyEnd": "This training day will open the door for you to the world of innovative treatments, which are what clients really want, along with significant reduction in working time, increased profits, and faster recovery time compared to traditional and simpler treatments",
+      "cta": "Contact Us"
+    },
+    "topics": {
+      "heading": "Topics we'll cover:",
+      "items": "Understanding the scalp as a living biological system, scalp structure and hair follicle|Hair loss processes and diagnosis - the connection between skin, inflammation, stress and follicle impact|Exosomes and advanced scalp technology - what are exosomes and how they work at the cellular level|Advantages of synthetic and stable source: scalp recovery, follicle strengthening and growth optimization|Clinical practice and protocols: integrating exosomes into scalp treatments – treatment validation by diagnosis together with the camera|Differentiation, results and business value: integrating treatment into business – how to offer proper scalp treatment, professional differentiation from competitors, generating results, trust and sales",
+      "cta": "Register Now"
+    },
+    "unique": {
+      "title1": "What ",
+      "titleAccent": "makes you unique",
+      "title2": " compared to competitors?",
+      "body1": "MitoDerm company is the ",
+      "bodyAccent": "only company in Israel working with exosomes",
+      "bodyEnd": " that can connect and trigger a chain reaction of natural cell actions, allowing the skin to enjoy great benefits"
+    }
+  },
+  "v180": {
+    "benefits": "Innovative Products|Networking with professionals|Personal Growth|Official Italian Distributor in Israel|Limited offer",
+    "invite": {
+      "title": "MitoDerm invites you to a ",
+      "titleAccent": "professional training day",
+      "titleEnd": " in the field of aesthetics and cosmetology.",
+      "body": "A ",
+      "bodyAccent": "professional training day",
+      "bodyEnd": "combining in-depth theoretical knowledge with extensive practice. You'll learn advanced techniques, get to know the latest technologies and receive professional tools for success in the field",
+      "cta": "More details"
+    },
+    "topics": {
+      "heading": "Curriculum:",
+      "items": "Understanding the skin as a living biological system: skin aging processes and the connection between chronic inflammation, stress, decline in cellular communication and collagen quality damage|Exosomes and biological technologies – the new generation of aesthetic treatments|Professional microneedling – techniques, protocols and practical applications|Extensive clinical practice – Practical training with close guidance",
+      "cta": "Register Now"
+    },
+    "unique": {
+      "title1": "Why is ",
+      "titleAccent": "MitoDerm",
+      "title2": " the right choice for you?",
+      "body1": "We are ",
+      "bodyAccent": "the only ones in Israel",
+      "bodyEnd": " combining advanced exosome technologies in an in-person course with personal guidance and professional tools for every student"
+    }
+  },
+  "v480": {
+    "benefits": "Innovative Products|Networking with professionals|Personal Growth|Official Italian Distributor in Israel|Limited offer",
+    "invite": {
+      "title": "MitoDerm presents the ",
+      "titleAccent": "most advanced professional program",
+      "titleEnd": " in Israel",
+      "body": "",
+      "bodyAccent": "",
+      "bodyEnd": "",
+      "cta": "Personal consultation"
+    },
+    "topics": {
+      "heading": "Full Training Day",
+      "items": "Understanding hair loss from professional perspectives – hair life cycle, common types of hair loss, when the problem is in the scalp and when in the follicle|The scalp as the foundation for healthy hair – diagnosing scalp conditions using a camera.|Exosomes, microneedling and advanced technology: how biological technology meets the world of hairdressing|Tailoring treatment by diagnosis: combining microneedling and complementary technologies: safe and precise work|Clinical practice and protocols: integrating exosomes in scalp treatments – hands-on|Differentiation, results and business value: integrating the treatment into your business – how to offer proper scalp treatment, professional differentiation from competitors, generating results, trust and sales",
+      "cta": "Contact Us"
+    },
+    "unique": {
+      "title1": "What makes our program ",
+      "titleAccent": "unique",
+      "title2": "?",
+      "body1": "The only program in Israel combining ",
+      "bodyAccent": "academic certification + clinical internship + full business coaching",
+      "bodyEnd": ". You'll receive all the tools for success: knowledge, practical experience, portfolio and a ready business plan"
+    }
+  },
+  "stats": {
+    "heading": "The Numbers Speak for Themselves",
+    "subtitle": "Success measured in real results",
+    "years": "Years of experience",
+    "workshops": "Successful workshops",
+    "satisfaction": "Satisfaction rate"
+  },
+  "contact": {
+    "heading": "Contact Us",
+    "phoneLabel": "Phone",
+    "phoneValue": "For all details: +972 54-326-2182",
+    "addressLabel": "Address",
+    "addressValue": "Rafael Eitan 38, Ramat Gan, 5590500",
+    "emailLabel": "Email",
+    "emailValue": "Mitoderm@gmail.com",
+    "follow": "Follow us"
   }
 }

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { ModalType, DiscountModifier } from '@/types';
+import { ModalType, DiscountModifier, WorkshopVariant, Event } from '@/types';
 
 interface RootState {
   modalIsOpen: boolean;
@@ -10,14 +10,18 @@ interface RootState {
   setGalleryPage: (page: number) => void;
   introPage: number;
   setIntroPage: (page: number) => void;
-  reviewPage: number;
-  setReviewPage: (page: number) => void;
   modalContent: ModalType;
   setModalContent: (arg: ModalType) => void;
   numberOfTickets: number;
   setNumberOfTickets: (arg: number) => void;
   discountModifier: DiscountModifier;
   setDiscountModifier: (arg: DiscountModifier) => void;
+  courseVariant: WorkshopVariant;
+  setCourseVariant: (arg: WorkshopVariant) => void;
+  showStickyBar: boolean;
+  setShowStickyBar: (value: boolean) => void;
+  selectedEvent: Event | null;
+  setSelectedEvent: (arg: Event | null) => void;
 }
 
 const useAppStore = create<RootState>((set) => ({
@@ -33,9 +37,6 @@ const useAppStore = create<RootState>((set) => ({
   introPage: 0,
   setIntroPage: (page: number) =>
     set((state) => ({ introPage: (state.introPage = page) })),
-  reviewPage: 0,
-  setReviewPage: (page: number) =>
-    set((state) => ({ reviewPage: (state.reviewPage = page) })),
   modalContent: 'privatePolicy',
   setModalContent: (arg: ModalType) =>
     set((state) => ({ modalContent: (state.modalContent = arg) })),
@@ -45,6 +46,15 @@ const useAppStore = create<RootState>((set) => ({
   discountModifier: 1,
   setDiscountModifier: (arg: DiscountModifier) =>
     set((state) => ({ discountModifier: (state.discountModifier = arg) })),
+  courseVariant: '990',
+  setCourseVariant: (arg: WorkshopVariant) =>
+    set((state) => ({ courseVariant: (state.courseVariant = arg) })),
+  showStickyBar: false,
+  setShowStickyBar: (value: boolean) =>
+    set((state) => ({ showStickyBar: (state.showStickyBar = value) })),
+  selectedEvent: null,
+  setSelectedEvent: (arg: Event | null) =>
+    set((state) => ({ selectedEvent: (state.selectedEvent = arg) })),
 }));
 
 export default useAppStore;

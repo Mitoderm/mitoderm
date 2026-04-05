@@ -1,0 +1,87 @@
+@use 'variables' as *;
+
+.section {
+  background: linear-gradient(to bottom, $colorBgFrom, $colorBgVia, $colorBgTo);
+  padding: 5rem 2rem;
+
+  @media (min-width: $breakpointTablet) {
+    padding: 5rem 3rem;
+  }
+}
+
+.header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+
+  @media (min-width: $breakpointTablet) {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.heading {
+  margin-bottom: 0.75rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: $colorWhite;
+
+  @media (min-width: $breakpointTablet) {
+    font-size: 1.75rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.75rem;
+  color: $colorTextMuted;
+}
+
+.rows {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  max-width: 620px;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.ctaWrap {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.cta {
+  border-radius: 9999px;
+  max-width: 32rem;
+  background: linear-gradient(to right, $colorGold, $colorGoldDark);
+  padding: 2rem 4rem;
+  margin: 4rem auto 0 auto;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: $colorWhite;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    background-color 0.2s;
+  border: none;
+  cursor: pointer;
+  pointer-events: all;
+
+  @media screen and (max-width: $breakpointTablet) {
+    max-width: 90%;
+    width: 100%;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(223, 186, 116, 0.4);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+  &.ctaDisabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+    background: linear-gradient(to right, $colorGray, $colorGoldMutedDark);
+  }
+}

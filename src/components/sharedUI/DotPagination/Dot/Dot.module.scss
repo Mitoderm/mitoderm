@@ -1,3 +1,4 @@
+@use 'variables' as *;
 .dot,
 .dotActive {
   width: 16px;
@@ -26,24 +27,24 @@
 
 .dot:hover,
 .dotActive {
-  border: 1px solid var(--colorWhite);
+  border: 1px solid $colorWhite;
 }
 
 .dot:hover::after,
 .dotActive::after {
-  background-color: var(--colorWhite);
+  background-color: $colorWhite;
 }
 
 .colored:hover,
 .dotActive.colored {
-  border: 1px solid var(--colorAccentLight);
+  border: 1px solid $colorAccentLight;
 }
 
 .colored:hover::after,
 .colored.dotActive::after {
-  background-color: var(--colorAccentLight);
+  background-color: $colorAccentLight;
 }
 
 .colored::after {
-  background-color: var(--colorAccentDark);
+  background-color: $colorAccentDark;
 }

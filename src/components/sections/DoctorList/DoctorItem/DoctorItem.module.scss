@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.buttonBox {
+  margin-left: auto;
+}
+
+.editButton,
+.deleteButton {
+  background-color: transparent;
+  padding: 5px;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.editButton:hover,
+.deleteButton:hover {
+  opacity: 0.7;
+}
+
+.phoneLink {
+  opacity: 1;
+  transition: all 0.3s linear;
+}
+
+.phoneLink:hover {
+  opacity: 0.5;
+}
+
+.whatsAppCustomClass {
+  width: 3.125rem;
+  height: 3.125rem;
+  opacity: 1;
+  transition: all 0.3s linear;
+}
+
+.whatsAppCustomClass img {
+  width: 2.75rem;
+  height: 2.75rem;
+  filter: brightness(0) saturate(100%);
+}
+
+.whatsAppCustomClass:hover {
+  opacity: 0.5;
+}

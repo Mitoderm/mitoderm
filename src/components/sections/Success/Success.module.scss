@@ -1,8 +1,9 @@
+@use 'variables' as *;
 .container {
   display: flex;
   justify-content: center;
   height: 100%;
-  padding-top: 50px;
+  padding-top: 6.25rem;
 }
 
 .containerInner {
@@ -10,9 +11,9 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  padding: 50px;
-  border-radius: 40px;
-  background-color: var(--colorWhite);
+  padding: 6.25rem;
+  border-radius: 5rem;
+  background-color: $colorWhite;
 }
 
 .containerInner img {
@@ -20,10 +21,10 @@
 }
 
 .title {
-  color: var(--colorAccentLight);
+  color: $colorAccentLight;
   font-weight: 500;
 }
 
 .text {
-  color: var(--colorAccentLight);
+  color: $colorAccentLight;
 }

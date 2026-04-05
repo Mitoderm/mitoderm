@@ -1,6 +1,6 @@
 'use server';
 import axios from 'axios';
-import type { EventFormDataType } from '@/types';
+import type { EventFormDataType, Event } from '@/types';
 
 const env = process.env.NODE_ENV;
 
@@ -20,7 +20,9 @@ if (env === 'production') {
 
 const crmUrl = `https://${crmAccount}.senzey.com/extapi/work_order/add.php?username=${crmUserName}&password=${crmPassword}`;
 
-export async function sendPaymentDataToCRM(formData: EventFormDataType) {
+export async function sendPaymentDataToCRM(formData: EventFormDataType, eventData: Event) {
+  const { city, date, time } = eventData;
+
   const finalPrice = formData.discount
     ? (parseInt(formData.totalPrice as string) * formData.discount).toString()
     : formData.totalPrice;
@@ -46,7 +48,7 @@ export async function sendPaymentDataToCRM(formData: EventFormDataType) {
     }`,
     items: [
       {
-        name: formData.lang === 'he' ? 'יום עיון' : 'Seminar',
+        name: formData.lang === 'he' ? ` ${city} ב ${date.toLocaleString()} בשעה ${time}  יום הכשרה` : `Training Day in ${city} on ${date.toLocaleString()} at ${time}`,
         code: '341',
         price: finalPrice,
         quantity: formData.quantity,

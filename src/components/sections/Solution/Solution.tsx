@@ -19,7 +19,7 @@ const Solution: FC<Props> = ({ page }) => {
   const solutionBlocks = combinedArray(solutionItems);
   return (
     <>
-      <section id='solution' className={styles.section}>
+      <section id="solution" className={styles.section}>
         <p className={styles.title}>{t(`solution.${page}.title`)}</p>
         {page === 'main' && (
           <span className={styles.subtitle}>
@@ -39,19 +39,19 @@ const Solution: FC<Props> = ({ page }) => {
                   <SolutionItem item={block[1]} />
                 </div>
               ))}
-            {page === 'hair' && <SolutionProduct page='hair' />}
-            {page === 'gel' && <SolutionProduct page='gel' />}
-            {page === 'signal' && <SolutionProduct page='signal' />}
+            {page === 'hair' && <SolutionProduct page="hair" />}
+            {page === 'gel' && <SolutionProduct page="gel" />}
+            {page === 'signal' && <SolutionProduct page="signal" />}
           </div>
         </div>
         <Button
           style={{ margin: '40px auto' }}
           text={t('buttons.contactForPrice')}
-          formPage='main'
+          formPage="main"
         />
       </section>
       <section className={styles.solutionLabelsContainer}>
-        <div className={styles.discrontLabel}>
+        <div className={styles.discountLabel}>
           <span className={styles.discountLabelTitle}>
             {t(`solution.${page}.discountTitle`)}
           </span>
@@ -60,7 +60,7 @@ const Solution: FC<Props> = ({ page }) => {
         </div>
         <div
           className={
-            styles.page === 'main'
+            page === 'main'
               ? styles.bundleContainer
               : styles.bundleProductContainer
           }
@@ -133,12 +133,12 @@ const Solution: FC<Props> = ({ page }) => {
               </>
             )}
           </div>
-          <img src={`/images/solution/${page}.png`} alt='bundle explanation' />
+          <img src={`/images/solution/${page}.png`} alt="bundle explanation" />
         </div>
         <Button
           style={{ margin: '40px auto' }}
           text={t('buttons.contactForPrice1')}
-          formPage='main'
+          formPage="main"
         />
       </section>
     </>

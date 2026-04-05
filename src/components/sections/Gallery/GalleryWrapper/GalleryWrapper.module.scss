@@ -1,6 +1,8 @@
+@use 'variables' as *;
+
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 150rem;
   display: flex;
   justify-content: space-between;
   align-items: center;

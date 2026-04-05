@@ -1,10 +1,23 @@
+@use 'variables' as *;
+
 .section {
-  min-height: 578px;
-  position: relative;
-  z-index: 1;
+  min-height: 72.25rem;
   height: 100%;
-  padding-top: 60px;
+  padding-top: 7.5rem;
+  position: relative;
   width: 100vw;
+  z-index: 1;
+  color: $colorWhite;
+  font-size: $fontSizeP1;
+
+  @media screen and (max-width: 1224px) {
+    height: 100%;
+    padding-top: 9rem;
+  }
+
+  @media screen and (max-width: 600px) {
+    padding-top: 8.75rem;
+  }
 }
 
 .scrollBox {
@@ -35,6 +48,12 @@
   height: 100%;
   position: relative;
   overflow: hidden;
+
+  @media screen and (max-width: 1224px) {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }
 
 .introMain::before,
@@ -47,28 +66,83 @@
   left: 0;
   width: 100vw;
   height: 100%;
-  background-image: url(/images/introBG.png);
+  background-image: url(/images/backgrounds/introBG.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
+.introMain::before {
+  @media screen and (max-width: 768px) {
+    content: '';
+    background-position: 40%;
+  }
+}
+
+.introProducts::before {
+  @media screen and (max-width: 768px) {
+    content: '';
+    background-position: 25%;
+  }
+}
+
 .introSpray::before {
-  background-image: url(/images/introHairSpray.png);
+  background-image: url(/images/backgrounds/introHairSpray.png);
+
+  @media screen and (max-width: 768px) {
+    background-position: 32.5%;
+  }
+
+  @media screen and (max-width: 600px) {
+    background-image: url(/images/backgrounds/hairSprayBGMobile.png);
+    background-position: 45%;
+  }
 }
 
 .introGel::before {
-  background-image: url(/images/gelBG.png);
+  background-image: url(/images/backgrounds/gelBG.png);
+
+  @media screen and (max-width: 600px) {
+    background-image: url(/images/backgrounds/introGelBGMobile.png);
+  }
 }
 
 .introHair::before {
-  background-image: url(/images/hairBG.png);
+  background-image: url(/images/backgrounds/hairBG.png);
+
+  @media screen and (max-width: 600px) {
+    background-image: url(/images/backgrounds/introHairBGMobile.png);
+    background-position: 50%;
+  }
 }
 
 .introEvent {
   min-width: 100vw;
   width: 100%;
   height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    to bottom right,
+    $colorNavy,
+    $colorNavyDark,
+    $colorNavy
+  );
+
+  @media screen and (max-width: 1224px) {
+    padding-inline: 2rem;
+  }
+
+  @media screen and (max-width: 600px) {
+    z-index: 7;
+    padding-inline: 0;
+  }
+}
+
+.eventBG {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
 }
 
 .introMainContent,
@@ -76,72 +150,171 @@
   display: flex;
   flex: 1;
   justify-content: flex-end;
-  max-width: 1200px;
+  max-width: 150rem;
   width: 100%;
   position: relative;
 }
 
 .leaves {
   position: absolute;
-  bottom: 80px;
+  bottom: 10rem;
   right: 0;
   -webkit-user-drag: none;
   user-select: none;
+
+  @media screen and (max-width: 768px) {
+    bottom: 2.5rem;
+    right: 2.5rem;
+  }
 }
 
 .container {
-  max-width: 620px;
+  max-width: 77.5rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex: 1;
-}
 
-.eventPageContainer {
-  align-items: flex-start;
-  max-width: 1200px;
-  position: relative;
+  @media screen and (max-width: 1224px) {
+    padding-inline: 2.5rem;
+  }
 }
 
 .eventVideo {
-  position: absolute;
   object-fit: cover;
-  width: 390px;
-  height: 590px;
+  width: 45.875rem;
+  height: calc(100% - 30px);
   z-index: 1;
-  right: 100px;
+  margin: 0 10% 0 auto;
+  border-radius: 3rem;
+
+  @media screen and (max-width: 600px) {
+    right: auto;
+    left: auto;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    z-index: 8;
+  }
 }
 
 .eventVideo.he {
-  right: auto;
-  left: 100px;
+  margin: 0 auto 0 10%;
+
+  @media screen and (max-width: 600px) {
+    right: auto;
+    left: auto;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    z-index: 8;
+  }
 }
 
-.section {
-  color: var(--colorWhite);
-  font-size: var(--fontSizeP1);
-}
-
-.title,
-.eventTitle {
-  font-size: var(--fontSizeH1);
+.title {
+  font-size: $fontSizeH1;
   font-weight: 400;
-  color: var(--colorWhite);
+  color: $colorWhite;
   margin: 30px 0;
   padding: 0;
-  max-width: 690px;
+  max-width: 86.25rem;
   letter-spacing: -3px;
+
+  @media screen and (max-width: 1224px) {
+    font-size: $fontSizeMobH1;
+    margin-block: 3.125rem;
+    font-weight: 500;
+  }
 }
 
-.title.ru,
-.eventTitle.ru {
-  font-size: 70px;
+.title.ru {
+  font-size: 8.75rem;
+
+  @media screen and (max-width: 1224px) {
+    font-size: 4.5rem;
+  }
 }
 
 .eventTitle {
-  line-height: 80px;
+  font-size: 8rem;
+  max-width: 72.5rem;
+  font-weight: 700;
+  line-height: 8.75rem;
+  font-style: normal;
+  font-family: 'Rubik', sans-serif;
+
+  @media (max-width: $breakpointMd) {
+    font-size: 4.5rem;
+    line-height: 5rem;
+  }
+
+  @media screen and (max-width: 1224px) {
+    font-size: $fontSizeMobH1;
+    line-height: 4.5rem;
+  }
+}
+
+.eventSubtitle {
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 72.5rem;
+  font-size: 2.5rem;
+
+  @media (max-width: 768px) {
+    max-width: 70%;
+    font-size: $fontSizeMobP2;
+  }
+}
+
+.eventCTA {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.eventCTAButton {
+  font-size: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 9999px;
+  background: linear-gradient(to right, $colorWhatsapp, $colorWhatsappDark);
+  padding: 2.5rem 5rem;
+  font-weight: 700;
+  color: $colorWhite;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(37, 211, 102, 0.3);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.buttonBox {
+  @media screen and (max-width: 1224px) {
+    display: none;
+  }
+}
+
+.eventTitleAccent {
+  background: linear-gradient(
+    to right,
+    $colorGoldLight,
+    $colorGold,
+    $colorGoldDark
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .textContainer {
@@ -149,167 +322,197 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+
+  @media screen and (max-width: 600px) {
+    padding-inline: 2.5rem;
+    button {
+      margin-top: 3.75rem;
+    }
+  }
+}
+
+.eventTextContainer {
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding-block: 4.375rem;
+
+  @media screen and (max-width: 1224px) {
+    padding: 0;
+  }
+
+  @media screen and (max-width: 600px) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    gap: 10%;
+    min-width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    border-radius: 0;
+    padding: 2.5rem;
+    z-index: 9;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(223, 186, 116, 0.3);
+  background: rgba(223, 186, 116, 0.1);
+  padding: 0.5rem 1.25rem;
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: $colorGold;
+  backdrop-filter: blur(4px);
+
+  @media screen and (max-width: 1224px) {
+    font-size: $fontSizeMobP2;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: $fontSizeMobExtra;
+    gap: 1rem;
+  }
+}
+
+.badgeDot {
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 9999px;
+  background: $colorGold;
+  @media screen and (max-width: 600px) {
+  }
+  width: 1rem;
+  height: 1rem;
 }
 
 .text {
-  color: var(--colorWhite);
-  font-size: var(--fontSizeP1);
+  color: $colorWhite;
+  font-size: $fontSizeP1;
   font-weight: 500;
-  margin: 0 auto 58px auto;
+  margin: 0 auto 7.25rem auto;
   text-align: center;
-}
 
-.subtitleEvent {
-  font-size: var(--fontSizeP2);
-}
-
-.subtitleEvent:first-of-type {
-  margin-top: 100px;
-}
-
-.eventTitle {
-  color: var(--colorGold);
-}
-
-.eventTitle span {
-  color: var(--colorAccentLight);
-}
-
-.subtitleEvent:last-of-type {
-  margin-bottom: 30px;
-}
-
-.paginationBox {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-}
-
-.introProductsContent {
-  .title {
-    text-align: center;
-    line-height: 80px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .introEvent {
-    background-position: 70% 60px;
-  }
-}
-
-@media screen and (max-width: 1224px) {
-  .section {
-    height: 100%;
-  }
-  .container {
-    padding-inline: 20px;
-  }
-  .introMain,
-  .introProducts {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  .buttonBox {
-    display: none;
-  }
-  .title {
-    font-size: var(--fontSizeMobH1);
-    margin-block: 25px;
-    font-weight: 500;
-  }
-  .title.ru {
-    font-size: 36px;
-  }
-  .text {
-    font-size: var(--fontSizeMobP2);
+  @media screen and (max-width: 1224px) {
+    font-size: $fontSizeMobP2;
     max-width: 100%;
   }
 }
 
-@media screen and (max-width: 768px) {
-  .introMain::before {
-    content: '';
-    background-position: 40%;
-  }
-  .introProducts::before {
-    content: '';
-    background-position: 25%;
-  }
-  .introSpray::before {
-    background-position: 32.5%;
-  }
-  .leaves {
-    bottom: 20px;
-    right: 20px;
-  }
-  .subtitleEvent {
-    font-size: var(--fontSizeMobP2);
-  }
-  .subtitleEvent:first-of-type {
-    margin-top: 0;
-  }
-  .eventPageContainer h1 {
-    font-size: var(--fontSizeMobH1);
-    max-width: 270px;
-    line-height: 40px;
+.paginationBox {
+  position: absolute;
+  bottom: 1.875rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9;
+}
+
+.introProductsContent .title {
+  text-align: center;
+  line-height: 10rem;
+}
+
+.blur1 {
+  position: absolute;
+  top: -10rem;
+  height: 20rem;
+  width: 20rem;
+  border-radius: 9999px;
+  background: $colorGold;
+  opacity: 0.05;
+  filter: blur(48px);
+  z-index: 100;
+  inset-inline-end: -10rem;
+}
+
+.blur2 {
+  position: absolute;
+  bottom: -10rem;
+  height: 24rem;
+  width: 24rem;
+  border-radius: 9999px;
+  background: $colorGoldDark;
+  opacity: 0.05;
+  filter: blur(48px);
+  z-index: 100;
+  inset-inline-start: -10rem;
+}
+
+.eventContent {
+  padding: 5.625rem 0;
+  max-width: 150rem;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  max-width: 160rem;
+
+  @media screen and (max-width: 600px) {
+    position: relative;
+    padding: 0;
   }
 }
 
-@media screen and (max-width: 600px) {
-  .section {
-    padding-top: 70px;
-  }
-  .eventPageContainer {
+.eventContentWrapper {
+  @media screen and (max-width: 600px) {
+    height: 100%;
     padding: 0;
   }
+}
 
-  .textContainer {
-    padding-inline: 20px;
-    button {
-      margin-top: 30px;
-    }
+.contentWrapper {
+  display: flex;
+  height: 100%;
+  text-align: start;
+
+  @media (max-width: $breakpointMd) {
+    flex-direction: column-reverse;
   }
-  .introSpray,
-  .introGel,
-  .introHair {
+}
+
+.introSpray,
+.introGel,
+.introHair {
+  @media screen and (max-width: 600px) {
     .title {
       font-weight: 400;
-      line-height: 40px;
+      line-height: 5rem;
       letter-spacing: 0.5px;
       margin-top: auto;
       background: linear-gradient(to right, #fdfbcb, #d1ae6b);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .text {
       margin-bottom: 0;
     }
     .leaves {
-      bottom: 10px;
-      right: 10px;
+      bottom: 1.25rem;
+      right: 1.25rem;
       scale: 0.6;
     }
   }
-  .introSpray::before {
-    background-image: url(/images/hairSprayBGMobile.png);
-    background-position: 45% -60px;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
   }
-  .introHair::before {
-    background-image: url(/images/introHairBGMobile.png);
-    background-position: 50% -40px;
+  50% {
+    opacity: 0.5;
   }
-  .introGel::before {
-    background-image: url(/images/introGelBGMobile.png);
-  }
-  .eventVideo,
-  .eventVideo.he {
-    right: auto;
-    left: auto;
-    width: 100%;
-  }
+}
+
+.animatePulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

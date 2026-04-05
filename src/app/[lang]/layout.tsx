@@ -3,7 +3,7 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import dynamic from 'next/dynamic';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import '../globals.scss';
+import '../../styles/globals.scss';
 import { Rubik } from 'next/font/google';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
@@ -11,6 +11,7 @@ import Footer from '@/components/layout/Footer/Footer';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
 import { getOrganizationSchema } from '@/utils/structuredData';
+import ScrollToTop from '@/components/layout/ScrollToTop/ScrollToTop';
 
 const Header = dynamic(() => import('@/components/layout/Header/Header'), {
   ssr: false,
@@ -28,7 +29,7 @@ const WhatsappLink = dynamic(
   () => import('@/components/layout/WhatsappLink/WhatsappLink'),
   {
     ssr: false,
-  }
+  },
 );
 
 const rubik = Rubik({
@@ -107,7 +108,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: `${baseUrl}/images/introBG.png`,
+        url: `${baseUrl}/images/backgrounds/introBG.png`,
         width: 1200,
         height: 630,
         alt: 'V-Tech System - Synthetic Exosomes + PDRN Polynucleotides',
@@ -123,7 +124,7 @@ export const metadata: Metadata = {
       'מערכת V-Tech - אקסוזומים סינתטיים + PDRN פולינוקלאוטידים לקוסמטיקאיות. תוצאות מהטיפול הראשון | הכשרות מקצועיות | מיטודרם ישראל 054-762-1889',
     images: [
       {
-        url: `${baseUrl}/images/introBG.png`,
+        url: `${baseUrl}/images/backgrounds/introBG.png`,
         alt: 'V-Tech System - Synthetic Exosomes + PDRN Polynucleotides',
       },
     ],
@@ -139,20 +140,20 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: string };
 }>) {
-  const messages = await getMessages();
-
   if (!routing.locales.includes(params.lang as any)) {
     notFound();
   }
 
   unstable_setRequestLocale(params.lang);
 
+  const messages = await getMessages();
+
   return (
     <html lang={params.lang}>
       {/* Google Tag Manager */}
       <Script
-        id='gtm-script'
-        strategy='afterInteractive'
+        id="gtm-script"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -169,12 +170,12 @@ export default async function RootLayout({
           className={rubik.className}
           dir={params.lang === 'he' ? 'rtl' : 'ltr'}
         >
-          {/* Google Tag Manager (noscript) */}
           <noscript>
             <iframe
-              src='https://www.googletagmanager.com/ns.html?id=GTM-W7HBVJPC'
-              height='0'
-              width='0'
+              title="Google Tag Manager (noscript)"
+              src="https://www.googletagmanager.com/ns.html?id=GTM-W7HBVJPC"
+              height="0"
+              width="0"
               style={{ display: 'none', visibility: 'hidden' }}
             />
           </noscript>
@@ -185,8 +186,9 @@ export default async function RootLayout({
           <Footer />
           {params.lang === 'he' && <Chatbot locale={params.lang} />}
           <WhatsappLink />
+          <ScrollToTop />
           <script
-            type='application/ld+json'
+            type="application/ld+json"
             dangerouslySetInnerHTML={{
               __html: JSON.stringify(getOrganizationSchema(params.lang)),
             }}

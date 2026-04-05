@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 .container {
   width: 100%;
   display: flex;
@@ -6,15 +8,42 @@
   align-items: center;
 }
 
+.eventPage {
+  background: linear-gradient(
+    to bottom,
+    $colorNavy,
+    $colorNavyDark,
+    $colorNavy
+  );
+  padding-block: 8rem;
+}
 .title {
-  font-size: var(--fontSizeH2);
+  font-size: $fontSizeH2;
   font-weight: 400;
-  color: var(--colorLightBG);
-  margin-bottom: 30px;
+  color: $colorLightBg;
+  margin-bottom: 3.75rem;
+}
+
+.eventTitle {
+  font-size: $fontSizeH2;
+  font-weight: 700;
+  color: $colorWhite;
+  margin-bottom: 1rem;
+  @media screen and (max-width: $breakpointTablet) {
+    font-size: $fontSizeMobH2;
+  }
+}
+
+.prefixLine {
+  margin-top: 0.75rem;
+  height: 0.5rem;
+  width: 10rem;
+  margin-bottom: 4rem;
+  background: linear-gradient(to right, transparent, $colorGold, transparent);
 }
 
 @media screen and (max-width: 1224px) {
   .title {
-    font-size: var(--fontSizeMobH2);
+    font-size: $fontSizeMobH2;
   }
 }

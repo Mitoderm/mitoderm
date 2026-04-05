@@ -1,5 +1,6 @@
 'use client';
 import { FC } from 'react';
+import { motion } from 'framer-motion';
 import styles from './BulletList.module.scss';
 import type { HowToUseItem, EventBulletItem } from '@/types';
 import BulletItem from './BulletItem/BulletItem';
@@ -10,11 +11,24 @@ interface Props {
   page?: 'hair' | 'gel' | 'main';
 }
 
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
 const BulletList: FC<Props> = ({ data, page }) => {
   const pathname = usePathname();
   const isEventPage = pathname.includes('event');
   return (
-    <div
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true }}
       className={`${styles.itemList} ${
         isEventPage && styles.eventPageItemList
       } ${page && page !== 'main' && styles.productList}`}
@@ -28,7 +42,7 @@ const BulletList: FC<Props> = ({ data, page }) => {
           text={item.text}
         />
       ))}
-    </div>
+    </motion.div>
   );
 };
 

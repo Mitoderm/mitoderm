@@ -1,11 +1,17 @@
+@use 'variables' as *;
 .header {
   position: fixed;
   display: flex;
   align-items: center;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.8);
-  padding-block: 10px;
+  padding-block: 1.25rem;
   z-index: 10;
+}
+
+.eventPage {
+  background-color: $colorNavy;
+  border-bottom: 1px solid rgba($colorGold, 0.1);
 }
 
 .header .scrolled {
@@ -13,8 +19,8 @@
 }
 
 .container {
-  max-width: var(--contentWidthDesktop);
-  height: 40px;
+  max-width: $contentWidthDesktop;
+  height: 5rem;
   width: 100%;
   margin-inline: auto;
   display: flex;
@@ -30,31 +36,33 @@
 
 .logoContainer img {
   -webkit-user-drag: none;
+  z-index: 11;
 }
 
 .overlay {
-  width: 100vw;
-  height: 100vh;
-  filter: blur(5px);
-  background-color: var(--colorBG);
-  opacity: 70%;
   position: absolute;
   top: 0;
   left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.65);
   opacity: 0;
-  transition: all 0.3s linear;
-  z-index: -1;
+  transition: opacity 0.3s linear;
+  z-index: 10;
   pointer-events: none;
+  inset: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .overlay.active {
-  opacity: 80%;
+  opacity: 100%;
   pointer-events: all;
 }
 
 @media screen and (max-width: 1224px) {
   .header {
-    height: 72px;
-    padding: 0 80px 0 20px;
+    height: 9rem;
+    padding: 0 10rem 0 2.5rem;
   }
 }

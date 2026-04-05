@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  width: 100%;
+  padding-inline: 0.875rem;
+  padding-bottom: 2.5rem;
+}
+.resetButton,
+.addButton {
+  background-color: transparent;
+}

@@ -1,28 +1,28 @@
+@use 'variables' as *;
 .footer {
   width: 100%;
-  padding: 88px 0;
+  padding: 11rem 0;
   display: flex;
   justify-content: center;
 }
 
 .content {
   display: flex;
-  max-width: 1200px;
+  max-width: 150rem;
   width: 100%;
   justify-content: space-between;
 }
 
 .textContainer {
   display: flex;
-  gap: 30px;
+  gap: 3.75rem;
 }
 
 .copyright,
 .item {
   color: #787677;
-  font-size: var(--fontSizeP2);
+  font-size: $fontSizeP2;
 }
-
 .item {
   cursor: pointer;
   transition: all 0.3s linear;
@@ -31,16 +31,16 @@
 @media screen and (max-width: 1224px) {
   .content {
     flex-direction: column-reverse;
-    padding-inline: 20px;
+    padding-inline: 2.5rem;
   }
   .textContainer {
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
   }
   .copyright,
   .item {
-    font-size: var(--fontSizeMobP2);
+    font-size: $fontSizeMobP2;
   }
 }
 

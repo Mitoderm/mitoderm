@@ -1,29 +1,30 @@
+@use 'variables' as *;
 .section {
-  padding-top: 60px;
+  padding-top: 7.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--colorBG);
+  background-color: $colorBg;
 }
 
 .title {
-  font-size: var(--fontSizeH2);
-  color: var(--colorLightBG);
+  font-size: $fontSizeH2;
+  color: $colorLightBg;
 }
 
 .titleColored {
-  color: var(--colorAccentLight);
+  color: $colorAccentLight;
 }
 
 @media screen and (max-width: 1224px) {
   .section {
     width: 100%;
-    padding-inline: 20px;
+    padding-inline: 2.5rem;
     gap: 15px;
   }
   .title {
-    font-size: var(--fontSizeMobH2);
+    font-size: $fontSizeMobH2;
     z-index: 2;
   }
 }

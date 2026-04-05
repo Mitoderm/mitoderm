@@ -1,4 +1,4 @@
-export interface StructuredData {
+interface StructuredData {
   '@context': string;
   '@type': string;
   [key: string]: any;
@@ -6,9 +6,6 @@ export interface StructuredData {
 
 const baseUrl = 'https://mitoderm.com';
 
-/**
- * Generate Organization schema
- */
 export function getOrganizationSchema(lang: string): StructuredData {
   const orgData: Record<string, any> = {
     '@context': 'https://schema.org',

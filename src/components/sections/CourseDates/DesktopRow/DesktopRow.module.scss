@@ -1,0 +1,118 @@
+@use 'variables' as *;
+
+.desktopRow {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1.5px solid;
+  padding: 1.75rem 2.5rem;
+  transition: all 0.2s;
+  color: inherit;
+  background: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: inherit;
+}
+
+.desktopRowSelected {
+  border-color: rgba(212, 175, 55, 0.6);
+  background: linear-gradient(
+    to bottom right,
+    rgba(212, 175, 55, 0.15),
+    rgba(212, 175, 55, 0.05)
+  );
+}
+
+.desktopRowDefault {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
+
+.cityBlock {
+  display: flex;
+  min-width: 100px;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.pinBox {
+  display: flex;
+  height: 4rem;
+  width: 4rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  transition: background 0.2s;
+}
+
+.pinBoxSelected {
+  background: rgba(212, 175, 55, 0.2);
+}
+
+.pinBoxDefault {
+  background: rgba(255, 255, 255, 0.06);
+  .pinIcon {
+    filter: brightness(0) saturate(100%) invert(56%) sepia(44%) saturate(133%)
+      hue-rotate(180deg) brightness(95%) contrast(85%);
+  }
+}
+
+.pinIcon {
+  width: 2rem;
+  height: 2rem;
+  transition: color 0.2s;
+}
+
+.pinIconSelected {
+  color: $colorGold;
+}
+
+.pinIconDefault {
+  color: $colorTextMuted;
+}
+
+.cityName {
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: 600;
+  color: $colorWhite;
+}
+
+.divider {
+  height: 3rem;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.calendarIcon {
+  width: 2.6rem;
+  height: 2.6rem;
+  color: $colorTextMuted;
+}
+
+.metaText {
+  white-space: nowrap;
+  font-size: 1.75rem;
+  color: $colorTextLight;
+}
+
+.clockIcon {
+  width: 2.6rem;
+  height: 2.6rem;
+  color: $colorTextMuted;
+}

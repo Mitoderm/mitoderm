@@ -1,3 +1,4 @@
+@use 'variables' as *;
 .container {
   width: 100%;
   height: 100%;
@@ -28,7 +29,7 @@
 .overlay {
   z-index: 10;
   position: absolute;
-  background-color: var(--colorBG);
+  background-color: $colorBg;
   filter: blur(5px);
   opacity: 0;
   width: 100%;

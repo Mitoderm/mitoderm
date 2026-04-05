@@ -1,14 +1,15 @@
+@use 'variables' as *;
 .link,
 .linkMobile {
-  width: 90px;
-  height: 40px;
-  background-color: var(--colorWhite);
-  border-radius: 16px;
+  width: 11.25rem;
+  height: 5rem;
+  background-color: $colorWhite;
+  border-radius: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
-  gap: 5px;
+  gap: 0.625rem;
   cursor: pointer;
   user-select: none;
   position: relative;
@@ -16,15 +17,15 @@
 
 .linkMobile {
   width: 60px;
-  height: 26px;
+  height: 3.25rem;
 }
 
 .text {
-  font-size: var(--fontSizeP2);
-  margin-right: 15px;
+  font-size: $fontSizeP2;
+  margin-right: 1.875rem;
 }
 
 .linkMobile .text {
-  margin-right: 10px;
-  font-size: var(--fontSizeMobExtra);
+  margin-right: 1.25rem;
+  font-size: $fontSizeMobExtra;
 }

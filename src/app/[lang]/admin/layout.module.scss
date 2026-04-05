@@ -1,0 +1,25 @@
+.root {
+  display: flex;
+  min-height: 100vh;
+  background-color: #0b1120;
+  color-scheme: dark;
+}
+
+.main {
+  flex: 1;
+  padding: 2rem;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #0f172a 0%, #0f172a 45%, #131d35 100%);
+}
+
+@media (min-width: 1024px) {
+  .main {
+    padding: 2.5rem;
+  }
+}
+
+.content {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 144rem;
+}

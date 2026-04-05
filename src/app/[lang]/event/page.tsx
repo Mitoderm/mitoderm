@@ -2,52 +2,15 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Script from 'next/script';
-import Intro from '@/components/sections/Intro/Intro';
-import Button from '@/components/sharedUI/Button/Button';
-import Contact from '@/components/sections/Contact/Contact';
-import Mission from '@/components/sections/Mission/Mission';
-import { useTranslations } from 'next-intl';
-import EventBulletList from '@/components/sections/EventBulletList/EventBulletList';
-import Gallery from '@/components/sections/Gallery/Gallery';
 import { getEventSchema } from '@/utils/structuredData';
+import { getEvents } from '@/lib/mongodb';
 
-const FirstLook = dynamic(
-  () => import('@/components/sections/FirstLook/FirstLook'),
+const WorkShop = dynamic(
+  () => import('@/components/sections/WorkShop/WorkShop'),
   {
     ssr: false,
-  }
+  },
 );
-
-const FastResult = dynamic(
-  () => import('@/components/sections/FastResult/FastResult'),
-  {
-    ssr: false,
-  }
-);
-
-const Invite = dynamic(() => import('@/components/sections/Invite/Invite'), {
-  ssr: false,
-});
-
-const Event = dynamic(() => import('@/components/sections/Event/Event'), {
-  ssr: false,
-});
-
-const ToTopItOff = dynamic(
-  () => import('@/components/sections/ToTopItOff/ToTopItOff'),
-  {
-    ssr: false,
-  }
-);
-
-const Unique = dynamic(() => import('@/components/sections/Unique/Unique'), {
-  ssr: false,
-});
-
-const About = dynamic(() => import('@/components/sections/About/About'), {
-  ssr: false,
-});
-
 
 const baseUrl = 'https://mitoderm.com';
 
@@ -74,7 +37,8 @@ export async function generateMetadata({
       ogLocale: 'he_IL',
     },
     en: {
-      title: 'Professional Event for Cosmetologists | Mitoderm - Next Generation Aesthetics',
+      title:
+        'Professional Event for Cosmetologists | Mitoderm - Next Generation Aesthetics',
       description:
         'Professional event for cosmetologists and aestheticians. Discover the V-Tech System - synthetic exosomes + PDRN. Professional training, live demonstrations, and opportunity to learn about innovative aesthetics technology | Mitoderm Israel',
       keywords:
@@ -82,7 +46,8 @@ export async function generateMetadata({
       ogLocale: 'en_US',
     },
     ru: {
-      title: 'Профессиональное мероприятие для косметологов | Митодерм - Новое поколение эстетики',
+      title:
+        'Профессиональное мероприятие для косметологов | Митодерм - Новое поколение эстетики',
       description:
         'Профессиональное мероприятие для косметологов и эстетистов. Откройте для себя систему V-Tech - синтетические экзосомы + PDRN. Профессиональное обучение, живые демонстрации и возможность узнать об инновационных технологиях в эстетике | Митодерм Израиль',
       keywords:
@@ -115,7 +80,7 @@ export async function generateMetadata({
       type: 'website',
       images: [
         {
-          url: `${baseUrl}/images/introBG.png`,
+          url: `${baseUrl}/images/backgrounds/introBG.png`,
           width: 1200,
           height: 630,
           alt: meta.title,
@@ -134,7 +99,7 @@ export async function generateMetadata({
       description: meta.description,
       images: [
         {
-          url: `${baseUrl}/images/introBG.png`,
+          url: `${baseUrl}/images/backgrounds/introBG.png`,
           alt: meta.title,
         },
       ],
@@ -144,18 +109,29 @@ export async function generateMetadata({
   };
 }
 
-export default function EventPage({ params: { lang } }: any) {
+export default async function EventPage({ params: { lang } }: any) {
   unstable_setRequestLocale(lang);
-  const t = useTranslations();
 
   // Event schema
   const eventUrl = `${baseUrl}/${lang}/event`;
   const eventSchema = getEventSchema(eventUrl, lang);
 
+  const events = await getEvents();
+  const plainEvents = events.map((e) => ({
+    id: e._id,
+    category: e.category,
+    city: e.city,
+    date: e.date,
+    time: e.time,
+    isAvailable: e.isAvailable,
+    expireAt: e.expireAt,
+  }));
+
   return (
     <>
-      <main>
-        <Intro />
+      <WorkShop events={plainEvents} />
+
+      {/* <Intro />
         <EventBulletList />
         <FastResult />
         <Invite />
@@ -176,15 +152,14 @@ export default function EventPage({ params: { lang } }: any) {
           <Button
             style={{ margin: '20px auto 40px auto' }}
             text={t('buttons.seat')}
-            formPage='event'
+            formPage="event"
           />
         </div>
         <About />
-        <Mission />
-      </main>
+        <Mission /> */}
       <Script
-        id='event-schema'
-        type='application/ld+json'
+        id="event-schema"
+        type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(eventSchema),
         }}

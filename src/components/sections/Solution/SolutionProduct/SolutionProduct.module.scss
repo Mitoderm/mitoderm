@@ -1,29 +1,30 @@
+@use 'variables' as *;
 .container {
   display: flex;
-  background-color: var(--colorLightBG);
-  border-radius: 56px;
+  background-color: $colorLightBg;
+  border-radius: 7rem;
   flex: 1;
   position: relative;
   gap: 10%;
-  padding: 20px;
+  padding: 2.5rem;
 }
 
 .title {
-  font-size: var(--fontSizeP1);
+  font-size: $fontSizeP1;
   margin-block: 30px;
 }
 
 .subtitle {
-  font-size: var(--fontSizeP1);
-  margin-bottom: 20px;
+  font-size: $fontSizeP1;
+  margin-bottom: 2.5rem;
 }
 
 .text {
-  font-size: var(--fontSizeP2);
+  font-size: $fontSizeP2;
 }
 
 .textContainer {
-  padding: 40px;
+  padding: 5rem;
   display: flex;
   flex-direction: column;
 }

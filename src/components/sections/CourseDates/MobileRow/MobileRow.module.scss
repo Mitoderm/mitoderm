@@ -1,0 +1,115 @@
+@use 'variables' as *;
+
+.mobileRow {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  border: 1.5px solid;
+  padding: 1.5rem 1.75rem;
+  text-align: right;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+  color: inherit;
+  background: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+.mobileRowSelected {
+  border-color: rgba(212, 175, 55, 0.6);
+  background: linear-gradient(
+    to bottom right,
+    rgba(212, 175, 55, 0.15),
+    rgba(212, 175, 55, 0.05)
+  );
+}
+
+.mobileRowDefault {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+.cityLine {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: cener;
+  justify-content: space-between;
+}
+
+.cityLineLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pinBoxSm {
+  display: flex;
+  height: 3.5rem;
+  width: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  transition: background 0.2s;
+}
+
+.pinIconSm {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.cityNameSm {
+  font-size: 2.6rem;
+  font-weight: 600;
+  color: $colorWhite;
+}
+
+.metaBar {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  border-radius: 1rem;
+  background: rgba($colorBlack, 0.2);
+  padding: 0.875rem 1.25rem;
+}
+
+.metaBarInner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.metaIconSm {
+  width: 2.6rem;
+  height: 2.6rem;
+  color: $colorTextMuted;
+}
+
+.metaTextSm {
+  white-space: nowrap;
+  font-size: 2.6rem;
+  color: $colorTextMuted2;
+}
+
+.dividerSm {
+  height: 2.6rem;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pinBoxSelected {
+  background: rgba(212, 175, 55, 0.2);
+}
+
+.pinBoxDefault {
+  background: rgba(255, 255, 255, 0.06);
+  .pinIconSm {
+    filter: brightness(0) saturate(100%) invert(56%) sepia(44%) saturate(133%)
+      hue-rotate(180deg) brightness(95%) contrast(85%);
+  }
+}

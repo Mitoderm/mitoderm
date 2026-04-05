@@ -1,0 +1,110 @@
+@use 'variables' as *;
+
+.unique {
+  background: linear-gradient(to bottom, $colorNavy, $colorNavyDark);
+  padding-block: 8rem;
+}
+
+.container {
+  max-width: calc($contentWidthDesktop - 4rem);
+  margin: 0 auto;
+  width: 100%;
+  @media (max-width: $breakpointXl) {
+    padding-inline: 2rem;
+  }
+}
+
+.grid {
+  display: grid;
+  gap: 4rem;
+
+  @media (min-width: $breakpointTablet) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.imageCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 48px;
+  background: linear-gradient(
+    to bottom right,
+    rgba($colorGold, 0.2),
+    rgba($colorGoldDark, 0.1)
+  );
+  padding: 5rem;
+}
+
+.imageWrap {
+  position: relative;
+  min-height: 760px;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 2.5rem;
+
+  @media (max-width: $breakpointTablet) {
+    min-height: 460px;
+  }
+
+  &:hover {
+    .image {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 40px;
+  background: $colorWhite;
+  padding: 4rem;
+  color: $colorTextDark;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  @media (min-width: $breakpointTablet) {
+    padding: 6rem;
+  }
+}
+
+.title {
+  font-size: 3.75rem;
+  line-height: 1.25;
+
+  @media (min-width: $breakpointTablet) {
+    font-size: 4.5rem;
+    font-weight: 500;
+  }
+}
+
+.titleAccent {
+  font-weight: 700;
+  color: $colorGoldDark;
+}
+
+.body {
+  margin-top: 3rem;
+  white-space: pre-wrap;
+  font-size: 2rem;
+  line-height: 1.625;
+  letter-spacing: 0.025em;
+  color: $colorTextMuted;
+}
+
+.bodyAccent {
+  font-weight: 600;
+  color: $colorGoldDark;
+}
+
+.divider {
+  margin-top: 2rem;
+  height: 3px;
+  border-radius: 9999px;
+  background: linear-gradient(to right, $colorGold, transparent);
+}

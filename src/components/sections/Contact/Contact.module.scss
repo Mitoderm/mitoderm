@@ -1,40 +1,41 @@
+@use 'variables' as *;
 .section {
-  padding: 20px 0;
+  padding: 2.5rem 0;
   display: flex;
   justify-content: center;
 }
 
 .content {
-  max-width: 1200px;
+  max-width: 150rem;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1.25rem;
 }
 
 .cardContainer {
-  border-radius: 48px;
+  border-radius: 6rem;
   overflow: hidden;
-  min-height: 558px;
+  min-height: 69.75rem;
 }
 
 .iframe {
   width: 100%;
   height: 100%;
-  min-height: 558px;
+  min-height: 69.75rem;
 }
 
 .contacts {
   display: flex;
-  gap: 10px;
+  gap: 1.25rem;
 }
 
 .contactsItem {
   display: flex;
   flex-direction: column;
-  padding: 48px 88px 48px 88px;
-  background-color: var(--colorWhite);
-  border-radius: 48px;
+  padding: 6rem 88px 48px 88px;
+  background-color: $colorWhite;
+  border-radius: 6rem;
   flex: 1;
   justify-content: space-between;
 }
@@ -46,15 +47,15 @@
 .item2textBox {
   display: flex;
   height: 100%;
-  gap: 40px;
+  gap: 5rem;
 }
 
 .contactsItemTitle {
-  font-size: var(--fontSizeMobH2);
+  font-size: $fontSizeMobH2;
 }
 
 .text {
-  font-size: var(--fontSizeP2);
+  font-size: $fontSizeP2;
   display: flex;
   align-items: center;
 }
@@ -69,7 +70,7 @@
 .linkBox {
   height: 48px;
   display: flex;
-  gap: 10px;
+  gap: 1.25rem;
 }
 
 .item2textBox .text {
@@ -78,7 +79,7 @@
 
 @media screen and (max-width: 1224px) {
   .content {
-    padding-inline: 20px;
+    padding-inline: 2.5rem;
   }
   .iframe {
     z-index: 5;
@@ -88,24 +89,23 @@
     z-index: 8;
   }
   .contactsItem {
-    padding: 24px 20px 20px 20px;
+    padding: 5rem;
   }
   .item2textBox {
-    padding-bottom: 80px;
     position: relative;
   }
   .item2textBox .column {
     justify-content: flex-start;
   }
   .contactsItemTitle {
-    margin-bottom: 20px;
+    margin-bottom: 2.5rem;
   }
 }
 
 @media screen and (max-width: 768px) {
   .linkBox {
     position: absolute;
-    bottom: 30px;
+    bottom: 3.75rem;
     left: 0;
     display: flex;
     justify-content: space-between;
@@ -115,6 +115,10 @@
     left: auto;
   }
   .contactsItem {
-    border-radius: 32px;
+    border-radius: 4rem;
+    padding: 3rem 20px 20px;
+  }
+  .item2textBox {
+    padding-bottom: 10rem;
   }
 }

@@ -1,3 +1,4 @@
+@use 'variables' as *;
 .section,
 .solutionLabelsContainer {
   width: 100%;
@@ -19,30 +20,28 @@
 }
 
 .title {
-  font-size: var(--fontSizeH2);
-  margin-block: 40px;
-  max-width: 1200px;
+  font-size: $fontSizeH2;
+  margin-block: 5rem;
+  max-width: 150rem;
   text-align: center;
 }
 
 .title span {
-  color: var(--colorAccentLight);
+  color: $colorAccentLight;
 }
-
 .text {
-  font-size: var(--fontSizeP2);
+  font-size: $fontSizeP2;
 }
 
 .slider {
   display: flex;
   flex-wrap: nowrap;
-  gap: 10px;
-  max-width: 1060px;
+  gap: 1.25rem;
+  max-width: 132.5rem;
   margin-inline: auto;
   width: 100%;
-  overflow-x: scroll;
-  pointer-events: none;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .solutionBlock {
@@ -50,55 +49,54 @@
   min-width: 100%;
   width: 100%;
   position: relative;
-  gap: 10px;
+  gap: 1.25rem;
 }
 
 .subtitle {
-  font-size: var(--fontSizeP2);
-  margin-bottom: 55px;
+  font-size: $fontSizeP2;
+  margin-bottom: 6.875rem;
 }
 
 .sliderContainer {
-  max-width: 1200px;
+  max-width: 150rem;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.discrontLabel {
+.discountLabel {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  max-width: 1200px;
+  max-width: 150rem;
   width: 100%;
-  border-radius: 24px;
-  background-color: var(--colorGold);
-  font-size: var(--fontSizeP1);
-  padding: 30px;
+  border-radius: 3rem;
+  background-color: $colorGold;
+  font-size: $fontSizeP1;
+  padding: 3.75rem;
 }
-
-.discrontLabel span {
+.discountLabel span {
   text-align: start;
 }
 
 .discountLabelTitle {
-  font-size: var(--fontSizeH2);
-  margin-bottom: 20px;
+  font-size: $fontSizeH2;
+  margin-bottom: 2.5rem;
 }
 
 .bundleContainer,
 .bundleProductContainer {
-  background-color: var(--colorLightBG);
-  border-radius: 32px;
-  max-width: 1200px;
+  background-color: $colorLightBg;
+  border-radius: 4rem;
+  max-width: 150rem;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 40px;
-  margin-top: 40px;
+  padding: 1.25rem 5rem;
+  margin-top: 5rem;
 }
 
 .bundleContainer img {
@@ -115,38 +113,40 @@
 
 .bundleGelTextContainer {
   margin: 0;
-  gap: 10px;
+  gap: 1.25rem;
   .bundleTitle {
     margin-bottom: 0;
   }
 }
 
 .bundleTitle {
-  font-size: var(--fontSizeH2);
-  margin-bottom: 25px;
+  font-size: $fontSizeH2;
+  margin-bottom: 3.125rem;
 }
 
 .bundleText,
 .bundleProductText {
-  font-size: var(--fontSizeP1);
-  margin-bottom: 20px;
+  font-size: $fontSizeP1;
+  margin-bottom: 2.5rem;
 }
 
 .bundleProductText {
   margin-bottom: 0;
 }
-
 .bundleProductText.spray {
-  margin-bottom: 20px;
+  margin-bottom: 2.5rem;
 }
 
 @media screen and (max-width: 1224px) {
+  .solutionLabelsContainer {
+    padding-inline: 2.5rem;
+  }
   .section {
-    padding-inline: 20px;
+    padding-inline: 2.5rem;
   }
   .title {
-    font-size: var(--fontSizeMobH2);
-    gap: 10px;
+    font-size: $fontSizeMobH2;
+    gap: 1.25rem;
   }
   .subtitle {
     display: none;
@@ -160,9 +160,6 @@
 }
 
 @media screen and (max-width: 799px) {
-  .solutionLabelsContainer {
-    padding-inline: 20px;
-  }
   .bundleContainer {
     padding: 10px;
   }
@@ -176,11 +173,11 @@
   .bundleProductTextContainer {
     margin: 0;
     .bundleTitle {
-      font-size: var(--fontSizeMobH2);
-      margin-bottom: 10px;
+      font-size: $fontSizeMobH2;
+      margin-bottom: 1.25rem;
     }
     .bundleProductText {
-      font-size: var(--fontSizeMobP1);
+      font-size: $fontSizeMobP1;
     }
   }
   .bundleProductContainer {

@@ -1,0 +1,72 @@
+@use 'variables' as *;
+
+.eventFooter {
+  width: 100%;
+  background: $colorNavyDark;
+}
+.inner {
+  max-width: $contentWidthDesktopMd;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 4rem 1.25rem 7rem 1.25rem;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 1.75rem;
+  color: rgba($colorWhite, 0.6);
+
+  @media (min-width: $breakpointTablet) {
+    text-align: start;
+  }
+}
+
+.subtitle {
+  font-size: 1.55rem;
+  color: rgba($colorWhite, 0.4);
+  margin: 1rem 0 2rem 0;
+  text-align: center;
+  max-width: 80%;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+
+  @media (min-width: $breakpointTablet) {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
+
+.link {
+  font-size: 1.55rem;
+  transition: color 0.3s;
+  color: $colorGray;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    color: $colorWhite;
+  }
+}
+
+.text {
+  font-size: 1.55rem;
+  color: rgba($colorWhite, 0.4);
+}
+
+.textContainer {
+  margin-top: 2rem;
+  img {
+    margin-inline: 0.5rem;
+  }
+}

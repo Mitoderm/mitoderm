@@ -1,15 +1,16 @@
+@use 'variables' as *;
 .container {
   display: flex;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 3.75rem;
 }
 
 .containerInner {
   display: flex;
   justify-content: space-between;
-  max-width: 1200px;
+  max-width: 150rem;
   width: 100%;
-  padding-block: 60px;
+  padding-block: 7.5rem;
 }
 
 .textBox {
@@ -17,25 +18,25 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  max-width: 880px;
-  padding-block: 40px;
+  max-width: 110rem;
+  padding-block: 5rem;
   text-align: center;
 }
 
 .textBox h3 {
-  font-size: var(--fontSizeH2);
+  font-size: $fontSizeH2;
   font-weight: 400;
-  color: var(--colorAccentLight);
-  max-width: 760px;
+  color: $colorAccentLight;
+  max-width: 95rem;
 }
 
 .textBox h3 span {
-  color: var(--colorGold);
+  color: $colorGold;
 }
 
 .textBox p {
-  margin: 20px 0 40px 0;
-  color: var(--colorLightBG);
+  margin: 2.5rem 0 40px 0;
+  color: $colorLightBg;
 }
 
 .image1 {
@@ -50,14 +51,14 @@
   .containerInner {
     flex-direction: column-reverse;
     align-items: center;
-    padding-inline: 20px;
+    padding-inline: 2.5rem;
     padding-bottom: 0;
   }
   .textBox {
     padding: 0;
   }
   .textBox h3 {
-    font-size: var(--fontSizeMobH2);
+    font-size: $fontSizeMobH2;
   }
   .image2 {
     margin-top: 0;

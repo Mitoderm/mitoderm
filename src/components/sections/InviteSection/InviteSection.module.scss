@@ -1,0 +1,138 @@
+@use 'variables' as *;
+
+.invite {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 0 2rem 8rem 2rem;
+
+  .card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 48px;
+    background: linear-gradient(
+      to bottom right,
+      $colorNavy,
+      $colorNavyLight,
+      $colorNavy
+    );
+    padding: 6rem;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .blur1 {
+    position: absolute;
+    top: -10rem;
+    height: 32rem;
+    width: 32rem;
+    border-radius: 9999px;
+    background: rgba($colorGold, 0.1);
+    filter: blur(48px);
+    inset-inline-end: -10rem;
+  }
+
+  .blur2 {
+    position: absolute;
+    bottom: -10rem;
+    height: 32rem;
+    width: 32rem;
+    border-radius: 9999px;
+    background: rgba($colorGoldDark, 0.1);
+    filter: blur(48px);
+    inset-inline-start: -10rem;
+  }
+
+  .title {
+    position: relative;
+    z-index: 5;
+    max-width: 896px;
+    margin: 0 auto;
+    font-size: 3.75rem;
+    font-weight: 400;
+    line-height: 1.25;
+    color: $colorGoldDark;
+
+    @media (min-width: $breakpointTablet) {
+      font-size: 4.5rem;
+    }
+  }
+
+  .titleAccent {
+    font-weight: 700;
+    color: $colorGold;
+  }
+
+  .body {
+    position: relative;
+    z-index: 5;
+    margin: 3rem auto 0;
+    max-width: 896px;
+    white-space: pre-wrap;
+    font-size: 2rem;
+    line-height: 1.25;
+    letter-spacing: 0.05em;
+    color: $colorLightBg;
+
+    @media (min-width: $breakpointTablet) {
+      font-size: 2.25rem;
+    }
+  }
+
+  .bodyAccent {
+    font-weight: 600;
+    color: $colorGold;
+  }
+
+  .cta {
+    position: relative;
+    z-index: 5;
+    margin-top: 3rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    border-radius: 72px;
+    background: linear-gradient(to right, $colorGoldLight, $colorGoldLighter);
+    padding: 3rem 6rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: 0.025em;
+    color: $colorTextDark;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
+    text-decoration: none;
+    font-family: 'Rubik', sans-serif;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 50px rgba(252, 211, 132, 0.4);
+      .ctaIcon {
+        transform: translateX(0.5rem);
+      }
+    }
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  .ctaIcon {
+    color: $colorBlack;
+    transition: transform 0.2s;
+  }
+
+  .line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 4px;
+    background: linear-gradient(to right, transparent, $colorGold, transparent);
+  }
+}

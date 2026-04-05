@@ -2,14 +2,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 1200px;
+  max-width: 150rem;
   width: 100%;
-  margin-block: 40px;
-  gap: 30px;
+  margin-block: 5rem;
+  gap: 3.75rem;
 }
 
 .eventPageItemList {
-  gap: 10px;
+  gap: 1.25rem;
   justify-content: center;
 }
 
@@ -22,6 +22,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 1.25rem;
   }
 }

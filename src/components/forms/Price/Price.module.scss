@@ -1,8 +1,9 @@
+@use 'variables' as *;
 .container {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 1.25rem;
 }
 
 .totalBox,
@@ -22,29 +23,29 @@
 }
 
 .inputBox input {
-  height: 53px;
-  border-radius: 12px;
-  background-color: var(--colorLightBG);
+  height: 6.625rem;
+  border-radius: 1.5rem;
+  background-color: $colorLightBg;
   outline: none;
   border: 1px solid transparent;
   padding: 16px 20px;
   z-index: 1;
   width: 100%;
-  font-size: var(--fontSizeP2);
+  font-size: $fontSizeP2;
 }
 
 .inputBox button {
   position: absolute;
-  right: 20px;
+  right: 2.5rem;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  color: var(--colorAccentLight);
+  color: $colorAccentLight;
   background-color: transparent;
   cursor: pointer;
   width: 80px;
   height: 50px;
-  font-size: var(--fontSizeP2);
+  font-size: $fontSizeP2;
   z-index: 2;
   transition: all 0.2s linear;
 }
@@ -60,8 +61,8 @@
 
 .total,
 .promo {
-  font-size: var(--fontSizeMobExtra);
-  margin-bottom: 5px;
+  font-size: $fontSizeMobExtra;
+  margin-bottom: 0.625rem;
 }
 
 .total {
@@ -69,10 +70,10 @@
 }
 
 .amount {
-  font-size: var(--fontSizeP1);
-  color: var(--colorAccentLight);
-  margin-right: 20px;
-  line-height: 53px;
+  font-size: $fontSizeP1;
+  color: $colorAccentLight;
+  margin-right: 2.5rem;
+  line-height: 6.625rem;
 }
 
 .amount.he {
@@ -80,10 +81,10 @@
 }
 
 .message {
-  margin-top: 5px;
-  font-size: var(--fontSizeMobP2);
+  margin-top: 0.625rem;
+  font-size: $fontSizeMobP2;
   opacity: 0;
-  height: 14px;
+  height: 1.75rem;
 }
 
 .error {

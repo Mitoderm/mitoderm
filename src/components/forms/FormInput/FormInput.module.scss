@@ -1,35 +1,35 @@
+@use 'variables' as *;
 .inputLabel {
   display: flex;
   flex-direction: column;
-  font-size: var(--fontSizeMobP2);
-  color: var(--colorAccentDark);
+  font-size: $fontSizeMobP2;
+  color: $colorAccentDark;
   cursor: pointer;
 }
 
 .inputLabel input {
-  height: 53px;
-  padding-inline: 15px;
-  border-radius: 12px;
+  height: 6.625rem;
+  padding-inline: 1.875rem;
+  border-radius: 1.5rem;
   outline: none;
-  border: none;
-  background-color: var(--colorLightBG);
-  font-size: var(--fontSizeP2);
-  margin-top: 5px;
   border: 1px solid transparent;
+  background-color: $colorLightBg;
+  font-size: $fontSizeP2;
+  margin-top: 0.625rem;
   transition: all 0.3s linear;
 }
 
 .inputLabel input::placeholder {
-  color: #222222;
+  color: $colorAccentDark;
   opacity: 0.5;
 }
 
 .inputLabel input:hover {
-  border: 1px solid var(--colorAccentLight);
+  border: 1px solid $colorAccentLight;
 }
 
 .inputLabel input:focus {
-  border: 1px solid var(--colorAccentDark);
+  border: 1px solid $colorAccentDark;
 }
 
 .inputLabel .error {
@@ -37,24 +37,24 @@
 }
 
 .errorText {
-  height: 14px;
-  font-size: var(--fontSizeMobP2);
+  height: 1.75rem;
+  font-size: $fontSizeMobP2;
   color: #d00043;
-  margin-top: 5px;
+  margin-top: 0.625rem;
 }
 
 @media screen and (max-width: 1224px) {
   .inputLabel {
-    font-size: var(--fontSizeMobExtra);
+    font-size: $fontSizeMobExtra;
     margin-bottom: 3px;
   }
   .inputLabel input {
-    height: 42px;
+    height: 5.25rem;
   }
   .inputLabel input::placeholder {
-    font-size: var(--fontSizeMobP2);
+    font-size: $fontSizeMobP2;
   }
   .errorText {
-    font-size: var(--fontSizeMobExtra);
+    font-size: $fontSizeMobExtra;
   }
 }

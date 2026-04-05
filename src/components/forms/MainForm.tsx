@@ -113,41 +113,41 @@ const MainForm: FC = () => {
             </h2>
             <p>{t('form.subtitle')}</p>
             <form
-              aria-label='Main Form'
+              aria-label="Main Form"
               noValidate
               className={styles.form}
               onSubmit={onSubmit}
-              action='submit'
+              action="submit"
             >
               <FormInput
                 label={t('form.placeholderInputName')}
                 setFormData={handleData}
-                type='text'
-                name='name'
-                placeholder='Aaron Smith'
+                type="text"
+                name="name"
+                placeholder="Aaron Smith"
                 validator={validateName}
               />
               <FormInput
                 label={t('form.placeholderEmailName')}
                 setFormData={handleData}
-                type='email'
-                name='email'
-                placeholder='mitoderm@mail.com'
+                type="email"
+                name="email"
+                placeholder="mitoderm@mail.com"
                 validator={validateEmail}
               />
               <FormInput
                 label={t('form.placeholderPhoneName')}
                 setFormData={handleData}
-                type='tel'
-                name='phone'
-                placeholder='586 412 924'
+                type="tel"
+                name="phone"
+                placeholder="586 412 924"
                 validator={validatePhone}
               />
               <FormInput
                 label={t('form.placeholderProfession')}
                 setFormData={handleData}
-                type='text'
-                name='profession'
+                type="text"
+                name="profession"
                 placeholder={t('form.placeholderProfession')}
                 validator={validateProfession}
               />
@@ -160,8 +160,8 @@ const MainForm: FC = () => {
                 <input
                   checked={isChecked}
                   onChange={() => setIsChecked((state) => !state)}
-                  name='approve'
-                  type='checkbox'
+                  name="approve"
+                  type="checkbox"
                   required
                 />
                 <div className={styles.customCheckbox} />
@@ -179,10 +179,10 @@ const MainForm: FC = () => {
                 className={`${styles.row} ${locale === 'he' ? styles.he : ''}`}
               >
                 <Image
-                  src='/images/lockIcon.svg'
+                  src="/images/icons/lockIcon.svg"
                   width={14}
                   height={14}
-                  alt='lock icon'
+                  alt="lock icon"
                 />
                 <p>{t('form.sharing')}</p>
               </div>
@@ -195,8 +195,8 @@ const MainForm: FC = () => {
           <Image
             className={styles.desktopImage}
             fill
-            src='/images/formImage.png'
-            alt='background with exosome'
+            src="/images/formImage.png"
+            alt="background with exosome"
           />
           <FormCloseButton />
         </div>

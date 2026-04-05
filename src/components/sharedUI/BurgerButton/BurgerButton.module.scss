@@ -1,16 +1,17 @@
 .button {
-  width: 40px;
-  height: 40px;
+  width: 5rem;
+  height: 5rem;
   padding: 10px;
   background-color: transparent;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  right: 20px;
+  right: 2.5rem;
+  z-index: 11;
 }
 
 .button:nth-child(1) {
-  margin-bottom: 5px;
+  margin-bottom: 0.625rem;
 }
 
 .line {

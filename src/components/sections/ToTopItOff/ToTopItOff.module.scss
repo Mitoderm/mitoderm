@@ -1,3 +1,4 @@
+@use 'variables' as *;
 .container {
   display: flex;
   flex-direction: column;
@@ -6,84 +7,84 @@
 
 .containerInner {
   display: flex;
-  gap: 10px;
-  max-width: 1200px;
+  gap: 1.25rem;
+  max-width: 150rem;
 }
 
 .title {
-  font-size: var(--fontSizeH2);
-  color: var(--colorLightBG);
+  font-size: $fontSizeH2;
+  color: $colorLightBg;
 }
 
 .itemList {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 2.5rem;
 }
 
 .item {
-  padding: 32px 48px;
+  padding: 4rem 6rem;
   display: flex;
   flex-direction: column;
-  background-color: var(--colorWhite);
-  border-radius: 48px;
+  background-color: $colorWhite;
+  border-radius: 6rem;
   flex: 1;
 }
 
 .round {
-  width: 56px;
-  height: 56px;
+  width: 7rem;
+  height: 7rem;
   border-radius: 50%;
-  color: var(--colorWhite);
-  background-color: var(--colorAccentLight);
+  color: $colorWhite;
+  background-color: $colorAccentLight;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: var(--fontSizeP1);
-  margin-bottom: 25px;
+  font-size: $fontSizeP1;
+  margin-bottom: 3.125rem;
 }
 
 .round.light {
-  background-color: var(--colorGold);
+  background-color: $colorGold;
 }
 
 .text {
-  font-size: var(--fontSizeP1);
+  font-size: $fontSizeP1;
 }
 
 .buttonBox {
-  margin: 30px 0 80px 0;
+  margin: 3.75rem 0 10rem 0;
 }
 
 @media screen and (max-width: 1199px) {
   .container {
     align-items: flex-start;
-    padding-top: 20px;
+    padding-top: 2.5rem;
   }
   .containerInner {
     flex-direction: column-reverse;
-    gap: 20px;
+    gap: 2.5rem;
     max-width: 100%;
     width: 100%;
   }
   .titleMob {
-    font-size: var(--fontSizeMobH2);
-    color: var(--colorLightBG);
+    font-size: $fontSizeMobH2;
+    color: $colorLightBg;
     text-align: center;
     width: 100%;
   }
   .round {
-    font-size: var(--fontSizeMobP2);
+    font-size: $fontSizeMobP2;
   }
   .text {
-    font-size: var(--fontSizeP2);
+    font-size: $fontSizeP2;
   }
   .itemList {
-    padding-inline: 20px;
+    padding-inline: 2.5rem;
   }
   .buttonBox {
     width: 100%;
-    padding-inline: 20px;
-    margin-top: 20px;
+    padding-inline: 2.5rem;
+    margin-top: 2.5rem;
   }
 }

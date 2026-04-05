@@ -1,13 +1,13 @@
 .container {
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 5rem;
 }
 
 @media screen and (max-width: 1224px) {
   .container {
     width: 100%;
-    padding-inline: 20px;
+    padding-inline: 2.5rem;
     gap: 15px;
   }
 }

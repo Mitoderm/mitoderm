@@ -18,16 +18,19 @@ import Loader from '../sharedUI/Loader/Loader';
 import NumberInput from './NumberInput/NumberInput';
 import Price from './Price/Price';
 import FormCloseButton from './FormCloseButton/FormCloseButton';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { sendPaymentDataToCRM } from '@/utils/sendPayment';
 import type { NameTypeMain, NameTypeEvent } from '@/types';
 
 const EventForm: FC = () => {
-  const { numberOfTickets, discountModifier } = useAppStore((state) => state);
+  const { numberOfTickets, discountModifier, selectedEvent } = useAppStore(
+    (state) => state,
+  );
   const t = useTranslations();
   const pathname = usePathname();
   const isEventPage = pathname.includes('event');
   const locale = useLocale();
+  const router = useRouter();
   const formRef = useRef<HTMLDivElement>(null);
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
   const [isChecked, setIsChecked] = useState<boolean>(false);
@@ -42,15 +45,21 @@ const EventForm: FC = () => {
   const [isSending, setIsSending] = useState<boolean>(false);
   const [isSent, setIsSent] = useState<boolean>(false);
 
+  useEffect(() => {
+    if (!selectedEvent) router.push(`/${locale}/event`);
+  });
+
   const handleData = (
     data: string,
     name: NameTypeEvent | NameTypeMain,
-    isValid: boolean
+    isValid: boolean,
   ) => {
     setFormData({ ...formData, [name]: { value: data, isValid } });
   };
 
   const onSubmit = async (e?: FormEvent) => {
+    if (!selectedEvent) return;
+
     e?.preventDefault();
     setIsSending(true);
     const data = {
@@ -61,7 +70,7 @@ const EventForm: FC = () => {
       lang: locale,
     };
 
-    sendPaymentDataToCRM(data)
+    sendPaymentDataToCRM(data, selectedEvent)
       .then((res) => {
         setIsSending(false);
         setIsSent(true);
@@ -138,21 +147,21 @@ const EventForm: FC = () => {
               noValidate
               className={styles.form}
               onSubmit={onSubmit}
-              action='submit'
+              action="submit"
             >
               <FormInput
                 label={t('form.placeholderInputName')}
                 setFormData={handleData}
-                type='text'
-                name='name'
-                placeholder='Aaron Smith'
+                type="text"
+                name="name"
+                placeholder="Aaron Smith"
                 validator={validateName}
               />
               <FormInput
                 label={t('form.placeholderInputID')}
                 setFormData={handleData}
-                type='text'
-                name='idNumber'
+                type="text"
+                name="idNumber"
                 placeholder={t('form.placeholderInputID')}
                 validator={validateId}
               />
@@ -160,17 +169,17 @@ const EventForm: FC = () => {
               <FormInput
                 label={t('form.placeholderEmailName')}
                 setFormData={handleData}
-                type='email'
-                name='email'
-                placeholder='mitoderm@mail.com'
+                type="email"
+                name="email"
+                placeholder="mitoderm@mail.com"
                 validator={validateEmail}
               />
               <FormInput
                 label={t('form.placeholderPhoneName')}
                 setFormData={handleData}
-                type='tel'
-                name='phone'
-                placeholder='586 412 924'
+                type="tel"
+                name="phone"
+                placeholder="586 412 924"
                 validator={validatePhone}
               />
               <Price total={totalPrice} setTotal={setTotalPrice} />
@@ -183,8 +192,8 @@ const EventForm: FC = () => {
                 <input
                   checked={isChecked}
                   onChange={() => setIsChecked((state) => !state)}
-                  name='approve'
-                  type='checkbox'
+                  name="approve"
+                  type="checkbox"
                   required
                 />
                 <div className={styles.customCheckbox} />
@@ -195,17 +204,17 @@ const EventForm: FC = () => {
                 text={t(
                   isEventPage
                     ? 'buttons.reserveSeat'
-                    : 'buttons.requestCallback'
+                    : 'buttons.requestCallback',
                 )}
               />
               <div
                 className={`${styles.row} ${locale === 'he' ? styles.he : ''}`}
               >
                 <Image
-                  src='/images/lockIcon.svg'
+                  src="/images/icons/lockIcon.svg"
                   width={14}
                   height={14}
-                  alt='lock icon'
+                  alt="lock icon"
                 />
                 <p>{t('form.sharing')}</p>
               </div>
@@ -222,7 +231,7 @@ const EventForm: FC = () => {
             muted
             playsInline
           >
-            <source src='/videos/mitovideomobile.mp4' type='video/mp4' />
+            <source src="/videos/mitovideomobile.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <FormCloseButton />

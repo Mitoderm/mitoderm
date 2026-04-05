@@ -1,51 +1,52 @@
+@use 'variables' as *;
 .container {
   width: 100%;
   display: flex;
   flex-direction: column;
-  max-width: 1200px;
+  max-width: 150rem;
   margin-inline: auto;
-  padding: 30px 20px 20px 20px;
-  border: 1px solid var(--colorWhite);
-  border-radius: 40px;
+  padding: 3.75rem 20px 20px 20px;
+  border: 1px solid $colorWhite;
+  border-radius: 5rem;
 }
 
 .title {
-  font-size: var(--fontSizeH2);
-  color: var(--colorAccentLight);
+  font-size: $fontSizeH2;
+  color: $colorAccentLight;
 }
 
 .title .colored {
-  color: var(--colorGold);
+  color: $colorGold;
 }
 
 .subtitle {
-  font-size: var(--fontSizeP1);
-  margin: 20px 0 60px 0;
-  color: var(--colorAccentLight);
+  font-size: $fontSizeP1;
+  margin: 2.5rem 0 60px 0;
+  color: $colorAccentLight;
 }
 
 .containerInner {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+  gap: 2rem;
 }
 
 .textContainer {
   display: flex;
   flex-direction: column;
-  background-color: var(--colorWhite);
-  padding: 30px;
-  border-radius: 40px;
+  background-color: $colorWhite;
+  padding: 3.75rem;
+  border-radius: 5rem;
   flex: 1;
   justify-content: space-between;
 }
 
 .textTitle {
-  font-size: var(--fontSizeP1);
+  font-size: $fontSizeP1;
 }
 
 .text {
-  font-size: var(--fontSizeP2);
+  font-size: $fontSizeP2;
   margin-bottom: 50px;
 }
 
@@ -58,11 +59,11 @@
 @media screen and (max-width: 1224px) {
   .container {
     width: 100%;
-    padding-inline: 20px;
+    padding-inline: 2.5rem;
   }
   .containerInner {
     flex-direction: column;
-    gap: 10px;
+    gap: 1.25rem;
   }
   .imageBox,
   .textContainer {
@@ -78,17 +79,17 @@
     justify-content: center;
   }
   .title {
-    font-size: var(--fontSizeMobH2);
+    font-size: $fontSizeMobH2;
   }
   .subtitle {
-    font-size: var(--fontSizeP2);
-    margin: 20px 0 40px 0;
+    font-size: $fontSizeP2;
+    margin: 2.5rem 0 40px 0;
   }
   .textTitle {
-    font-size: var(--fontSizeMobH2);
+    font-size: $fontSizeMobH2;
   }
   .text {
-    font-size: var(--fontSizeMobP2);
+    font-size: $fontSizeMobP2;
   }
 }
 

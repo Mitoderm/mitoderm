@@ -1,12 +1,15 @@
 'use client';
 import { FC } from 'react';
-import styles from './Navigation.module.scss';
-import { navMainList, navEventList, navFormList } from '@/constants';
-import { NavItem } from '@/types';
-import { useLocale, useTranslations } from 'next-intl';
+import {
+  navMainList,
+  navEventList,
+  navFormList,
+  navDoctorList,
+} from '@/constants';
 import { useMediaQuery } from 'react-responsive';
-import { usePathname, Link } from '@/i18n/routing';
-import NavigationProductButton from './NavigationProductButton/NavigationProductButton';
+import { usePathname } from '@/i18n/routing';
+import NavigationMobile from './NavigationMobile/NavigationMobile';
+import NavigationDestop from './NavigationDesktop/NavigationDestop';
 
 interface Props {
   isOpen: boolean;
@@ -18,88 +21,43 @@ const Navigation: FC<Props> = ({ isOpen, setIsOpen }) => {
   const pathName = usePathname();
   const isFormPage = pathName.includes('form');
   const isSuccessPage = pathName.includes('success');
+  const isDoctorPage = pathName.includes('doctors');
 
-  const navList =
-    isFormPage || isSuccessPage
-      ? navFormList
-      : pathName.includes('event')
-      ? navEventList
-      : navMainList;
+  let navList;
 
-  const randomString = () => (Math.random() + 1).toString(36).substring(7);
+  switch (true) {
+    case isFormPage || isSuccessPage:
+      navList = navFormList;
+      break;
 
-  const t = useTranslations();
+    case isDoctorPage:
+      navList = navDoctorList;
+      break;
 
-  const handleClick = () => {
-    setIsOpen(false);
-  };
+    case pathName.includes('event'):
+      navList = navEventList;
+      break;
+
+    default:
+      navList = navMainList;
+  }
 
   return (
     <>
       {isTabletOrMobile ? (
-        <nav
-          aria-label='Main Navigation'
-          className={`${styles.mobileNavigation} ${isOpen && styles.active}`}
-        >
-          <NavigationProductButton isMobile handleClick={handleClick} />
-          {navList.map((item: NavItem, index: number) => (
-            <div
-              className={styles.linkContainerMobile}
-              key={`item${index + Math.random()}`}
-            >
-              {!item.scrollId && !item.url ? (
-                <button
-                  onClick={handleClick}
-                  key={index + randomString()}
-                  className={styles.buttonMobile}
-                >
-                  {t(item.text)}
-                </button>
-              ) : (
-                <Link
-                  onClick={handleClick}
-                  href={item.url ? item.url : `#${item.scrollId}`}
-                  key={index + randomString()}
-                  className={styles.buttonMobile}
-                >
-                  {t(item.text)}
-                </Link>
-              )}
-            </div>
-          ))}
-        </nav>
+        <NavigationMobile
+          navList={navList}
+          setIsOpen={setIsOpen}
+          isOpen={isOpen}
+        />
       ) : (
-        <nav
-          className={`${styles.navigation} ${
-            isFormPage || isSuccessPage ? styles.formPage : ''
-          }`}
-        >
-          <NavigationProductButton />
-          {navList.map((item: NavItem, index: number) => (
-            <div
-              className={styles.linkContainer}
-              key={`item${index + Math.random()}`}
-            >
-              {!item.scrollId && !item.url ? (
-                <button
-                  onClick={() => setIsOpen(false)}
-                  key={index + randomString()}
-                  className={styles.button}
-                >
-                  {t(item.text)}
-                </button>
-              ) : (
-                <Link
-                  href={item.url ? item.url : `#${item.scrollId}`}
-                  key={index + randomString()}
-                  className={styles.button}
-                >
-                  {t(item.text)}
-                </Link>
-              )}
-            </div>
-          ))}
-        </nav>
+        <NavigationDestop
+          navList={navList}
+          setIsOpen={setIsOpen}
+          isFormPage={isFormPage}
+          isSuccessPage={isSuccessPage}
+          isDoctorPage={isDoctorPage}
+        />
       )}
     </>
   );

@@ -1,0 +1,68 @@
+// Base: html font-size is 8px in globals → 1rem = 8px
+
+// ============= Layout =============
+$contentWidthDesktop: 150rem;
+$contentWidthDesktopMd: 125rem;
+
+// ============= Breakpoints (keep in px for media queries) =============
+$breakpointXs: 400px;
+$breakpointSm: 480px;
+$breakpointMd: 600px;
+$breakpointTablet: 768px;
+$breakpointLg: 799px;
+$breakpointDesktop: 1024px;
+$breakpointXl: 1199px;
+$breakpointXxl: 1224px;
+$breakpointWide: 1280px;
+
+// ============= Typography (rem) =============
+$fontSizeH1: 11rem; // 88px
+$fontSizeH2: 6rem; // 48px
+$fontSizeP1: 3rem; // 24px
+$fontSizeP2: 2.25rem; // 18px
+$fontSizeMobH1: 5.5rem; // 44px
+$fontSizeMobH2: 3rem; // 24px
+$fontSizeMobP1: 2.25rem; // 18px
+$fontSizeMobP2: 1.75rem; // 14px
+$fontSizeMobExtra: 1.5rem; // 12px
+
+// ============= Border radius (rem) =============
+$radiusSm: 0.5rem; // 4px
+$radiusMd: 1.5rem; // 12px
+$radiusLg: 2rem; // 16px
+$radiusXl: 3rem; // 24px
+$radiusXxl: 4rem; // 32px
+$radiusForm: 5rem; // 40px
+$radiusCard: 6rem; // 48px
+$radiusPill: 7rem; // 56px
+$radiusFull: 9999px; // keep for full round
+
+// ============= Colors =============
+$colorAccentDark: #222222;
+$colorAccentLight: #be800c;
+$colorBg: #000000;
+$colorWhite: #fff;
+$colorGold: #dfba74;
+$colorGoldLighter: #ffefcb;
+$colorGoldLight: rgb(252, 211, 132);
+$colorGoldDark: rgb(190, 128, 12);
+$colorGoldDarker: #9a6600;
+$colorGoldMuted: #c4a764;
+$colorGoldMutedDark: #a68a4d;
+$colorLightBg: #f8ecd6;
+$buttonAccentColor: #940030;
+$colorNavyDark: #0f1829;
+$colorNavy: #1a2744;
+$colorNavyLight: #2a3654;
+$colorWhatsapp: #25d366;
+$colorWhatsappDark: #128c7e;
+$colorGray: #787677;
+$colorBlack: #000;
+$colorTextDark: #222;
+$colorTextMuted: #451715;
+$colorBgFrom: #0b1a2e;
+$colorBgVia: #091422;
+$colorBgTo: #060e1a;
+$colorTextMuted: #8892a4;
+$colorTextLight: #c0c8d8;
+$colorTextMuted2: #9aa3b5;

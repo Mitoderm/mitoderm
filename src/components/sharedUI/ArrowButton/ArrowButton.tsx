@@ -30,10 +30,10 @@ const ArrowButton: FC<Props> = ({
         className={`${styles.image} ${colored ? styles.colored : ''} ${
           dark ? styles.dark : ''
         }`}
-        src='/images/arrowRight.svg'
+        src="/images/icons/arrowRight.svg"
         width={40}
         height={40}
-        alt='arrow button'
+        alt="arrow button"
       />
     </button>
   );

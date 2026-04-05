@@ -1,3 +1,4 @@
+'use client';
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import styles from './Price.module.scss';
 import { useLocale, useTranslations } from 'next-intl';
@@ -18,9 +19,13 @@ const Price: FC<Props> = ({ total, setTotal }) => {
     useState<ErrorMessageType>(initialErrorStatus);
   const t = useTranslations();
   const locale = useLocale();
-  const currentPrice = process.env.NEXT_PUBLIC_EVENT_PRICE;
-  const { numberOfTickets, discountModifier, setDiscountModifier } =
-    useAppStore((state) => state);
+  const {
+    numberOfTickets,
+    discountModifier,
+    setDiscountModifier,
+    courseVariant,
+  } = useAppStore((state) => state);
+  const currentPrice = courseVariant;
 
   useEffect(() => {
     setValue('');
@@ -49,9 +54,11 @@ const Price: FC<Props> = ({ total, setTotal }) => {
   }, [errorMessage]);
 
   useEffect(() => {
-    const result = parseInt(currentPrice || '1500');
-    setTotal(result.toString());
-  }, [numberOfTickets]);
+    const result = parseInt(currentPrice, 10);
+    if (!Number.isNaN(result)) {
+      setTotal(result.toString());
+    }
+  }, [numberOfTickets, currentPrice, setTotal]);
 
   return (
     <div className={styles.container}>
@@ -70,19 +77,19 @@ const Price: FC<Props> = ({ total, setTotal }) => {
         <span className={styles.promo}>{t('form.promo')}</span>
         <div className={`${styles.inputBox} ${locale === 'he' && styles.he}`}>
           <input
-            name='promo'
-            placeholder='Promo432'
-            type='text'
+            name="promo"
+            placeholder="Promo432"
+            type="text"
             value={value}
             onChange={(e) =>
               setValue(
                 e.target.value.length <= 15
                   ? e.target.value
-                  : e.target.value.substring(0, 10)
+                  : e.target.value.substring(0, 10),
               )
             }
           />
-          <button onClick={handleClick} type='button'>
+          <button onClick={handleClick} type="button">
             {t('form.apply')}
           </button>
         </div>
@@ -93,15 +100,15 @@ const Price: FC<Props> = ({ total, setTotal }) => {
             errorMessage === 'default'
               ? ''
               : errorMessage === 'error'
-              ? styles.error
-              : styles.success
+                ? styles.error
+                : styles.success
           }`}
         >
           {errorMessage === 'default'
             ? discountModifier === 0.9 && t('form.success')
             : errorMessage === 'error'
-            ? t('form.wrongPromo')
-            : t('form.success')}
+              ? t('form.wrongPromo')
+              : t('form.success')}
         </span>
       </div>
     </div>

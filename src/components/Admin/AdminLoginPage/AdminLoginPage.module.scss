@@ -1,0 +1,272 @@
+$accent: #818cf8;
+$accentHover: #6366f1;
+$muted: #64748b;
+$border: #e2e8f0;
+$card: #ffffff;
+$bgPanel: #f8fafc;
+$destructive: #ef4444;
+
+.root {
+  min-height: 100vh;
+  display: flex;
+}
+
+.leftPanel {
+  display: none;
+  width: 45%;
+  background: #0f172a;
+  color: #fff;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px;
+
+  @media (min-width: 1024px) {
+    display: flex;
+  }
+}
+
+.brandTitle {
+  letter-spacing: 0.05em;
+  color: $accent;
+  font-size: 26px;
+}
+
+.brandTagline {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.hero {
+  font-size: 29px;
+  line-height: 1.375;
+  max-width: 28rem;
+}
+
+.heroAccent {
+  color: $accent;
+}
+
+.stats {
+  display: flex;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.statValue {
+  font-size: 24px;
+  color: $accent;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.footerNote {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.rightPanel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: $bgPanel;
+}
+
+.formWrap {
+  width: 100%;
+  max-width: 384px;
+}
+
+.mobileBrand {
+  display: block;
+  margin-bottom: 40px;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}
+
+.mobileTitle {
+  letter-spacing: 0.05em;
+  color: $accent;
+  font-size: 22px;
+}
+
+.mobileTagline {
+  color: $muted;
+  font-size: 13px;
+}
+
+.welcome {
+  font-size: 22px;
+  color: #0f172a;
+}
+
+.welcomeSub {
+  color: $muted;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.form {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fieldLabel {
+  font-size: 13px;
+  color: $muted;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.inputWrap {
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: $muted;
+  pointer-events: none;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 16px 12px 40px;
+  background: $card;
+  border: 1px solid $border;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #0f172a;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba($accent, 0.4);
+  }
+}
+
+.inputWithToggle {
+  padding-right: 48px;
+}
+
+.togglePw {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 4px;
+  border-radius: 4px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: rgba(100, 116, 139, 0.12);
+  }
+}
+
+.toggleIcon {
+  width: 16px;
+  height: 16px;
+  color: $muted;
+}
+
+.rowBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rememberLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid $border;
+  accent-color: $accent;
+}
+
+.rememberText {
+  font-size: 13px;
+  color: $muted;
+}
+
+.linkForgot {
+  font-size: 13px;
+  color: $accent;
+  background: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.error {
+  font-size: 13px;
+  color: $destructive;
+  background: rgba($destructive, 0.1);
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.submit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  background: $accent;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: background-color 0.2s;
+
+  &:hover:not(:disabled) {
+    background: $accentHover;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.submitIcon {
+  width: 16px;
+  height: 16px;
+}
