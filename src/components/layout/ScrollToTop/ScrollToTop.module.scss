@@ -1,4 +1,5 @@
 @use 'variables' as *;
+
 .button {
   position: fixed;
   bottom: 3rem;
@@ -30,4 +31,15 @@
   filter: brightness(0) saturate(100%) invert(99%) sepia(100%) saturate(5%)
     hue-rotate(129deg) brightness(100%) contrast(103%);
   transform: rotate(180deg);
+}
+
+.admin {
+  height: 5rem;
+  width: 5rem;
+  background: linear-gradient(to bottom right, $accent, $accentDeep);
+
+  .icon {
+    height: 2rem;
+    width: 2rem;
+  }
 }

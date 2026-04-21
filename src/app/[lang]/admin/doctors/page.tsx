@@ -1,7 +1,7 @@
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { Metadata } from 'next';
 import { getDoctors } from '@/lib/mongodb';
-import DoctorListSessionWrapper from '@/components/sections/DoctorList/DoctorListSessionWrapper/DoctorListSessionWrapper';
+import AdminDoctorPage from '@/components/Admin/AdminDoctorPage/AdminDoctorPage';
 
 const baseUrl = 'https://mitoderm.com';
 
@@ -106,5 +106,5 @@ export async function generateMetadata({
 export default async function DoctorsPage({ params: { lang } }: any) {
   unstable_setRequestLocale(lang);
   const doctors = await getDoctors();
-  return <DoctorListSessionWrapper doctors={doctors} />;
+  return <AdminDoctorPage doctors={doctors} />;
 }

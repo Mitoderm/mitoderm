@@ -146,7 +146,7 @@ export interface Event {
   id: string;
   category: number;
   city: string;
-  date: Date;
+  date: string;
   time: string;
   isAvailable: boolean;
   expireAt: Date;

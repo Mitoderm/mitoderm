@@ -11,11 +11,19 @@
   background: linear-gradient(to bottom right, #0f172a, #0f172a, #131d35);
 
   @media (min-width: 1024px) {
-    padding: 40px;
+    padding: 5rem;
+  }
+  @media (max-width: 768px) {
+    padding-left: 13rem;
+    padding-right: 2.5rem;
+  }
+  &.he {
+    padding-left: 2.5rem;
+    padding-right: 13rem;
   }
 }
 
-.mainInner {
+.content {
   margin: 0 auto;
-  max-width: 72rem;
+  max-width: 144rem;
 }

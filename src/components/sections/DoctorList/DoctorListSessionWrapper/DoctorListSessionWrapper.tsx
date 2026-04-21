@@ -3,7 +3,6 @@ import { FC } from 'react';
 import styles from './DoctorListSessionWrapper.module.scss';
 import { DoctorType } from '@/types';
 import DoctorList from '../DoctorList/DoctorList';
-import { SessionProvider } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 
 interface Props {
@@ -15,9 +14,7 @@ const DoctorListSessionWrapper: FC<Props> = ({ doctors }) => {
   return (
     <main className={styles.container}>
       <span className={styles.title}>{t('faq.centerTitle')}</span>
-      <SessionProvider>
-        <DoctorList doctors={doctors} />
-      </SessionProvider>
+      <DoctorList doctors={doctors} />
     </main>
   );
 };

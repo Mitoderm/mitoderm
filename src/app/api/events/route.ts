@@ -28,7 +28,7 @@ export async function PUT(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
   const body = await req.json();
-  const id = body._id;
+  const id = body.id as string;
   await connectDB();
   await Event.findByIdAndDelete(id);
   return NextResponse.json({ message: 'Deleted', _id: id });

@@ -12,6 +12,33 @@ $accentDeep: #6366f1;
   position: sticky;
   top: 0;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+  @media (max-width: 768px) {
+    max-height: 100vh;
+    max-height: 100dvh;
+  }
+}
+
+.asideMobile,
+.asideMobileOpen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 50rem;
+  height: 100vh;
+  z-index: 10;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-sizing: border-box;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+  &.he {
+    left: auto;
+    right: 0;
+  }
+}
+
+.asideMobileOpen {
+  width: 100%;
+  max-width: 50rem;
 }
 
 .logoSection {
@@ -26,6 +53,8 @@ $accentDeep: #6366f1;
 }
 
 .logoMark {
+  min-width: 36px;
+  min-height: 36px;
   width: 36px;
   height: 36px;
   border-radius: 12px;
@@ -58,7 +87,7 @@ $accentDeep: #6366f1;
 
 .nav {
   flex: 1;
-  padding: 24px 16px;
+  padding: 24px 12px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -76,6 +105,8 @@ $accentDeep: #6366f1;
 .navLink {
   display: flex;
   align-items: center;
+  width: 100%;
+  overflow: hidden;
   gap: 12px;
   padding: 12px;
   border-radius: 12px;
@@ -100,6 +131,8 @@ $accentDeep: #6366f1;
 }
 
 .iconWrap {
+  min-width: 36px;
+  min-height: 36px;
   width: 36px;
   height: 36px;
   border-radius: 8px;
@@ -120,6 +153,14 @@ $accentDeep: #6366f1;
 .navIcon {
   width: 18px;
   height: 18px;
+  filter: brightness(0) saturate(100%) invert(51%) sepia(7%) saturate(39%)
+    hue-rotate(323deg) brightness(96%) contrast(92%);
+  transition: filter 0.2s;
+}
+
+.navIconActive {
+  filter: brightness(0) saturate(100%) invert(56%) sepia(14%) saturate(1971%)
+    hue-rotate(197deg) brightness(101%) contrast(95%);
 }
 
 .navLabel {
@@ -194,6 +235,7 @@ $accentDeep: #6366f1;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 12px;
 }
 
@@ -207,6 +249,8 @@ $accentDeep: #6366f1;
 .avatar {
   width: 36px;
   height: 36px;
+  min-width: 36px;
+  min-height: 36px;
   border-radius: 12px;
   background: linear-gradient(to bottom right, $accent, $accentDeep);
   display: flex;
@@ -253,7 +297,15 @@ $accentDeep: #6366f1;
   }
 }
 
+.navLabelContainer,
+.signOut span {
+  display: inline-block;
+  min-width: 15rem;
+}
+
 .signOutIcon {
-  width: 16px;
-  height: 16px;
+  width: 2rem;
+  height: 2rem;
+  min-width: 2rem;
+  min-height: 2rem;
 }

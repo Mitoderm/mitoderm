@@ -15,3 +15,5 @@ export default async function ProgramsRoute() {
 
   return <AdminProgramsPage events={plainEvents} />;
 }
+
+export const dynamic = 'force-dynamic';

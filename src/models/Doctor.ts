@@ -16,7 +16,7 @@ const DoctorSchema = new mongoose.Schema(
 
     area: {
       type: String,
-      enum: ["צפון", "מרכז", "דרום"],
+      enum: ["צפון", "מרכז", "דרום", "גוש דן"],
       required: true,
       default: "מרכז"
     },

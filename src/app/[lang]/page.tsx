@@ -4,13 +4,13 @@ import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Script from 'next/script';
 import Intro from '@/components/sections/Intro/Intro';
-import CenterList from '@/components/sections/CenterList/CenterList';
 import HowCanBeUsed from '@/components/sections/HowCanBeUsed/HowCanBeUsed';
 import Faq from '@/components/sections/Faq/Faq';
 import Contact from '@/components/sections/Contact/Contact';
 import Gallery from '@/components/sections/Gallery/Gallery';
 import { getFAQPageSchema } from '@/utils/structuredData';
 import { getTranslations } from 'next-intl/server';
+import DoctorListSessionWrapper from '@/components/sections/DoctorList/DoctorListSessionWrapper/DoctorListSessionWrapper';
 
 const Solution = dynamic(
   () => import('@/components/sections/Solution/Solution'),
@@ -168,7 +168,7 @@ export default async function HomePage({ params: { lang } }: any) {
         <Solution page="main" />
         <Gallery />
         <Mission />
-        <CenterList doctors={doctors} />
+        <DoctorListSessionWrapper doctors={doctors} />
         <Faq />
         <Contact />
       </main>

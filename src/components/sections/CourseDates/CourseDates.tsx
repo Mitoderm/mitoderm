@@ -78,24 +78,6 @@ const CourseDates: FC<Props> = ({ events }) => {
           <Link href={'/event/form'}>{t(`v${courseVariant}.topics.cta`)}</Link>
         </motion.div>
       </motion.div>
-
-      {/* <button
-        onClick={() => {
-          const eventDate = new Date('2026-04-04');
-          fetch('/api/events', {
-            method: 'POST',
-            body: JSON.stringify({
-              category: courseVariant,
-              city: 'Haifa',
-              date: eventDate,
-              time: '14:00 - 14:30',
-              expireAt: eventDate,
-            }),
-          });
-        }}
-      >
-        Add Event
-      </button> */}
     </section>
   );
 };

@@ -1,32 +1,43 @@
 'use client';
 
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import styles from './AdminLoginPage.module.scss';
 import Image from 'next/image';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
-export function AdminLoginPage({ onLogin }: { onLogin: () => void }) {
+const AdminLoginPage: FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const t = useTranslations();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError('');
-    if (!email.trim()) {
-      setError('Enter your email');
-      return;
-    }
-    if (!password.trim()) {
-      setError('Enter your password');
-      return;
-    }
     setLoading(true);
-    setTimeout(() => {
+
+    try {
+      const result = await signIn('credentials', {
+        redirect: false,
+        email,
+        password,
+      });
+
       setLoading(false);
-      onLogin();
-    }, 800);
+
+      if (result?.error) {
+        setError(result.error);
+      } else {
+        router.refresh();
+      }
+    } catch (err: any) {
+      setLoading(false);
+      setError('Login failed');
+    }
   };
 
   return (
@@ -34,28 +45,16 @@ export function AdminLoginPage({ onLogin }: { onLogin: () => void }) {
       <div className={styles.leftPanel}>
         <div>
           <h1 className={styles.brandTitle}>MITODERM</h1>
-          <p className={styles.brandTagline}>Admin Panel</p>
+          <p className={styles.brandTagline}>{t('admin.adminPanel')}</p>
         </div>
         <div>
           <p className={styles.hero}>
-            Manage your programs,
+            {t('admin.managePrograms')}
             <br />
-            content & media
+            {t('admin.content')}
             <br />
-            <span className={styles.heroAccent}>in one place.</span>
+            <span className={styles.heroAccent}>{t('admin.inOnePlace')}.</span>
           </p>
-          <div className={styles.stats}>
-            {[
-              { n: '48', l: 'Content items' },
-              { n: '4', l: 'Programs' },
-              { n: '3', l: 'Languages' },
-            ].map((s) => (
-              <div key={s.l}>
-                <p className={styles.statValue}>{s.n}</p>
-                <p className={styles.statLabel}>{s.l}</p>
-              </div>
-            ))}
-          </div>
         </div>
         <p className={styles.footerNote}>
           &copy; 2026 MitoDerm. All rights reserved.
@@ -66,16 +65,16 @@ export function AdminLoginPage({ onLogin }: { onLogin: () => void }) {
         <div className={styles.formWrap}>
           <div className={styles.mobileBrand}>
             <h1 className={styles.mobileTitle}>MITODERM</h1>
-            <p className={styles.mobileTagline}>Admin Panel</p>
+            <p className={styles.mobileTagline}>{t('admin.adminPanel')}</p>
           </div>
 
-          <h2 className={styles.welcome}>Welcome back</h2>
-          <p className={styles.welcomeSub}>Sign in to your admin account</p>
+          <h2 className={styles.welcome}>{t('admin.welcomeBack')}</h2>
+          <p className={styles.welcomeSub}>{t('admin.signInToYourAccount')}</p>
 
           <form onSubmit={handleSubmit} className={styles.form}>
             <div>
               <label className={styles.fieldLabel} htmlFor="admin-email">
-                Email
+                {t('admin.email')}
               </label>
               <div className={styles.inputWrap}>
                 <Image
@@ -99,7 +98,7 @@ export function AdminLoginPage({ onLogin }: { onLogin: () => void }) {
 
             <div>
               <label className={styles.fieldLabel} htmlFor="admin-password">
-                Password
+                {t('admin.password')}
               </label>
               <div className={styles.inputWrap}>
                 <Image
@@ -126,7 +125,7 @@ export function AdminLoginPage({ onLogin }: { onLogin: () => void }) {
                 >
                   {showPassword ? (
                     <Image
-                      src="/images/icons/eyeOff.svg"
+                      src="/images/icons/eye.svg"
                       width={16}
                       height={16}
                       alt="eye off"
@@ -134,7 +133,7 @@ export function AdminLoginPage({ onLogin }: { onLogin: () => void }) {
                     />
                   ) : (
                     <Image
-                      src="/images/icons/eye.svg"
+                      src="/images/icons/eyeOff.svg"
                       width={16}
                       height={16}
                       alt="eye"
@@ -145,16 +144,6 @@ export function AdminLoginPage({ onLogin }: { onLogin: () => void }) {
               </div>
             </div>
 
-            <div className={styles.rowBetween}>
-              <label className={styles.rememberLabel}>
-                <input type="checkbox" className={styles.checkbox} />
-                <span className={styles.rememberText}>Remember me</span>
-              </label>
-              <button type="button" className={styles.linkForgot}>
-                Forgot password?
-              </button>
-            </div>
-
             {error && <p className={styles.error}>{error}</p>}
 
             <button type="submit" disabled={loading} className={styles.submit}>
@@ -162,7 +151,7 @@ export function AdminLoginPage({ onLogin }: { onLogin: () => void }) {
                 <div className={styles.spinner} />
               ) : (
                 <>
-                  Sign In{' '}
+                  {t('admin.signIn')}
                   <Image
                     src="/images/icons/adminArrowRight.svg"
                     width={16}
@@ -178,4 +167,6 @@ export function AdminLoginPage({ onLogin }: { onLogin: () => void }) {
       </div>
     </div>
   );
-}
+};
+
+export default AdminLoginPage;

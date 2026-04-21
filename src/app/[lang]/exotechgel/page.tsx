@@ -12,6 +12,7 @@ import Gallery from '@/components/sections/Gallery/Gallery';
 import { getProductSchema, getFAQPageSchema } from '@/utils/structuredData';
 import { getTranslations } from 'next-intl/server';
 import { getDoctors } from '@/lib/mongodb';
+import DoctorListSessionWrapper from '@/components/sections/DoctorList/DoctorListSessionWrapper/DoctorListSessionWrapper';
 
 const Solution = dynamic(
   () => import('@/components/sections/Solution/Solution'),
@@ -172,7 +173,7 @@ export default async function HomePage({ params: { lang } }: any) {
         <Solution page="gel" />
         <Gallery />
         <Mission />
-        <CenterList doctors={doctors} />
+        <DoctorListSessionWrapper doctors={doctors} />
         <Faq />
         <Contact />
       </main>

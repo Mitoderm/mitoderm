@@ -9,6 +9,18 @@ $destructive: #ef4444;
 .root {
   min-height: 100vh;
   display: flex;
+  max-height: 100vh;
+  max-height: 100dvh;
+  overflow: hidden;
+  @media (max-width: 768px) {
+    position: fixed;
+    inset: 0;
+  }
+  input,
+  select,
+  textarea {
+    font-size: 2rem;
+  }
 }
 
 .leftPanel {
@@ -75,6 +87,9 @@ $destructive: #ef4444;
   justify-content: center;
   padding: 32px;
   background: $bgPanel;
+  max-height: 100vh;
+  max-height: 100dvh;
+  overflow: hidden;
 }
 
 .formWrap {
@@ -229,6 +244,7 @@ $destructive: #ef4444;
 }
 
 .submit {
+  margin-top: 2rem;
   width: 100%;
   display: flex;
   align-items: center;

@@ -1,16 +1,11 @@
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 import Script from 'next/script';
 import { getEventSchema } from '@/utils/structuredData';
 import { getEvents } from '@/lib/mongodb';
+import WorkShop from '@/components/sections/WorkShop/WorkShop';
 
-const WorkShop = dynamic(
-  () => import('@/components/sections/WorkShop/WorkShop'),
-  {
-    ssr: false,
-  },
-);
+export const dynamic = 'force-dynamic';
 
 const baseUrl = 'https://mitoderm.com';
 
@@ -130,33 +125,6 @@ export default async function EventPage({ params: { lang } }: any) {
   return (
     <>
       <WorkShop events={plainEvents} />
-
-      {/* <Intro />
-        <EventBulletList />
-        <FastResult />
-        <Invite />
-        <FirstLook />
-        <Event />
-        <ToTopItOff />
-        <Unique />
-        <Contact />
-        <Gallery />
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            padding: '0px 20px',
-          }}
-        >
-          <Button
-            style={{ margin: '20px auto 40px auto' }}
-            text={t('buttons.seat')}
-            formPage="event"
-          />
-        </div>
-        <About />
-        <Mission /> */}
       <Script
         id="event-schema"
         type="application/ld+json"

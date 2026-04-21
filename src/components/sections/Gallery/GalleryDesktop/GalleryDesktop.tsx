@@ -1,28 +1,59 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import styles from './GalleryDesktop.module.scss';
 import ArrowButton from '@/components/sharedUI/ArrowButton/ArrowButton';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import useAppStore from '@/store/store';
 
 interface Props {
-  disabledLeft: boolean;
-  disabledRight: boolean;
-  onClickLeft: () => void;
-  onClickRight: () => void;
   items: string[];
   isEventPage?: boolean;
 }
 
-const GalleryDesktop: FC<Props> = ({
-  disabledLeft,
-  disabledRight,
-  onClickLeft,
-  onClickRight,
-  items,
-  isEventPage,
-}) => {
+const GalleryDesktop: FC<Props> = ({ items, isEventPage }) => {
+  const { galleryPage, setGalleryPage } = useAppStore((state) => state);
   const locale = useLocale();
+
+  const scrollTo = () => {
+    const container = document.getElementById('galleryItemBox');
+    if (galleryPage >= items.length) setGalleryPage(0);
+    if (galleryPage < 0) setGalleryPage(items.length - 1);
+    if (container) {
+      const scrollPosition = galleryPage * container?.clientWidth;
+      if (locale === 'he') {
+        container?.scrollTo({
+          left: -scrollPosition,
+          behavior: 'smooth',
+        });
+      } else {
+        container?.scrollTo({
+          left: scrollPosition,
+          behavior: 'smooth',
+        });
+      }
+    }
+  };
+
+  const increment = () => {
+    items.length >= galleryPage
+      ? setGalleryPage(galleryPage + 1)
+      : setGalleryPage(0);
+  };
+  const decrement = () => {
+    galleryPage <= 0
+      ? setGalleryPage(items.length - 1)
+      : setGalleryPage(galleryPage - 1);
+  };
+
+  useEffect(() => {
+    setGalleryPage(0);
+  }, []);
+
+  useEffect(() => {
+    scrollTo();
+  }, [galleryPage]);
+
   return (
     <>
       {isEventPage ? (
@@ -30,7 +61,7 @@ const GalleryDesktop: FC<Props> = ({
           type="button"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={onClickLeft}
+          onClick={decrement}
           className={`${styles.navBtn} ${styles.navBtnLeft}`}
         >
           <Image
@@ -43,10 +74,9 @@ const GalleryDesktop: FC<Props> = ({
         </motion.button>
       ) : (
         <ArrowButton
-          disabled={disabledLeft}
           reversed={locale === 'he' ? false : true}
           colored
-          onClick={onClickLeft}
+          onClick={decrement}
         />
       )}
       <div
@@ -73,7 +103,7 @@ const GalleryDesktop: FC<Props> = ({
           type="button"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          onClick={onClickRight}
+          onClick={increment}
           className={`${styles.navBtn} ${styles.navBtnRight}`}
         >
           <Image
@@ -85,12 +115,7 @@ const GalleryDesktop: FC<Props> = ({
           />
         </motion.button>
       ) : (
-        <ArrowButton
-          reversed={locale === 'he'}
-          disabled={disabledRight}
-          colored
-          onClick={onClickRight}
-        />
+        <ArrowButton reversed={locale === 'he'} colored onClick={increment} />
       )}
     </>
   );

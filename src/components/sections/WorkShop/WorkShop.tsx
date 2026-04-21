@@ -31,7 +31,6 @@ const WorkShop: FC<Props> = ({ events }) => {
       <EventUnique />
       <Gallery isEventPage={true} />
       <EventExosomes />
-      <EventStats />
       <EventContacts />
     </main>
   );

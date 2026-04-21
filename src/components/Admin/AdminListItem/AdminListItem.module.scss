@@ -1,0 +1,87 @@
+$border: rgba(148, 163, 184, 0.28);
+$cardBg: rgba(30, 41, 59, 0.55);
+$hoverRow: rgba(255, 255, 255, 0.06);
+$destructive: #f87171;
+$destructiveBorder: rgba(248, 113, 113, 0.35);
+$destructiveHoverBg: rgba(248, 113, 113, 0.12);
+
+.card {
+  overflow: hidden;
+  border-radius: 1.5rem;
+  border: 1px solid $border;
+  background-color: $cardBg;
+}
+
+.cardHeaderRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2.5rem;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: $hoverRow;
+  }
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+}
+
+.cardBodyMain {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.cardActions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.deleteButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid $destructiveBorder;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  color: $destructive;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: $destructiveHoverBg;
+  }
+}
+
+.editButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: $hoverRow;
+  }
+}
+
+.iconActionButton {
+  width: 2rem;
+  height: 2rem;
+  filter: brightness(0) saturate(100%) invert(70%) sepia(13%) saturate(1000%)
+    hue-rotate(180deg) brightness(95%) contrast(85%);
+}

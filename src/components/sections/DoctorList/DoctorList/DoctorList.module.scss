@@ -2,8 +2,11 @@
 .container {
   max-width: 150rem;
   width: 100%;
-  padding: 3rem 40px;
+  padding: 3rem 5rem;
   background-color: $colorLightBg;
   border-radius: 3.5rem;
   position: relative;
+  @media screen and (max-width: 768px) {
+    padding: 5rem;
+  }
 }

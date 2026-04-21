@@ -49,6 +49,10 @@ const GalleryMobile: FC<Props> = ({ items, isHairPage, isEventPage }) => {
     };
   }, []);
 
+  useEffect(() => {
+    setGalleryPage(0);
+  }, []);
+
   return (
     <>
       <div className={styles.itemWrapper}>

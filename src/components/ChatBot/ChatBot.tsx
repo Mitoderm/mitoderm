@@ -17,6 +17,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import styles from './ChatBot.module.scss';
+import { usePathname } from 'next/navigation';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -32,21 +33,25 @@ interface ChatbotProps {
 // רכיב טופס חכם עם local state - מחוץ לפונקציה הראשית למניעת re-renders
 const ContactFormInMessage = React.memo(
   ({ initialData, onSubmit, onCancel, onUpdate, isLoading, styles }: any) => {
-    const [localData, setLocalData] = useState(initialData || {
-      name: '',
-      phone: '',
-      email: '',
-      subject: 'פנייה כללית מהצ\'אטבוט'
-    });
-
-    // עדכון local state כשמגיע מידע חדש
-    useEffect(() => {
-      setLocalData(initialData || {
+    const [localData, setLocalData] = useState(
+      initialData || {
         name: '',
         phone: '',
         email: '',
-        subject: 'פנייה כללית מהצ\'אטבוט'
-      });
+        subject: "פנייה כללית מהצ'אטבוט",
+      },
+    );
+
+    // עדכון local state כשמגיע מידע חדש
+    useEffect(() => {
+      setLocalData(
+        initialData || {
+          name: '',
+          phone: '',
+          email: '',
+          subject: "פנייה כללית מהצ'אטבוט",
+        },
+      );
     }, [initialData]);
 
     const handleFieldChange = (field: string, value: string) => {
@@ -59,10 +64,10 @@ const ContactFormInMessage = React.memo(
         <div className={styles.formField}>
           <label>שם מלא:</label>
           <input
-            type='text'
+            type="text"
             value={localData.name || ''}
             onChange={(e) => handleFieldChange('name', e.target.value)}
-            placeholder='השם שלך'
+            placeholder="השם שלך"
             className={styles.formInput}
           />
         </div>
@@ -70,10 +75,10 @@ const ContactFormInMessage = React.memo(
         <div className={styles.formField}>
           <label>טלפון: *</label>
           <input
-            type='tel'
+            type="tel"
             value={localData.phone || ''}
             onChange={(e) => handleFieldChange('phone', e.target.value)}
-            placeholder='050-1234567'
+            placeholder="050-1234567"
             className={styles.formInput}
             required
           />
@@ -82,10 +87,10 @@ const ContactFormInMessage = React.memo(
         <div className={styles.formField}>
           <label>אימייל:</label>
           <input
-            type='email'
+            type="email"
             value={localData.email || ''}
             onChange={(e) => handleFieldChange('email', e.target.value)}
-            placeholder='name@example.com'
+            placeholder="name@example.com"
             className={styles.formInput}
           />
         </div>
@@ -95,7 +100,7 @@ const ContactFormInMessage = React.memo(
           <textarea
             value={localData.subject || ''}
             onChange={(e) => handleFieldChange('subject', e.target.value)}
-            placeholder='בקצרה - במה אתם עוסקים?'
+            placeholder="בקצרה - במה אתם עוסקים?"
             className={styles.formTextarea}
             rows={2}
           />
@@ -115,7 +120,7 @@ const ContactFormInMessage = React.memo(
         </div>
       </div>
     );
-  }
+  },
 );
 
 const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
@@ -125,33 +130,38 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [conversationHistory, setConversationHistory] = useState<any[]>([]);
   const [threadId, setThreadId] = useState<string | null>(null); // הוספה: שמירת thread ID
+  const pathname = usePathname();
+  const isAdminPage = pathname.includes('admin');
 
   const [showContactForm, setShowContactForm] = useState(false);
   const [extractedInfo, setExtractedInfo] = useState<any>(null);
   const [inactivityTimer, setInactivityTimer] = useState<NodeJS.Timeout | null>(
-    null
+    null,
   );
   const [hasAskedForContact, setHasAskedForContact] = useState(false);
-  
+
   // הוספה: state עבור כפתורים מוכנים
   const [showPredefinedButtons, setShowPredefinedButtons] = useState(false);
   const [usedQuestions, setUsedQuestions] = useState<string[]>([]);
-  
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   // פונקציה להמרת markdown לHTML
   const convertMarkdownToHtml = (text: string): string => {
     if (!text) return text;
-    
+
     // המרת כוכביות כפולות לבולד **טקסט** -> <strong>טקסט</strong>
     // הפונקציה מזהה כוכביות ומחליפה אותן בתגיות HTML לבולד
     let convertedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    
+
     // המרת כוכביות בודדות לבולד *טקסט* -> <strong>טקסט</strong>
     // (רק אם לא נמצאות בתוך תגיות strong כבר)
-    convertedText = convertedText.replace(/\*([^*\<\>]+?)\*/g, '<strong>$1</strong>');
-    
+    convertedText = convertedText.replace(
+      /\*([^*\<\>]+?)\*/g,
+      '<strong>$1</strong>',
+    );
+
     return convertedText;
   };
 
@@ -187,34 +197,40 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-                message: "לא הייתה פעילות במשך זמן - שאל אם תרצה שיחזרו אליה",
+                message: 'לא הייתה פעילות במשך זמן - שאל אם תרצה שיחזרו אליה',
                 threadId: threadId, // העברת thread ID
-                isInactivityTimeout: true
+                isInactivityTimeout: true,
               }),
             });
 
             if (response.ok) {
               const data = await response.json();
-              
+
               // עיבוד שורטקודים בהודעת timeout (כמו בהודעות רגילות)
               const contactFormRegex = /\[SHOW_CONTACT_FORM(?::([^\]]+))?\]/;
               const shortcodeMatch = data.message.match(contactFormRegex);
               const hasContactFormShortcode = shortcodeMatch !== null;
-              
+
               // גישה נוספת - בדיקה פשוטה באמצעות includes
-              const hasSimpleShortcode = data.message.includes('[SHOW_CONTACT_FORM]');
-              
+              const hasSimpleShortcode = data.message.includes(
+                '[SHOW_CONTACT_FORM]',
+              );
+
               // בדיקה גלובלית לכל סוגי השורטקודים
-              const hasAnyContactShortcode = data.message.includes('SHOW_CONTACT_FORM') || 
-                                            data.message.includes('show_contact_form') || 
-                                            data.message.includes('ShowContactForm');
+              const hasAnyContactShortcode =
+                data.message.includes('SHOW_CONTACT_FORM') ||
+                data.message.includes('show_contact_form') ||
+                data.message.includes('ShowContactForm');
 
               let messageContent = data.message;
               let showForm = false;
               let shortcodeParams: any = {};
 
               // שימוש בכל האפשרויות לזיהוי שורטקוד
-              const shouldShowContactForm = hasContactFormShortcode || hasSimpleShortcode || hasAnyContactShortcode;
+              const shouldShowContactForm =
+                hasContactFormShortcode ||
+                hasSimpleShortcode ||
+                hasAnyContactShortcode;
 
               if (shouldShowContactForm) {
                 // ניקוי השורטקוד מההודעה בכל הדרכים האפשריות
@@ -235,7 +251,9 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
                     .map((p: string) => p.trim());
 
                   paramPairs.forEach((pair: string) => {
-                    const [key, value] = pair.split('=').map((s: string) => s.trim());
+                    const [key, value] = pair
+                      .split('=')
+                      .map((s: string) => s.trim());
                     if (key && value) {
                       shortcodeParams[key] = value;
                     }
@@ -261,14 +279,15 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
                 timestamp: new Date(),
                 showForm: showForm,
               };
-              
+
               setMessages((prev) => [...prev, autoMessage]);
               // עדכון היסטוריה מקומית
-              setConversationHistory((prev) => [
-                ...prev,
-                { role: 'assistant', content: messageContent },
-              ].slice(-20));
-              
+              setConversationHistory((prev) =>
+                [...prev, { role: 'assistant', content: messageContent }].slice(
+                  -20,
+                ),
+              );
+
               // עדכון thread ID אם חזר חדש
               if (data.threadId) {
                 setThreadId(data.threadId);
@@ -292,8 +311,6 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
       setInactivityTimer(null);
     }
   };
-
-
 
   // חילוץ מידע באמצעות Gemini לטופס (ללא הוספת הודעות)
   const extractContactInfoForForm = async () => {
@@ -335,9 +352,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
             phone: result.data.phone || prevInfo?.phone || defaultInfo.phone,
             email: result.data.email || prevInfo?.email || defaultInfo.email,
             subject:
-              result.data.subject ||
-              prevInfo?.subject ||
-              defaultInfo.subject,
+              result.data.subject || prevInfo?.subject || defaultInfo.subject,
           }));
           setShowContactForm(true);
         } else {
@@ -411,9 +426,9 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              message: "הטופס נשלח בהצלחה - תודה ועידוד",
+              message: 'הטופס נשלח בהצלחה - תודה ועידוד',
               threadId: threadId, // העברת thread ID
-              isSuccessMessage: true
+              isSuccessMessage: true,
             }),
           });
 
@@ -426,10 +441,11 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
             };
             setMessages((prev) => [...prev, successMessage]);
             // עדכון היסטוריה מקומית
-            setConversationHistory((prev) => [
-              ...prev,
-              { role: 'assistant', content: data.message },
-            ].slice(-20));
+            setConversationHistory((prev) =>
+              [...prev, { role: 'assistant', content: data.message }].slice(
+                -20,
+              ),
+            );
           }
         } catch (error) {
           console.error('Error sending success message:', error);
@@ -453,13 +469,13 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
           headers: {
             'Content-Type': 'application/json',
           },
-                      body: JSON.stringify({
-              message: "שגיאה בשליחת טופס - הצע פתרונות חלופיים",
-                          conversationHistory: conversationHistory.slice(-5), // רק 5 הודעות אחרונות
+          body: JSON.stringify({
+            message: 'שגיאה בשליחת טופס - הצע פתרונות חלופיים',
+            conversationHistory: conversationHistory.slice(-5), // רק 5 הודעות אחרונות
             threadId: threadId, // העברת thread ID
             isErrorMessage: true,
-              errorType: 'form_submission'
-            }),
+            errorType: 'form_submission',
+          }),
         });
 
         if (response.ok) {
@@ -519,10 +535,10 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          message: "התחל שיחה עם קוסמטיקאית חדשה",
+          message: 'התחל שיחה עם קוסמטיקאית חדשה',
           conversationHistory: [],
           threadId: threadId, // העברת thread ID (null בפעם הראשונה)
-          isInitial: true
+          isInitial: true,
         }),
       });
 
@@ -535,13 +551,13 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
         };
         setMessages([welcomeMessage]);
         setConversationHistory(data.conversationHistory || []);
-        
+
         // שמירת thread ID החדש
         if (data.threadId) {
           setThreadId(data.threadId);
           console.log('Thread ID saved:', data.threadId);
         }
-        
+
         // התחלת טיימר ראשוני
         setTimeout(() => {
           startInactivityTimer();
@@ -560,7 +576,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
       setIsLoading(false);
     }
   };
-  
+
   // useEffect שמוודא שהכפתורים מוצגים בפעם הראשונה בלבד
   useEffect(() => {
     if (messages.length === 1 && messages[0].role === 'assistant') {
@@ -623,7 +639,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
 
         // זיהוי אימייל
         const emailMatch = currentInput.match(
-          /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/
+          /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/,
         );
         if (emailMatch) {
           extractedEmail = emailMatch[0];
@@ -691,7 +707,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
 
           // זיהוי אימייל
           const emailMatch = currentInput.match(
-            /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/
+            /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/,
           );
           if (emailMatch) {
             extractedEmail = emailMatch[0];
@@ -740,7 +756,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
                 conversationHistory: conversationHistory.slice(-5), // רק 5 הודעות אחרונות
                 threadId: threadId, // העברת thread ID
                 hasPhoneNumber: true,
-                phoneNumber: phoneMatch[0]
+                phoneNumber: phoneMatch[0],
               }),
             });
 
@@ -771,10 +787,14 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
         }
 
         // עיבוד שורטקודים בהודעה שמגיעה מה-API (למקרה הרגיל)
-        const contactFormRegexForDirectRegular = /\[SHOW_CONTACT_FORM(?::([^\]]+))?\]/;
-        const shortcodeMatchDirectRegular = contactMessage.match(contactFormRegexForDirectRegular);
-        const hasContactFormShortcodeDirectRegular = shortcodeMatchDirectRegular !== null;
-        
+        const contactFormRegexForDirectRegular =
+          /\[SHOW_CONTACT_FORM(?::([^\]]+))?\]/;
+        const shortcodeMatchDirectRegular = contactMessage.match(
+          contactFormRegexForDirectRegular,
+        );
+        const hasContactFormShortcodeDirectRegular =
+          shortcodeMatchDirectRegular !== null;
+
         if (hasContactFormShortcodeDirectRegular) {
           // ניקוי השורטקוד מההודעה
           contactMessage = contactMessage
@@ -785,9 +805,14 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
           shouldShowForm = true;
           setShowContactForm(true);
           setHasAskedForContact(true);
-          
-          console.log('=== PROCESSED SHORTCODE IN DIRECT MESSAGE (REGULAR) ===');
-          console.log('Original contactMessage had shortcode, cleaned to:', contactMessage);
+
+          console.log(
+            '=== PROCESSED SHORTCODE IN DIRECT MESSAGE (REGULAR) ===',
+          );
+          console.log(
+            'Original contactMessage had shortcode, cleaned to:',
+            contactMessage,
+          );
           console.log('shouldShowForm set to:', shouldShowForm);
           console.log('=== END SHORTCODE PROCESSING (REGULAR) ===');
         }
@@ -808,11 +833,13 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
         setMessages((prev) => [...prev, directContactMessage]);
 
         // עדכון היסטוריית השיחה מקומית (בשביל מקרים שלא עוברים דרך API)
-        setConversationHistory((prev) => [
-          ...prev,
-          { role: 'user', content: currentInput },
-          { role: 'assistant', content: contactMessage },
-        ].slice(-20)); // הגבלה ל-20 הודעות
+        setConversationHistory((prev) =>
+          [
+            ...prev,
+            { role: 'user', content: currentInput },
+            { role: 'assistant', content: contactMessage },
+          ].slice(-20),
+        ); // הגבלה ל-20 הודעות
 
         setHasAskedForContact(true);
         setIsLoading(false);
@@ -843,31 +870,32 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
       const contactFormRegex = /\[SHOW_CONTACT_FORM(?::([^\]]+))?\]/;
       const shortcodeMatch = data.message.match(contactFormRegex);
       const hasContactFormShortcode = shortcodeMatch !== null;
-      
+
       // גישה נוספת - בדיקה פשוטה באמצעות includes
       const hasSimpleShortcode = data.message.includes('[SHOW_CONTACT_FORM]');
-      
+
       // בדיקה גלובלית לכל סוגי השורטקודים
-      const hasAnyContactShortcode = data.message.includes('SHOW_CONTACT_FORM') || 
-                                    data.message.includes('show_contact_form') || 
-                                    data.message.includes('ShowContactForm');
+      const hasAnyContactShortcode =
+        data.message.includes('SHOW_CONTACT_FORM') ||
+        data.message.includes('show_contact_form') ||
+        data.message.includes('ShowContactForm');
 
       // בדיקה אם צריך להציג טופס גם בלי שורטקוד (backup לגמיני)
       const needsContactFormBackup =
         // אם המשתמש ענה חיובית לשאלה על יצירת קשר
-        (conversationHistory.some(
+        conversationHistory.some(
           (msg: any) =>
             msg.role === 'assistant' &&
             (msg.content.includes('תרצי שנחזור אליך') ||
-              msg.content.includes('האם תרצי שנחזור אליך'))
+              msg.content.includes('האם תרצי שנחזור אליך')),
         ) &&
-          (currentInput.includes('כן') ||
-            currentInput.includes('בטח') ||
-            currentInput.includes('אשמח') ||
-            currentInput.includes('בוודאי') ||
-            currentInput.includes('נהדר') ||
-            currentInput.includes('OK') ||
-            currentInput.toLowerCase().includes('yes')));
+        (currentInput.includes('כן') ||
+          currentInput.includes('בטח') ||
+          currentInput.includes('אשמח') ||
+          currentInput.includes('בוודאי') ||
+          currentInput.includes('נהדר') ||
+          currentInput.includes('OK') ||
+          currentInput.toLowerCase().includes('yes'));
 
       console.log('=== CONTACT FORM LOGIC DEBUG ===');
       console.log('Original message from API:', data.message);
@@ -879,7 +907,10 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
       console.log('hasAnyContactShortcode:', hasAnyContactShortcode);
       console.log('needsContactFormBackup:', needsContactFormBackup);
       console.log('currentInput:', currentInput);
-      console.log('Raw message includes [SHOW_CONTACT_FORM]:', data.message.includes('[SHOW_CONTACT_FORM]'));
+      console.log(
+        'Raw message includes [SHOW_CONTACT_FORM]:',
+        data.message.includes('[SHOW_CONTACT_FORM]'),
+      );
       console.log('=== END CONTACT FORM DEBUG ===');
 
       let messageContent = data.message;
@@ -887,7 +918,11 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
       let shortcodeParams: any = {};
 
       // שימוש בכל האפשרויות לזיהוי שורטקוד
-      const shouldShowContactForm = hasContactFormShortcode || hasSimpleShortcode || hasAnyContactShortcode || needsContactFormBackup;
+      const shouldShowContactForm =
+        hasContactFormShortcode ||
+        hasSimpleShortcode ||
+        hasAnyContactShortcode ||
+        needsContactFormBackup;
 
       if (shouldShowContactForm) {
         // ניקוי השורטקוד מההודעה בכל הדרכים האפשריות
@@ -946,12 +981,14 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
       setMessages((prev) => [...prev, assistantMessage]);
 
       // עדכון היסטוריית השיחה מקומית (רק לצרכים פנימיים כמו extract-info)
-      setConversationHistory((prev) => [
-        ...prev,
-        { role: 'user', content: currentInput },
-        { role: 'assistant', content: messageContent },
-      ].slice(-20)); // הגבלה ל-20 הודעות
-      
+      setConversationHistory((prev) =>
+        [
+          ...prev,
+          { role: 'user', content: currentInput },
+          { role: 'assistant', content: messageContent },
+        ].slice(-20),
+      ); // הגבלה ל-20 הודעות
+
       // עדכון thread ID אם חזר חדש
       if (data.threadId) {
         setThreadId(data.threadId);
@@ -990,11 +1027,11 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
     console.log('=== SEND PREDEFINED MESSAGE CALLED ===');
     console.log('Message:', message);
     console.log('isLoading:', isLoading);
-    
+
     stopInactivityTimer();
-    
+
     // הוספה לרשימת שאלות שכבר נשלחו
-    setUsedQuestions(prev => [...prev, message]);
+    setUsedQuestions((prev) => [...prev, message]);
 
     const userMessage: Message = {
       role: 'user',
@@ -1027,7 +1064,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
 
           // זיהוי אימייל
           const emailMatch = message.match(
-            /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/
+            /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/,
           );
           if (emailMatch) {
             extractedEmail = emailMatch[0];
@@ -1073,7 +1110,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
                 conversationHistory: conversationHistory.slice(-5), // רק 5 הודעות אחרונות
                 threadId: threadId, // העברת thread ID (בשאלות מוכנות)
                 hasPhoneNumber: true,
-                phoneNumber: phoneMatch[0]
+                phoneNumber: phoneMatch[0],
               }),
             });
 
@@ -1105,9 +1142,11 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
 
         // עיבוד שורטקודים בהודעה שמגיעה מה-API
         const contactFormRegexForDirect = /\[SHOW_CONTACT_FORM(?::([^\]]+))?\]/;
-        const shortcodeMatchDirect = contactMessage.match(contactFormRegexForDirect);
+        const shortcodeMatchDirect = contactMessage.match(
+          contactFormRegexForDirect,
+        );
         const hasContactFormShortcodeDirect = shortcodeMatchDirect !== null;
-        
+
         if (hasContactFormShortcodeDirect) {
           // ניקוי השורטקוד מההודעה
           contactMessage = contactMessage
@@ -1118,9 +1157,12 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
           shouldShowForm = true;
           setShowContactForm(true);
           setHasAskedForContact(true);
-          
+
           console.log('=== PROCESSED SHORTCODE IN DIRECT MESSAGE ===');
-          console.log('Original contactMessage had shortcode, cleaned to:', contactMessage);
+          console.log(
+            'Original contactMessage had shortcode, cleaned to:',
+            contactMessage,
+          );
           console.log('shouldShowForm set to:', shouldShowForm);
           console.log('=== END SHORTCODE PROCESSING ===');
         }
@@ -1141,11 +1183,13 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
         setMessages((prev) => [...prev, directContactMessage]);
 
         // עדכון היסטוריית השיחה מקומית (בשביל מקרים שלא עוברים דרך API)
-        setConversationHistory((prev) => [
-          ...prev,
-          { role: 'user', content: message },
-          { role: 'assistant', content: contactMessage },
-        ].slice(-20)); // הגבלה ל-20 הודעות
+        setConversationHistory((prev) =>
+          [
+            ...prev,
+            { role: 'user', content: message },
+            { role: 'assistant', content: contactMessage },
+          ].slice(-20),
+        ); // הגבלה ל-20 הודעות
 
         setHasAskedForContact(true);
         setIsLoading(false);
@@ -1174,31 +1218,32 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
       const contactFormRegex = /\[SHOW_CONTACT_FORM(?::([^\]]+))?\]/;
       const shortcodeMatch = data.message.match(contactFormRegex);
       const hasContactFormShortcode = shortcodeMatch !== null;
-      
+
       // גישה נוספת - בדיקה פשוטה באמצעות includes
       const hasSimpleShortcode = data.message.includes('[SHOW_CONTACT_FORM]');
-      
+
       // בדיקה גלובלית לכל סוגי השורטקודים
-      const hasAnyContactShortcode = data.message.includes('SHOW_CONTACT_FORM') || 
-                                    data.message.includes('show_contact_form') || 
-                                    data.message.includes('ShowContactForm');
+      const hasAnyContactShortcode =
+        data.message.includes('SHOW_CONTACT_FORM') ||
+        data.message.includes('show_contact_form') ||
+        data.message.includes('ShowContactForm');
 
       // בדיקה אם צריך להציג טופס גם בלי שורטקוד (backup לגמיני)
       const needsContactFormBackup =
         // אם המשתמש ענה חיובית לשאלה על יצירת קשר
-        (conversationHistory.some(
+        conversationHistory.some(
           (msg: any) =>
             msg.role === 'assistant' &&
             (msg.content.includes('תרצי שנחזור אליך') ||
-              msg.content.includes('האם תרצי שנחזור אליך'))
+              msg.content.includes('האם תרצי שנחזור אליך')),
         ) &&
-          (message.includes('כן') ||
-            message.includes('בטח') ||
-            message.includes('אשמח') ||
-            message.includes('בוודאי') ||
-            message.includes('נהדר') ||
-            message.includes('OK') ||
-            message.toLowerCase().includes('yes')));
+        (message.includes('כן') ||
+          message.includes('בטח') ||
+          message.includes('אשמח') ||
+          message.includes('בוודאי') ||
+          message.includes('נהדר') ||
+          message.includes('OK') ||
+          message.toLowerCase().includes('yes'));
 
       console.log('=== PREDEFINED CONTACT FORM LOGIC DEBUG ===');
       console.log('Original message from API:', data.message);
@@ -1210,7 +1255,10 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
       console.log('hasAnyContactShortcode:', hasAnyContactShortcode);
       console.log('needsContactFormBackup:', needsContactFormBackup);
       console.log('message:', message);
-      console.log('Raw message includes [SHOW_CONTACT_FORM]:', data.message.includes('[SHOW_CONTACT_FORM]'));
+      console.log(
+        'Raw message includes [SHOW_CONTACT_FORM]:',
+        data.message.includes('[SHOW_CONTACT_FORM]'),
+      );
       console.log('=== END PREDEFINED CONTACT FORM DEBUG ===');
 
       let messageContent = data.message;
@@ -1218,7 +1266,11 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
       let shortcodeParams: any = {};
 
       // שימוש בכל האפשרויות לזיהוי שורטקוד
-      const shouldShowContactForm = hasContactFormShortcode || hasSimpleShortcode || hasAnyContactShortcode || needsContactFormBackup;
+      const shouldShowContactForm =
+        hasContactFormShortcode ||
+        hasSimpleShortcode ||
+        hasAnyContactShortcode ||
+        needsContactFormBackup;
 
       if (shouldShowContactForm) {
         // ניקוי השורטקוד מההודעה בכל הדרכים האפשריות
@@ -1305,267 +1357,291 @@ const Chatbot: React.FC<ChatbotProps> = ({ locale }) => {
 
   return (
     <>
-      {/* כפתור פתיחת הצ'אט */}
-      <button
-        className={`${styles.chatButton} ${isOpen ? styles.open : ''}`}
-        onClick={toggleChat}
-        aria-label="פתח צ'אט"
-      >
-        {isOpen ? (
-          <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-            <path
-              d='M18 6L6 18M6 6L18 18'
-              stroke='currentColor'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
-        ) : (
-          <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-            <path
-              d='M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z'
-              stroke='currentColor'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
-        )}
-      </button>
-
-      {/* חלון הצ'אט */}
-      {isOpen && (
-        <div className={styles.chatWindow} dir='rtl'>
-          <div className={styles.chatHeader}>
-            <div className={styles.headerContent}>
-              <div className={styles.avatar}>
-                <Image
-                  src='/images/logo.svg'
-                  alt='Mitoderm'
-                  width={32}
-                  height={32}
-                />
-              </div>
-              <div className={styles.headerText}>
-                <h3>מיטודרם צ'אט</h3>
-                <p>מומחית אקסוזומים</p>
-              </div>
-            </div>
-            <button
-              className={styles.closeButton}
-              onClick={() => setIsOpen(false)}
-              aria-label="סגור צ'אט"
-            >
-              <svg width='20' height='20' viewBox='0 0 24 24' fill='none'>
+      {isAdminPage ? null : (
+        <>
+          {/* כפתור פתיחת הצ'אט */}
+          <button
+            className={`${styles.chatButton} ${isOpen ? styles.open : ''}`}
+            onClick={toggleChat}
+            aria-label="פתח צ'אט"
+          >
+            {isOpen ? (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path
-                  d='M18 6L6 18M6 6L18 18'
-                  stroke='currentColor'
-                  strokeWidth='2'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
+                  d="M18 6L6 18M6 6L18 18"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
-            </button>
-          </div>
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            )}
+          </button>
 
-          <div className={styles.messagesContainer}>
-            {messages.map((message, index) => (
-              <div key={index}>
-                <div
-                  className={`${styles.message} ${
-                    message.role === 'user'
-                      ? styles.userMessage
-                      : styles.assistantMessage
-                  }`}
+          {/* חלון הצ'אט */}
+          {isOpen && (
+            <div className={styles.chatWindow} dir="rtl">
+              <div className={styles.chatHeader}>
+                <div className={styles.headerContent}>
+                  <div className={styles.avatar}>
+                    <Image
+                      src="/images/logo.svg"
+                      alt="Mitoderm"
+                      width={32}
+                      height={32}
+                    />
+                  </div>
+                  <div className={styles.headerText}>
+                    <h3>מיטודרם צ'אט</h3>
+                    <p>מומחית אקסוזומים</p>
+                  </div>
+                </div>
+                <button
+                  className={styles.closeButton}
+                  onClick={() => setIsOpen(false)}
+                  aria-label="סגור צ'אט"
                 >
-                  <div className={styles.messageContent}>
-                    {message.role === 'assistant' && (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M18 6L6 18M6 6L18 18"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <div className={styles.messagesContainer}>
+                {messages.map((message, index) => (
+                  <div key={index}>
+                    <div
+                      className={`${styles.message} ${
+                        message.role === 'user'
+                          ? styles.userMessage
+                          : styles.assistantMessage
+                      }`}
+                    >
+                      <div className={styles.messageContent}>
+                        {message.role === 'assistant' && (
+                          <div className={styles.assistantAvatar}>
+                            <Image
+                              src="/images/logo.svg"
+                              alt="Mitoderm"
+                              width={24}
+                              height={24}
+                            />
+                          </div>
+                        )}
+                        <div className={styles.messageText}>
+                          {/* תוכן ההודעה */}
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: convertMarkdownToHtml(message.content),
+                            }}
+                          />
+
+                          {/* טופס אישור פרטים בתוך ההודעה */}
+                          {message.role === 'assistant' &&
+                            message.showForm &&
+                            // הצג את הטופס רק בהודעה האחרונה שיש לה showForm=true
+                            index ===
+                              messages.findLastIndex((msg) => msg.showForm) && (
+                              <ContactFormInMessage
+                                key={`contact-form-${index}`}
+                                initialData={
+                                  extractedInfo || {
+                                    name: '',
+                                    phone: '',
+                                    email: '',
+                                    subject: "פנייה כללית מהצ'אטבוט",
+                                  }
+                                }
+                                onSubmit={submitConfirmedLead}
+                                onCancel={handleFormCancel}
+                                onUpdate={updateExtractedInfo}
+                                isLoading={isLoading}
+                                styles={styles}
+                              />
+                            )}
+                        </div>
+                      </div>
+                      <div className={styles.messageTime}>
+                        {message.timestamp.toLocaleTimeString('he-IL', {
+                          hour: '2-digit',
+                          minute: '2-digit',
+                        })}
+                      </div>
+                    </div>
+
+                    {/* הצגת כפתורי השאלות - רק בהודעה הראשונה */}
+                    {index === 0 && message.role === 'assistant' && (
+                      <div style={{ marginTop: '10px', marginRight: '40px' }}>
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '8px',
+                          }}
+                        >
+                          {/* כפתור אקסוזומים */}
+                          {!usedQuestions.includes('מהם אקסוזומים?') && (
+                            <button
+                              className={styles.predefinedQuestionBtn}
+                              onClick={() =>
+                                sendPredefinedMessage('מהם אקסוזומים?')
+                              }
+                            >
+                              🧬 מהם אקסוזומים ולמה הם מהפכה?
+                            </button>
+                          )}
+
+                          {/* כפתור התועלות */}
+                          {!usedQuestions.includes(
+                            'מה התועלות העיקריות של המוצרים?',
+                          ) && (
+                            <button
+                              className={styles.predefinedQuestionBtn}
+                              onClick={() =>
+                                sendPredefinedMessage(
+                                  'מה התועלות העיקריות של המוצרים?',
+                                )
+                              }
+                            >
+                              ✨ מה התועלות העיקריות של המוצרים?
+                            </button>
+                          )}
+
+                          {/* כפתור מחירים */}
+                          {!usedQuestions.includes('כמה עולים המוצרים?') && (
+                            <button
+                              className={styles.predefinedQuestionBtn}
+                              onClick={() =>
+                                sendPredefinedMessage('כמה עולים המוצרים?')
+                              }
+                            >
+                              💰 כמה עולים המוצרים וכמה הרווח?
+                            </button>
+                          )}
+
+                          {/* כפתור הרשמה */}
+                          {!usedQuestions.includes(
+                            'איך נרשמים למפגש ההדרכה?',
+                          ) && (
+                            <button
+                              className={styles.predefinedQuestionBtn}
+                              onClick={() =>
+                                sendPredefinedMessage(
+                                  'איך נרשמים למפגש ההדרכה?',
+                                )
+                              }
+                            >
+                              📚 איך נרשמים למפגש ההדרכה?
+                            </button>
+                          )}
+
+                          {/* כפתור ההבדלים */}
+                          {!usedQuestions.includes(
+                            'במה המוצר שונה וטוב יותר ממוצרים אחרים דומים?',
+                          ) && (
+                            <button
+                              className={styles.predefinedQuestionBtn}
+                              onClick={() =>
+                                sendPredefinedMessage(
+                                  'במה המוצר שונה וטוב יותר ממוצרים אחרים דומים?',
+                                )
+                              }
+                            >
+                              🏆 במה המוצרים שלנו שונים וטובים יותר?
+                            </button>
+                          )}
+
+                          {/* כפתור קשר */}
+                          {!usedQuestions.includes('אני רוצה שיחזרו אליי!') && (
+                            <button
+                              className={styles.predefinedQuestionBtn}
+                              onClick={() => {
+                                console.log('=== CONTACT BUTTON CLICKED ===');
+                                console.log(
+                                  'Sending message: אני רוצה שיחזרו אליי!',
+                                );
+                                sendPredefinedMessage('אני רוצה שיחזרו אליי!');
+                              }}
+                            >
+                              📞 אני רוצה שיחזרו אליי!
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+                {isLoading && (
+                  <div
+                    className={`${styles.message} ${styles.assistantMessage}`}
+                  >
+                    <div className={styles.messageContent}>
                       <div className={styles.assistantAvatar}>
                         <Image
-                          src='/images/logo.svg'
-                          alt='Mitoderm'
+                          src="/images/logo.svg"
+                          alt="Mitoderm"
                           width={24}
                           height={24}
                         />
                       </div>
-                    )}
-                    <div className={styles.messageText}>
-                      {/* תוכן ההודעה */}
-                      <div
-                        dangerouslySetInnerHTML={{ __html: convertMarkdownToHtml(message.content) }}
-                      />
-
-                      {/* טופס אישור פרטים בתוך ההודעה */}
-                      {message.role === 'assistant' &&
-                        message.showForm &&
-                        // הצג את הטופס רק בהודעה האחרונה שיש לה showForm=true
-                        index ===
-                          messages.findLastIndex((msg) => msg.showForm) && (
-                          <ContactFormInMessage
-                            key={`contact-form-${index}`}
-                            initialData={extractedInfo || {
-                              name: '',
-                              phone: '',
-                              email: '',
-                              subject: 'פנייה כללית מהצ\'אטבוט'
-                            }}
-                            onSubmit={submitConfirmedLead}
-                            onCancel={handleFormCancel}
-                            onUpdate={updateExtractedInfo}
-                            isLoading={isLoading}
-                            styles={styles}
-                          />
-                        )}
-                    </div>
-                  </div>
-                  <div className={styles.messageTime}>
-                    {message.timestamp.toLocaleTimeString('he-IL', {
-                      hour: '2-digit',
-                      minute: '2-digit',
-                    })}
-                  </div>
-                </div>
-
-                {/* הצגת כפתורי השאלות - רק בהודעה הראשונה */}
-                {(index === 0 && message.role === 'assistant') && (
-                  <div style={{ marginTop: '10px', marginRight: '40px' }}>
-                    <div
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '8px',
-                      }}
-                    >
-                      {/* כפתור אקסוזומים */}
-                      {!usedQuestions.includes('מהם אקסוזומים?') && (
-                        <button
-                          className={styles.predefinedQuestionBtn}
-                          onClick={() =>
-                            sendPredefinedMessage('מהם אקסוזומים?')
-                          }
-                        >
-                          🧬 מהם אקסוזומים ולמה הם מהפכה?
-                        </button>
-                      )}
-                      
-                      {/* כפתור התועלות */}
-                      {!usedQuestions.includes('מה התועלות העיקריות של המוצרים?') && (
-                        <button
-                          className={styles.predefinedQuestionBtn}
-                          onClick={() =>
-                            sendPredefinedMessage('מה התועלות העיקריות של המוצרים?')
-                          }
-                        >
-                          ✨ מה התועלות העיקריות של המוצרים?
-                        </button>
-                      )}
-                      
-                      {/* כפתור מחירים */}
-                      {!usedQuestions.includes('כמה עולים המוצרים?') && (
-                        <button
-                          className={styles.predefinedQuestionBtn}
-                          onClick={() =>
-                            sendPredefinedMessage('כמה עולים המוצרים?')
-                          }
-                        >
-                          💰 כמה עולים המוצרים וכמה הרווח?
-                        </button>
-                      )}
-                      
-                      {/* כפתור הרשמה */}
-                      {!usedQuestions.includes('איך נרשמים למפגש ההדרכה?') && (
-                        <button
-                          className={styles.predefinedQuestionBtn}
-                          onClick={() =>
-                            sendPredefinedMessage('איך נרשמים למפגש ההדרכה?')
-                          }
-                        >
-                          📚 איך נרשמים למפגש ההדרכה?
-                        </button>
-                      )}
-                      
-                      {/* כפתור ההבדלים */}
-                      {!usedQuestions.includes('במה המוצר שונה וטוב יותר ממוצרים אחרים דומים?') && (
-                        <button
-                          className={styles.predefinedQuestionBtn}
-                          onClick={() =>
-                            sendPredefinedMessage('במה המוצר שונה וטוב יותר ממוצרים אחרים דומים?')
-                          }
-                        >
-                          🏆 במה המוצרים שלנו שונים וטובים יותר?
-                        </button>
-                      )}
-                      
-                      {/* כפתור קשר */}
-                      {!usedQuestions.includes('אני רוצה שיחזרו אליי!') && (
-                        <button
-                          className={styles.predefinedQuestionBtn}
-                          onClick={() => {
-                            console.log('=== CONTACT BUTTON CLICKED ===');
-                            console.log('Sending message: אני רוצה שיחזרו אליי!');
-                            sendPredefinedMessage('אני רוצה שיחזרו אליי!')
-                          }}
-                        >
-                          📞 אני רוצה שיחזרו אליי!
-                        </button>
-                      )}
+                      <div className={styles.typingIndicator}>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
                     </div>
                   </div>
                 )}
+                <div ref={messagesEndRef} />
               </div>
-            ))}
-            {isLoading && (
-              <div className={`${styles.message} ${styles.assistantMessage}`}>
-                <div className={styles.messageContent}>
-                  <div className={styles.assistantAvatar}>
-                    <Image
-                      src='/images/logo.svg'
-                      alt='Mitoderm'
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-                  <div className={styles.typingIndicator}>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                </div>
-              </div>
-            )}
-            <div ref={messagesEndRef} />
-          </div>
 
-          <div className={styles.inputContainer}>
-            <textarea
-              ref={inputRef}
-              value={inputMessage}
-              onChange={handleInputChange}
-              onKeyPress={handleKeyPress}
-              placeholder='כתבי הודעה...'
-              className={styles.messageInput}
-              disabled={isLoading}
-              rows={1}
-            />
-            <button
-              onClick={sendMessage}
-              disabled={!inputMessage.trim() || isLoading}
-              className={styles.sendButton}
-              aria-label='שלח הודעה'
-            >
-              <svg width='20' height='20' viewBox='0 0 24 24' fill='none'>
-                <path
-                  d='M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13'
-                  stroke='currentColor'
-                  strokeWidth='2'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
+              <div className={styles.inputContainer}>
+                <textarea
+                  ref={inputRef}
+                  value={inputMessage}
+                  onChange={handleInputChange}
+                  onKeyPress={handleKeyPress}
+                  placeholder="כתבי הודעה..."
+                  className={styles.messageInput}
+                  disabled={isLoading}
+                  rows={1}
                 />
-              </svg>
-            </button>
-          </div>
-        </div>
+                <button
+                  onClick={sendMessage}
+                  disabled={!inputMessage.trim() || isLoading}
+                  className={styles.sendButton}
+                  aria-label="שלח הודעה"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          )}
+        </>
       )}
     </>
   );

@@ -1,0 +1,50 @@
+@use 'variables' as *;
+
+.container {
+  display: flex;
+  gap: 1.25rem;
+  width: 100%;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.button,
+.pageButton {
+  min-width: 10rem;
+  padding: 1rem 1.5rem;
+  border-radius: 4rem;
+  background-color: $colorWhite;
+  color: $colorGray;
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  &:hover {
+    color: $colorTextDark;
+  }
+}
+
+.button:disabled {
+  color: $colorGray;
+  cursor: not-allowed;
+}
+
+.pageButton {
+  min-width: 4rem;
+  &.active {
+    background-color: $colorGold;
+    color: $colorWhite;
+  }
+}
+
+.ellipsis {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: $colorGray;
+  height: 4rem;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  user-select: none;
+}

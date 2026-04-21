@@ -4,9 +4,12 @@ import { FC, useState, useEffect } from 'react';
 import styles from './ScrollToTop.module.scss';
 import { motion, AnimatePresence } from 'motion/react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 const ScrollToTop: FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const pathname = usePathname();
+  const isAdminPage = pathname.includes('admin');
 
   useEffect(() => {
     const scrollContainer = document.querySelector('body');
@@ -45,7 +48,7 @@ const ScrollToTop: FC = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className={styles.button}
+          className={`${styles.button} ${isAdminPage ? styles.admin : ''}`}
           aria-label="Scroll to top"
         >
           <Image

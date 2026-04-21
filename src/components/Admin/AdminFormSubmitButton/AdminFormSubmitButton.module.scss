@@ -1,0 +1,53 @@
+$gold: #dfba74;
+$goldDark: #be800c;
+
+.submitBtn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(to right, $gold, $goldDark);
+  padding: 1.5rem 2rem;
+  font-size: 2rem;
+  gap: 1rem;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition:
+    box-shadow 0.2s,
+    opacity 0.2s;
+  border: none;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.submitBtnDisabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.spinner {
+  height: 1.25rem;
+  width: 1.25rem;
+  animation: spin 1s linear infinite;
+  border-radius: 9999px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.submitIcon {
+  height: 2rem;
+  width: 2rem;
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7479%);
+}
