@@ -10,7 +10,7 @@
 
 .button,
 .pageButton {
-  min-width: 10rem;
+  min-width: 7rem;
   padding: 1rem 1.5rem;
   border-radius: 4rem;
   background-color: $colorWhite;
@@ -23,19 +23,33 @@
   &:hover {
     color: $colorTextDark;
   }
+  @media screen and (max-width: 768px) {
+    padding: 0.5rem 1rem;
+  }
+}
+
+.pageButton {
+  min-width: 4rem;
+  max-width: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.active {
+    background-color: $colorGold;
+    color: $colorWhite;
+  }
+}
+
+.button {
+  @media screen and (max-width: 768px) {
+    min-width: 4rem;
+  }
 }
 
 .button:disabled {
   color: $colorGray;
   cursor: not-allowed;
-}
-
-.pageButton {
-  min-width: 4rem;
-  &.active {
-    background-color: $colorGold;
-    color: $colorWhite;
-  }
 }
 
 .ellipsis {

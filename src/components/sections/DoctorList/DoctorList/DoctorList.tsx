@@ -1,3 +1,4 @@
+'use client';
 import { FC, useState, useEffect, useMemo } from 'react';
 import styles from './DoctorList.module.scss';
 import DoctorItem from '../DoctorItem/DoctorItem';
@@ -5,6 +6,7 @@ import { DoctorType } from '@/types';
 import DoctorListFilter from '../DoctorListFilter/DoctorListFilter';
 import DoctorListPagination from '../DoctorListPagination/DoctorListPagination';
 import { useMediaQuery } from 'react-responsive';
+import { useTranslations } from 'next-intl';
 
 export type AreaType = 'צפון' | 'מרכז' | 'דרום' | 'גוש דן' | 'all';
 export type ProfessionType = '1' | '2' | '3' | 'all';
@@ -32,6 +34,7 @@ const DoctorList: FC<Props> = ({ doctors }) => {
   const [professionFilter, setProfessionFilter] =
     useState<ProfessionType>('all');
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const t = useTranslations();
 
   const itemsPerPage = isMobile ? 5 : 10;
 
@@ -69,26 +72,29 @@ const DoctorList: FC<Props> = ({ doctors }) => {
   }, [areaFilter, cityFilter, professionFilter]);
 
   return (
-    <div className={styles.container}>
-      <DoctorListFilter
-        doctors={filteredDoctors}
-        areaFilter={areaFilter}
-        cityFilter={cityFilter}
-        professionFilter={professionFilter}
-        setAreaFilter={setAreaFilter}
-        setCityFilter={setCityFilter}
-        setProfessionFilter={setProfessionFilter}
-        resetFilters={resetFilters}
-      />
-      {paginatedDoctors.map((el: DoctorType) => (
-        <DoctorItem key={el._id} doctor={el} />
-      ))}
-      <DoctorListPagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onChange={setCurrentPage}
-      />
-    </div>
+    <>
+      <span className={styles.title}>{t('faq.centerTitle')}</span>
+      <div className={styles.container} id="clinic">
+        <DoctorListFilter
+          doctors={filteredDoctors}
+          areaFilter={areaFilter}
+          cityFilter={cityFilter}
+          professionFilter={professionFilter}
+          setAreaFilter={setAreaFilter}
+          setCityFilter={setCityFilter}
+          setProfessionFilter={setProfessionFilter}
+          resetFilters={resetFilters}
+        />
+        {paginatedDoctors.map((el: DoctorType) => (
+          <DoctorItem key={el._id} doctor={el} />
+        ))}
+        <DoctorListPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onChange={setCurrentPage}
+        />
+      </div>
+    </>
   );
 };
 

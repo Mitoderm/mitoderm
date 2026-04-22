@@ -457,8 +457,8 @@
       "facialAndHairTreatments": "Лечение лица и волос"
     },
     "pagination": {
-      "previous": "Предыдущая",
-      "next": "Следующая"
+      "previous": "Назад",
+      "next": "Вперёд"
     }
   },
   "benefits": {

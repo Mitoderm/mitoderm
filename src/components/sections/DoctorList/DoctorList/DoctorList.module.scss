@@ -1,12 +1,26 @@
 @use 'variables' as *;
 .container {
   max-width: 150rem;
+  margin-inline: auto;
   width: 100%;
   padding: 3rem 5rem;
   background-color: $colorLightBg;
   border-radius: 3.5rem;
   position: relative;
   @media screen and (max-width: 768px) {
-    padding: 5rem;
+    padding: 2.55rem;
+  }
+}
+
+.title {
+  display: block;
+  color: $colorLightBg;
+  font-size: $fontSizeH2;
+  width: 100%;
+  margin-top: 10rem;
+  margin-bottom: 5rem;
+  text-align: center;
+  @media screen and (max-width: 768px) {
+    font-size: $fontSizeMobH2;
   }
 }

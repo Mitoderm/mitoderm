@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic';
 import Script from 'next/script';
 import Intro from '@/components/sections/Intro/Intro';
 import Mission from '@/components/sections/Mission/Mission';
-import CenterList from '@/components/sections/CenterList/CenterList';
 import Faq from '@/components/sections/Faq/Faq';
 import Contact from '@/components/sections/Contact/Contact';
 import HowCanBeUsed from '@/components/sections/HowCanBeUsed/HowCanBeUsed';
@@ -12,7 +11,7 @@ import Gallery from '@/components/sections/Gallery/Gallery';
 import { getProductSchema, getFAQPageSchema } from '@/utils/structuredData';
 import { getTranslations } from 'next-intl/server';
 import { getDoctors } from '@/lib/mongodb';
-import DoctorListSessionWrapper from '@/components/sections/DoctorList/DoctorListSessionWrapper/DoctorListSessionWrapper';
+import DoctorList from '@/components/sections/DoctorList/DoctorList/DoctorList';
 
 const Solution = dynamic(
   () => import('@/components/sections/Solution/Solution'),
@@ -173,7 +172,7 @@ export default async function HomePage({ params: { lang } }: any) {
         <Solution page="hair" />
         <Gallery isHairPage />
         <Mission />
-        <DoctorListSessionWrapper doctors={doctors} />
+        <DoctorList doctors={doctors} />
         <Faq />
         <Contact />
       </main>

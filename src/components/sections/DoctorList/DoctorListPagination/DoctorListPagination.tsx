@@ -3,6 +3,7 @@
 import { FC } from 'react';
 import styles from './DoctorListPagination.module.scss';
 import { useTranslations } from 'next-intl';
+import { useMediaQuery } from 'react-responsive';
 
 type Props = {
   currentPage: number;
@@ -16,7 +17,7 @@ const DoctorListPagination: FC<Props> = ({
   onChange,
 }) => {
   const t = useTranslations();
-
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   const handlePrev = () => {
     if (currentPage > 1) onChange(currentPage - 1);
   };
@@ -29,7 +30,7 @@ const DoctorListPagination: FC<Props> = ({
     if (totalPages <= 1) return [1];
 
     const pages: (number | string)[] = [];
-    const delta = 1;
+    const delta = isMobile ? 0 : 1;
 
     const left = Math.max(2, currentPage - delta);
     const right = Math.min(totalPages - 1, currentPage + delta);
@@ -56,7 +57,7 @@ const DoctorListPagination: FC<Props> = ({
         disabled={currentPage === 1}
         className={styles.button}
       >
-        {t('doctorList.pagination.previous')}
+        {isMobile ? '<' : t('doctorList.pagination.previous')}
       </button>
 
       {generatePages().map((page) =>
@@ -81,7 +82,7 @@ const DoctorListPagination: FC<Props> = ({
         disabled={currentPage === totalPages}
         className={styles.button}
       >
-        {t('doctorList.pagination.next')}
+        {isMobile ? '>' : t('doctorList.pagination.next')}
       </button>
     </div>
   );

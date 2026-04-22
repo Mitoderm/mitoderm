@@ -10,7 +10,7 @@ import Contact from '@/components/sections/Contact/Contact';
 import Gallery from '@/components/sections/Gallery/Gallery';
 import { getFAQPageSchema } from '@/utils/structuredData';
 import { getTranslations } from 'next-intl/server';
-import DoctorListSessionWrapper from '@/components/sections/DoctorList/DoctorListSessionWrapper/DoctorListSessionWrapper';
+import DoctorList from '@/components/sections/DoctorList/DoctorList/DoctorList';
 
 const Solution = dynamic(
   () => import('@/components/sections/Solution/Solution'),
@@ -168,7 +168,7 @@ export default async function HomePage({ params: { lang } }: any) {
         <Solution page="main" />
         <Gallery />
         <Mission />
-        <DoctorListSessionWrapper doctors={doctors} />
+        <DoctorList doctors={doctors} />
         <Faq />
         <Contact />
       </main>

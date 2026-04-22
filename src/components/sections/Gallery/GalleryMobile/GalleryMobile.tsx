@@ -55,7 +55,9 @@ const GalleryMobile: FC<Props> = ({ items, isHairPage, isEventPage }) => {
 
   return (
     <>
-      <div className={styles.itemWrapper}>
+      <div
+        className={`${styles.itemWrapper} ${isEventPage ? styles.eventItemWrapper : ''}`}
+      >
         <span className={styles.zoomLabel}>{t('gallery.zoom')}</span>
         <div id="galleryItemBox" className={styles.imageBox}>
           <PhotoProvider
