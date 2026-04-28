@@ -4,14 +4,14 @@ import styles from './Header.module.scss';
 import Image from 'next/image';
 import LanguageSwitch from '../LanguageSwitch/LanguageSwitch';
 import Navigation from '../Navigation/Navigation';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 import BurgerButton from '@/components/sharedUI/BurgerButton/BurgerButton';
 import Link from 'next/link';
 import { usePathname } from '@/i18n/routing';
 
 const Header: FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const isTabletOrMobile = useHydratedMediaQuery({ query: '(max-width: 1224px)' });
   const pathname = usePathname();
   const isSuccessPage = pathname.includes('success');
   const isEventPage = pathname.includes('event') && !pathname.includes('form');
@@ -47,7 +47,7 @@ const Header: FC = () => {
                 src="/images/logo.svg"
                 width={isTabletOrMobile ? 96 : 120}
                 height={isTabletOrMobile ? 32 : 40}
-                quality={100}
+                quality={75}
                 alt="mitoderm logo"
               />
             </Link>

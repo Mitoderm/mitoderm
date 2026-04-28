@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { courses, variantToIndex, indexToVariant } from '@/constants';
 import CardSliderMobile from './CardSliderMobile/CardSliderMobile';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 import useAppStore from '@/store/store';
 import { Link } from '@/i18n/routing';
 
@@ -24,7 +24,7 @@ const CourseSelection: FC = () => {
   );
   const selectedCourse = variantToIndex[courseVariant];
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const isMobile = useHydratedMediaQuery({ query: '(max-width: 768px)' });
 
   useEffect(() => {
     const observer = new IntersectionObserver(

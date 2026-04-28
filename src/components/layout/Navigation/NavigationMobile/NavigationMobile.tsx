@@ -5,7 +5,6 @@ import NavigationProductButton from '../NavigationProductButton/NavigationProduc
 import { NavItem } from '@/types';
 import { usePathname, Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
-import { randomString } from '@/utils/helpers';
 
 const navigationVariants = {
   hidden: { opacity: 0 },
@@ -58,14 +57,13 @@ const NavigationMobile: FC<Props> = ({ navList, setIsOpen, isOpen }) => {
           custom={index}
           variants={itemVariants}
           className={styles.linkContainerMobile}
-          key={`item${index + Math.random()}`}
+          key={item.url || item.scrollId || `${item.text}-${index}`}
         >
           {!item.scrollId && !item.url ? (
             <motion.button
               custom={index}
               variants={itemVariants}
               onClick={handleClick}
-              key={index + randomString()}
               className={styles.buttonMobile}
             >
               {t(item.text)}
@@ -75,7 +73,6 @@ const NavigationMobile: FC<Props> = ({ navList, setIsOpen, isOpen }) => {
               <Link
                 onClick={handleClick}
                 href={item.url ? item.url : `#${item.scrollId}`}
-                key={index + randomString()}
                 className={styles.buttonMobile}
               >
                 {t(item.text)}

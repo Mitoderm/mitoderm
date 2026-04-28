@@ -3,7 +3,7 @@
 import { FC } from 'react';
 import styles from './DoctorListPagination.module.scss';
 import { useTranslations } from 'next-intl';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 
 type Props = {
   currentPage: number;
@@ -17,7 +17,7 @@ const DoctorListPagination: FC<Props> = ({
   onChange,
 }) => {
   const t = useTranslations();
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const isMobile = useHydratedMediaQuery({ query: '(max-width: 768px)' });
   const handlePrev = () => {
     if (currentPage > 1) onChange(currentPage - 1);
   };

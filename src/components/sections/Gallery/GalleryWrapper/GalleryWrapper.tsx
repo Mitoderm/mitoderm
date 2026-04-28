@@ -2,7 +2,7 @@
 
 import { FC } from 'react';
 import styles from './GalleryWrapper.module.scss';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 import GalleryDesktop from '../GalleryDesktop/GalleryDesktop';
 import GalleryMobile from '../GalleryMobile/GalleryMobile';
 
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const GalleryWrapper: FC<Props> = ({ itemList, isEventPage }) => {
-  const isTabletOrMobile = useMediaQuery({
+  const isTabletOrMobile = useHydratedMediaQuery({
     query: '(max-width: 1224px)',
   });
 

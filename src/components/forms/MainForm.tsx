@@ -6,7 +6,7 @@ import Button from '../sharedUI/Button/Button';
 import { useLocale, useTranslations } from 'next-intl';
 import FormInput from './FormInput/FormInput';
 import FormCloseButton from './FormCloseButton/FormCloseButton';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 import type { MainFormDataType, NameTypeEvent, NameTypeMain } from '@/types';
 import { sendDataOnMail } from '@/utils/sendEmailData';
 import { sendDataToCRM } from '@/utils/sendCRMData';
@@ -25,7 +25,7 @@ const MainForm: FC = () => {
   const isEventPage = pathname.includes('event');
   const locale = useLocale();
   const formRef = useRef<HTMLDivElement>(null);
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const isTabletOrMobile = useHydratedMediaQuery({ query: '(max-width: 1224px)' });
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
   const [formData, setFormData] = useState<MainFormDataType>({

@@ -1,4 +1,4 @@
-@use 'variables' as *;
+@use '@/styles/variables' as *;
 .container {
   max-width: 150rem;
   margin-inline: auto;
@@ -23,4 +23,36 @@
   @media screen and (max-width: 768px) {
     font-size: $fontSizeMobH2;
   }
+}
+
+.filterButton {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  border: none;
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+  border-radius: 3rem;
+  margin-left: auto;
+  margin-right: 0;
+  background-color: $colorWhite;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  font-size: 2rem;
+  font-weight: 500;
+  color: $colorTextDark;
+  &:hover {
+    scale: 0.95;
+  }
+  &.rtl {
+    margin-left: 0;
+    margin-right: auto;
+  }
+}
+
+.filterList {
+  overflow: hidden;
 }

@@ -454,7 +454,9 @@
       "gushDan": "Гуш Дан",
       "facialTreatments": "Лечение лица",
       "hairTreatments": "Лечение волос",
-      "facialAndHairTreatments": "Лечение лица и волос"
+      "facialAndHairTreatments": "Лечение лица и волос",
+      "openFilters": "Открыть фильтры",
+      "closeFilters": "Закрыть фильтры"
     },
     "pagination": {
       "previous": "Назад",
@@ -655,7 +657,7 @@
     "phoneNumberRequired": "Номер телефона обязателен",
     "expertise": "Специализация",
     "phoneNumber": "Номер телефона",
-    "instagram": "Инстаграм",
+    "instagram": "Социальные сети",
     "selectExpertise": "Выберите специализацию",
     "area": "Регион",
     "selectArea": "Выберите регион",

@@ -4,7 +4,7 @@ import { FC, useState } from 'react';
 import type { Event } from '@/types';
 import Image from 'next/image';
 import styles from './AdminPrograms.module.scss';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 import AdminModal from '../AdminModal/AdminModal';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
@@ -20,7 +20,7 @@ const AdminProgramsPage: FC<Props> = ({ events }) => {
   const t = useTranslations();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProgram, setEditingProgram] = useState<Event | null>(null);
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useHydratedMediaQuery({ maxWidth: 768 });
   const router = useRouter();
 
   const getCategoryText = (category: number | string) => {

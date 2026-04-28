@@ -11,7 +11,7 @@ import Image from 'next/image';
 import Button from '../sharedUI/Button/Button';
 import { useLocale, useTranslations } from 'next-intl';
 import FormInput from './FormInput/FormInput';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 import useAppStore from '@/store/store';
 import type { EventFormDataType } from '@/types';
 import Loader from '../sharedUI/Loader/Loader';
@@ -32,7 +32,7 @@ const EventForm: FC = () => {
   const locale = useLocale();
   const router = useRouter();
   const formRef = useRef<HTMLDivElement>(null);
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const isTabletOrMobile = useHydratedMediaQuery({ query: '(max-width: 1224px)' });
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
   const [formData, setFormData] = useState<EventFormDataType>({

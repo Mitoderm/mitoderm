@@ -27,7 +27,9 @@ const EventFooter: FC = () => {
     <footer className={styles.eventFooter}>
       <div className={styles.inner}>
         <span className={styles.copyright}>
-          {t('copyright') + new Date().getFullYear() + ' ' + t('rights')}
+          {t('copyright')}
+          <span suppressHydrationWarning>{new Date().getFullYear()}</span>
+          {' ' + t('rights')}
         </span>
         <span className={styles.subtitle}>{t('subtitle')}</span>
         <div className={styles.links}>

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import { unstable_setRequestLocale } from 'next-intl/server';
-import dynamic from 'next/dynamic';
+import { setRequestLocale } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import '../../styles/globals.scss';
@@ -12,25 +11,10 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
 import { getOrganizationSchema } from '@/utils/structuredData';
 import ScrollToTop from '@/components/layout/ScrollToTop/ScrollToTop';
-
-const Header = dynamic(() => import('@/components/layout/Header/Header'), {
-  ssr: false,
-});
-
-const Modal = dynamic(() => import('@/components/layout/Modal/Modal'), {
-  ssr: false,
-});
-
-const Chatbot = dynamic(() => import('@/components/ChatBot/ChatBot'), {
-  ssr: false,
-});
-
-const WhatsappLink = dynamic(
-  () => import('@/components/layout/WhatsappLink/WhatsappLink'),
-  {
-    ssr: false,
-  },
-);
+import Header from '@/components/layout/Header/Header';
+import Modal from '@/components/layout/Modal/Modal';
+import Chatbot from '@/components/ChatBot/ChatBot';
+import WhatsappLink from '@/components/layout/WhatsappLink/WhatsappLink';
 
 const rubik = Rubik({
   weight: ['300', '400', '500', '900'],
@@ -138,18 +122,20 @@ export default async function RootLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }>) {
-  if (!routing.locales.includes(params.lang as any)) {
+  const { lang } = await params;
+
+  if (!routing.locales.includes(lang as any)) {
     notFound();
   }
 
-  unstable_setRequestLocale(params.lang);
+  setRequestLocale(lang);
 
   const messages = await getMessages();
 
   return (
-    <html lang={params.lang}>
+    <html lang={lang}>
       {/* Google Tag Manager */}
       <Script
         id="gtm-script"
@@ -166,10 +152,7 @@ export default async function RootLayout({
       />
 
       <NextIntlClientProvider messages={messages}>
-        <body
-          className={rubik.className}
-          dir={params.lang === 'he' ? 'rtl' : 'ltr'}
-        >
+        <body className={rubik.className} dir={lang === 'he' ? 'rtl' : 'ltr'}>
           <noscript>
             <iframe
               title="Google Tag Manager (noscript)"
@@ -184,13 +167,13 @@ export default async function RootLayout({
           <Modal />
           {children}
           <Footer />
-          {params.lang === 'he' && <Chatbot locale={params.lang} />}
+          {lang === 'he' && <Chatbot locale={lang} />}
           <WhatsappLink />
           <ScrollToTop />
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
-              __html: JSON.stringify(getOrganizationSchema(params.lang)),
+              __html: JSON.stringify(getOrganizationSchema(lang)),
             }}
           />
         </body>

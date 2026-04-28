@@ -17,7 +17,9 @@ const PrivatePolicy: FC = () => {
   return (
     <ModalContentWrapper>
       <h2 className={styles.title}>Privacy Policy for MitoDerm</h2>
-      <span className={styles.date}>Effective Date: {getCurrentDate()}</span>
+      <span className={styles.date}>
+        Effective Date: <span suppressHydrationWarning>{getCurrentDate()}</span>
+      </span>
       <p className={styles.text}>
         Welcome to MitoDerm (the "Company," "we," "us," or "our"). We respect
         and value your privacy and are committed to safeguarding your personal

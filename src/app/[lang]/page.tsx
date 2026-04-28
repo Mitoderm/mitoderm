@@ -1,7 +1,6 @@
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { getDoctors } from '@/lib/mongodb';
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 import Script from 'next/script';
 import Intro from '@/components/sections/Intro/Intro';
 import HowCanBeUsed from '@/components/sections/HowCanBeUsed/HowCanBeUsed';
@@ -11,29 +10,19 @@ import Gallery from '@/components/sections/Gallery/Gallery';
 import { getFAQPageSchema } from '@/utils/structuredData';
 import { getTranslations } from 'next-intl/server';
 import DoctorList from '@/components/sections/DoctorList/DoctorList/DoctorList';
-
-const Solution = dynamic(
-  () => import('@/components/sections/Solution/Solution'),
-  {
-    ssr: false,
-  },
-);
-
-const Mission = dynamic(() => import('@/components/sections/Mission/Mission'), {
-  ssr: false,
-});
-
-const Chevron = dynamic(() => import('@/components/sections/Chevron/Chevron'));
-
-const Synergy = dynamic(() => import('@/components/sections/Synergy/Synergy'));
+import Chevron from '@/components/sections/Chevron/Chevron';
+import Synergy from '@/components/sections/Synergy/Synergy';
+import Solution from '@/components/sections/Solution/Solution';
+import Mission from '@/components/sections/Mission/Mission';
 
 const baseUrl = 'https://mitoderm.com';
 
 export async function generateMetadata({
-  params: { lang },
+  params,
 }: {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
+  const { lang } = await params;
   const metadataMap: Record<
     string,
     {
@@ -124,8 +113,13 @@ export async function generateMetadata({
   };
 }
 
-export default async function HomePage({ params: { lang } }: any) {
-  unstable_setRequestLocale(lang);
+export default async function HomePage({
+  params,
+}: Readonly<{
+  params: { lang: string };
+}>) {
+  const { lang } = await params;
+  setRequestLocale(lang);
   const t = await getTranslations({ locale: lang });
   const doctors = await getDoctors();
 

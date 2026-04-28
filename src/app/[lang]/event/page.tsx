@@ -1,4 +1,4 @@
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { Metadata } from 'next';
 import Script from 'next/script';
 import { getEventSchema } from '@/utils/structuredData';
@@ -10,10 +10,11 @@ export const dynamic = 'force-dynamic';
 const baseUrl = 'https://mitoderm.com';
 
 export async function generateMetadata({
-  params: { lang },
+  params,
 }: {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
+  const { lang } = await params;
   const metadataMap: Record<
     string,
     {
@@ -104,8 +105,13 @@ export async function generateMetadata({
   };
 }
 
-export default async function EventPage({ params: { lang } }: any) {
-  unstable_setRequestLocale(lang);
+export default async function EventPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  setRequestLocale(lang);
 
   // Event schema
   const eventUrl = `${baseUrl}/${lang}/event`;

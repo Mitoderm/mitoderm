@@ -4,7 +4,7 @@ import styles from './AdminDoctorPage.module.scss';
 import { DoctorType } from '@/types';
 import { useTranslations } from 'next-intl';
 import AdminAddButton from '../AdminAddButton/AdminAddButton';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 import AdminListItem from '../AdminListItem/AdminListItem';
 import AdminModal from '../AdminModal/AdminModal';
 import DoctorForm from '@/components/forms/DoctorForm/DoctorForm';
@@ -46,7 +46,7 @@ const AdminDoctorPage: FC<Props> = ({ doctors }) => {
     }
   };
 
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useHydratedMediaQuery({ maxWidth: 768 });
   return (
     <main className={styles.root}>
       <div className={styles.headerRow}>

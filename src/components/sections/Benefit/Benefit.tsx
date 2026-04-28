@@ -5,11 +5,11 @@ import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import styles from './Benefit.module.scss';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 import useAppStore from '@/store/store';
 
 const Benefit: FC = () => {
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const isTabletOrMobile = useHydratedMediaQuery({ query: '(max-width: 1224px)' });
   const { courseVariant } = useAppStore((state) => state);
   const t = useTranslations();
   const items = t(`v${courseVariant}.benefits`).split('|');

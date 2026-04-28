@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { FC } from 'react';
 import styles from './ContactLink.module.scss';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 
 interface Props {
   imageLink: string;
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const ContactLink: FC<Props> = ({ imageLink, url, size, iconSize, wide }) => {
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const isTabletOrMobile = useHydratedMediaQuery({ query: '(max-width: 1224px)' });
   return (
     <a
       className={`${styles.link} ${wide ? styles.wide : ''}`}

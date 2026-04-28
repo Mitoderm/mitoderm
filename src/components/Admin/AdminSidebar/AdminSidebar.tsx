@@ -7,7 +7,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import styles from './AdminSidebar.module.scss';
 import { useSession } from 'next-auth/react';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 
@@ -34,7 +34,7 @@ const AdminSidebar: FC<Props> = ({ onLogout }) => {
   const t = useTranslations();
   const pathname = usePathname();
   const locale = useLocale();
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useHydratedMediaQuery({ maxWidth: 768 });
   const session = useSession();
   const user = session.data?.user;
 

@@ -454,7 +454,9 @@
       "gushDan": "גוש דן",
       "facialTreatments": "טיפולים בפנים",
       "hairTreatments": "טיפולים בשיער",
-      "facialAndHairTreatments": "טיפולים בפנים ושיער"
+      "facialAndHairTreatments": "טיפולים בפנים ושיער",
+      "openFilters": "פתיחת סינונים",
+      "closeFilters": "סגירת סינונים"
     },
     "pagination": {
       "previous": "חזרה",
@@ -655,7 +657,7 @@
     "phoneNumberRequired": "יש להזין מספר טלפון",
     "expertise": "תחום התמחות",
     "phoneNumber": "מספר טלפון",
-    "instagram": "אינסטגרם",
+    "instagram": "מדיה חברתית",
     "selectExpertise": "בחר תחום התמחות",
     "area": "אזור",
     "selectArea": "בחר אזור",

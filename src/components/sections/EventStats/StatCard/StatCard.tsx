@@ -3,7 +3,7 @@ import styles from './StatCard.module.scss';
 import { StatItem } from '@/types';
 import { motion, useInView } from 'motion/react';
 import Image from 'next/image';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 
 interface Props {
   stat: StatItem;
@@ -15,7 +15,7 @@ const StatCard: FC<Props> = ({ stat, delay, label }) => {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const isTabletOrMobile = useHydratedMediaQuery({ query: '(max-width: 1224px)' });
 
   useEffect(() => {
     if (!isInView) return;

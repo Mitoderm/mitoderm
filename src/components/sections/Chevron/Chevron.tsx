@@ -3,7 +3,7 @@ import { FC } from 'react';
 import styles from './Chevron.module.scss';
 import { useTranslations, useLocale } from 'next-intl';
 import Button from '../../sharedUI/Button/Button';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 
 interface Props {
   page: string;
@@ -13,7 +13,7 @@ interface Props {
 const Chevron: FC<Props> = ({ page, imageName }) => {
   const t = useTranslations();
   const locale = useLocale();
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 779px)' });
+  const isTabletOrMobile = useHydratedMediaQuery({ query: '(max-width: 779px)' });
   return (
     <div className={styles.container}>
       <div className={styles.row}>

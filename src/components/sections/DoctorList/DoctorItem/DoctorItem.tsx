@@ -2,7 +2,7 @@
 import { FC } from 'react';
 import styles from './DoctorItem.module.scss';
 import { DoctorType } from '@/types';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import DoctorSocialLink from '../DoctorSocialLink/DoctorSocialLink';
 
 interface Props {
@@ -11,6 +11,7 @@ interface Props {
 
 const DoctorItem: FC<Props> = ({ doctor }) => {
   const t = useTranslations();
+  const locale = useLocale();
 
   return (
     <div className={styles.container}>
@@ -51,14 +52,28 @@ const DoctorItem: FC<Props> = ({ doctor }) => {
         </div>
       ) : null}
       <div className={styles.contentItem}>
-        <span className={styles.contentItemLabel}>
-          {t('doctorList.contact')}:{' '}
-        </span>
-        <a className={styles.phoneLink} href={`tel:${doctor.contact}`}>
-          {doctor.contact}
-        </a>
+        <div className={styles.contacts}>
+          <div className={styles.contact}>
+            <span className={styles.contentItemLabel}>
+              {t('doctorList.contact')}:
+            </span>
+            <a
+              className={`${styles.phoneLink} ${locale === 'he' ? styles.he : ''}`}
+              href={`tel:${doctor.contact}`}
+            >
+              {doctor.contact}
+            </a>
+          </div>
+          {doctor.instagram.length ? (
+            <div className={styles.contact}>
+              <span className={styles.contentItemLabel}>
+                {t('admin.instagram')}:
+              </span>
+              <DoctorSocialLink url={doctor.instagram} />
+            </div>
+          ) : null}
+        </div>
       </div>
-      <DoctorSocialLink url={doctor.instagram} />
     </div>
   );
 };

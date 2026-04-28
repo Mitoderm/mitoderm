@@ -6,7 +6,7 @@ import {
   navFormList,
   navDoctorList,
 } from '@/constants';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 import { usePathname } from '@/i18n/routing';
 import NavigationMobile from './NavigationMobile/NavigationMobile';
 import NavigationDestop from './NavigationDesktop/NavigationDestop';
@@ -17,7 +17,7 @@ interface Props {
 }
 
 const Navigation: FC<Props> = ({ isOpen, setIsOpen }) => {
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const isTabletOrMobile = useHydratedMediaQuery({ query: '(max-width: 1224px)' });
   const pathName = usePathname();
   const isFormPage = pathName.includes('form');
   const isSuccessPage = pathName.includes('success');

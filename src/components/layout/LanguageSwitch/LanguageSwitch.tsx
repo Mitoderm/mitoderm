@@ -3,13 +3,13 @@ import { FC, useState, useRef, useEffect } from 'react';
 import styles from './LanguageSwitch.module.scss';
 import Image from 'next/image';
 import SwitchItem from './SwitchItem/SwitchItem';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 import { usePathname } from 'next/navigation';
 import { useLocale } from 'next-intl';
 
 const LanguageSwitch: FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const isTabletOrMobile = useHydratedMediaQuery({ query: '(max-width: 1224px)' });
   const popupRef = useRef<HTMLDivElement>(null);
   const locale = useLocale();
   const pathname = usePathname();

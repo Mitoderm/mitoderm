@@ -6,18 +6,12 @@ import styles from './Gallery.module.scss';
 import { getTranslations } from 'next-intl/server';
 import GalleryPagination from './GalleryPagination/GalleryPagination';
 import EventButton from '@/components/sharedUI/EventButton/EventButton';
+import GalleryWrapper from './GalleryWrapper/GalleryWrapper';
 
 interface Props {
   isHairPage?: boolean;
   isEventPage?: boolean;
 }
-
-const GalleryWrapper = dynamic(
-  () => import('@/components/sections/Gallery/GalleryWrapper/GalleryWrapper'),
-  {
-    ssr: false,
-  },
-);
 
 const Gallery: FC<Props> = async ({ isHairPage, isEventPage }) => {
   const t = await getTranslations();

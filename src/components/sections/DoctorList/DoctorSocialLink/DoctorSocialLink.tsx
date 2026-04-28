@@ -27,10 +27,11 @@ const DoctorSocialLink: FC<Props> = ({ url }) => {
     <a href={url} target="_blank">
       {icon ? (
         <Image
-          src={`/images/icons/${icon}.svg`}
+          className={styles.icon}
+          src={icon}
           alt="social icon"
-          width={25}
-          height={25}
+          width={18}
+          height={18}
         />
       ) : null}
     </a>

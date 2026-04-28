@@ -4,7 +4,6 @@ import { NavItem } from '@/types';
 import NavigationProductButton from '../NavigationProductButton/NavigationProductButton';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import { randomString } from '@/utils/helpers';
 
 interface Props {
   navList: NavItem[];
@@ -32,22 +31,14 @@ const NavigationDestop: FC<Props> = ({
       {navList.map((item: NavItem, index: number) => (
         <div
           className={styles.linkContainer}
-          key={`item${index + randomString()}`}
+          key={item.url || item.scrollId || `${item.text}-${index}`}
         >
           {!item.scrollId && !item.url ? (
-            <button
-              onClick={() => setIsOpen(false)}
-              key={index + randomString()}
-              className={styles.button}
-            >
+            <button onClick={() => setIsOpen(false)} className={styles.button}>
               {t(item.text)}
             </button>
           ) : (
-            <Link
-              href={item.url ? item.url : `#${item.scrollId}`}
-              key={index + randomString()}
-              className={styles.button}
-            >
+            <Link href={item.url ? item.url : `#${item.scrollId}`} className={styles.button}>
               {t(item.text)}
             </Link>
           )}

@@ -3,7 +3,7 @@ import { FC } from 'react';
 import styles from './EventButton.module.scss';
 import { motion } from 'motion/react';
 import { Link } from '@/i18n/routing';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 
 interface Props {
   text: string;
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const EventButton: FC<Props> = ({ text, onClick, url }) => {
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const isMobile = useHydratedMediaQuery({ query: '(max-width: 768px)' });
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

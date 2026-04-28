@@ -3,7 +3,7 @@
 import { FC, useEffect } from 'react';
 import { motion } from 'motion/react';
 import styles from './CourseDates.module.scss';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 import { useTranslations } from 'next-intl';
 import type { Event } from '@/types';
 import DesktopRow from './DesktopRow/DesktopRow';
@@ -18,7 +18,7 @@ interface Props {
 const CourseDates: FC<Props> = ({ events }) => {
   const { selectedEvent, setSelectedEvent } = useAppStore((state) => state);
   const { courseVariant } = useAppStore((state) => state);
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const isMobile = useHydratedMediaQuery({ query: '(max-width: 768px)' });
   const t = useTranslations();
 
   const courses = events?.filter(

@@ -4,12 +4,12 @@ import { FC } from 'react';
 import styles from './EventContacts.module.scss';
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 import Image from 'next/image';
 
 const EventContacts: FC = () => {
   const t = useTranslations('contact');
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const isTabletOrMobile = useHydratedMediaQuery({ query: '(max-width: 1224px)' });
 
   const contactItems = [
     {

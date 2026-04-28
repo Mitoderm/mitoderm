@@ -2,7 +2,7 @@ import { CSSProperties, FC } from 'react';
 import styles from './SwitchItem.module.scss';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
-import { useMediaQuery } from 'react-responsive';
+import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
 
 interface Props {
   url: string;
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const SwitchItem: FC<Props> = ({ url, style, imageSrc, text, locale }) => {
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const isTabletOrMobile = useHydratedMediaQuery({ query: '(max-width: 1224px)' });
   return (
     <Link
       className={`${styles.link} ${isTabletOrMobile && styles.linkMobile}`}

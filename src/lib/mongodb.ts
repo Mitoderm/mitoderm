@@ -10,6 +10,7 @@ if (!cached) {
   cached = (global as any).mongoose = {
     conn: null,
     promise: null,
+    indexesReady: false,
   };
 }
 
@@ -20,6 +21,14 @@ export async function connectDB() {
     cached.promise = mongoose.connect(MONGODB_URI);
   }
   cached.conn = await cached.promise;
+
+  // Ensure TTL indexes exist in every environment; without this,
+  // expired documents may never be removed on long-lived clusters.
+  if (!cached.indexesReady) {
+    await Event.createIndexes();
+    cached.indexesReady = true;
+  }
+
   return cached.conn;
 }
 

@@ -35,11 +35,9 @@ const Footer: FC = () => {
         >
           <div className={styles.content}>
             <span className={styles.copyright}>
-              {t('footer.copyright') +
-                ' ' +
-                new Date().getFullYear() +
-                ' ' +
-                t('footer.copyrightText')}
+              {t('footer.copyright') + ' '}
+              <span suppressHydrationWarning>{new Date().getFullYear()}</span>
+              {' ' + t('footer.copyrightText')}
             </span>
             <div className={styles.textContainer}>
               <span onClick={handleAccessibilityClick} className={styles.item}>

@@ -454,7 +454,9 @@
       "gushDan": "Gush Dan",
       "facialTreatments": "Facial treatments",
       "hairTreatments": "Hair treatments",
-      "facialAndHairTreatments": "Facial & Hair Treatments"
+      "facialAndHairTreatments": "Facial & Hair Treatments",
+      "openFilters": "Open filters",
+      "closeFilters": "Close filters"
     },
     "pagination": {
       "previous": "Back",
@@ -655,7 +657,7 @@
     "phoneNumberRequired": "Phone number is required",
     "expertise": "Expertise",
     "phoneNumber": "Phone number",
-    "instagram": "Instagram",
+    "instagram": "Social Media",
     "selectExpertise": "Select Expertise",
     "area": "Area",
     "selectArea": "Select area",
