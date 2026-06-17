@@ -1,19 +1,11 @@
 import { setRequestLocale } from 'next-intl/server';
-import { getDoctors } from '@/lib/mongodb';
 import { Metadata } from 'next';
 import Script from 'next/script';
-import Intro from '@/components/sections/Intro/Intro';
-import HowCanBeUsed from '@/components/sections/HowCanBeUsed/HowCanBeUsed';
-import Faq from '@/components/sections/Faq/Faq';
-import Contact from '@/components/sections/Contact/Contact';
-import Gallery from '@/components/sections/Gallery/Gallery';
-import { getFAQPageSchema } from '@/utils/structuredData';
-import { getTranslations } from 'next-intl/server';
-import DoctorList from '@/components/sections/DoctorList/DoctorList/DoctorList';
-import Chevron from '@/components/sections/Chevron/Chevron';
-import Synergy from '@/components/sections/Synergy/Synergy';
-import Solution from '@/components/sections/Solution/Solution';
-import Mission from '@/components/sections/Mission/Mission';
+import { getEventSchema } from '@/utils/structuredData';
+import { getEvents } from '@/lib/mongodb';
+import WorkShop from '@/components/sections/WorkShop/WorkShop';
+
+export const dynamic = 'force-dynamic';
 
 const baseUrl = 'https://mitoderm.com';
 
@@ -33,29 +25,29 @@ export async function generateMetadata({
     }
   > = {
     he: {
-      title: 'אקסוזומים V-Tech | מיטודרם - מערכת מתקדמת לקוסמטיקאיות בישראל',
+      title: 'אירוע מקצועי לקוסמטיקאיות | מיטודרם - הדור הבא של האסתטיקה',
       description:
-        'מערכת V-Tech - אקסוזומים סינתטיים + PDRN פולינוקלאוטידים לקוסמטיקאיות. תוצאות מהטיפול הראשון | הכשרות מקצועיות | מיטודרם ישראל 054-762-1889',
+        'מפגש מקצועי לקוסמטיקאיות ואסתטיקאיות. הכירו את מערכת V-Tech - אקסוזומים סינתטיים + PDRN. הכשרות מקצועיות, הדגמות חיות, והזדמנות להכיר את הטכנולוגיה החדשנית באסתטיקה | מיטודרם ישראל',
       keywords:
-        'אקסוזומים לקוסמטיקאיות, V-Tech System, מיטודרם, PDRN פולינוקלאוטידים, אקסוזומים סינתטיים, טיפולי אקסוזומים, צלקות פוסט אקנה',
+        'אירוע קוסמטיקאיות, מפגש מקצועי, הכשרה מקצועית, אקסוזומים, V-Tech System, מיטודרם, אסתטיקה מקצועית, PDRN, קוסמטיקה מקצועית',
       ogLocale: 'he_IL',
     },
     en: {
       title:
-        'V-Tech Exosomes | Mitoderm - Advanced System for Cosmetologists in Israel',
+        'Professional Event for Cosmetologists | Mitoderm - Next Generation Aesthetics',
       description:
-        'V-Tech System - Synthetic exosomes + PDRN polynucleotides for cosmetologists. Results from the first treatment | Professional training | Mitoderm Israel 054-762-1889',
+        'Professional event for cosmetologists and aestheticians. Discover the V-Tech System - synthetic exosomes + PDRN. Professional training, live demonstrations, and opportunity to learn about innovative aesthetics technology | Mitoderm Israel',
       keywords:
-        'exosomes for cosmetologists, V-Tech System, Mitoderm, PDRN polynucleotides, synthetic exosomes, exosome treatments, post-acne scars',
+        'cosmetologist event, professional event, professional training, exosomes, V-Tech System, Mitoderm, professional aesthetics, PDRN, professional cosmetics, aesthetic training',
       ogLocale: 'en_US',
     },
     ru: {
       title:
-        'Экзосомы V-Tech | Митодерм - Продвинутая система для косметологов в Израиле',
+        'Профессиональное мероприятие для косметологов | Митодерм - Новое поколение эстетики',
       description:
-        'Система V-Tech - синтетические экзосомы + PDRN полинуклеотиды для косметологов. Результаты с первого лечения | Профессиональное обучение | Митодерм Израиль 054-762-1889',
+        'Профессиональное мероприятие для косметологов и эстетистов. Откройте для себя систему V-Tech - синтетические экзосомы + PDRN. Профессиональное обучение, живые демонстрации и возможность узнать об инновационных технологиях в эстетике | Митодерм Израиль',
       keywords:
-        'экзосомы для косметологов, система V-Tech, Митодерм, PDRN полинуклеотиды, синтетические экзосомы, лечение экзосомами, постакне шрамы',
+        'мероприятие для косметологов, профессиональное мероприятие, профессиональное обучение, экзосомы, система V-Tech, Митодерм, профессиональная эстетика, PDRN, профессиональная косметика, обучение эстетике',
       ogLocale: 'ru_RU',
     },
   };
@@ -115,62 +107,32 @@ export async function generateMetadata({
 
 export default async function HomePage({
   params,
-}: Readonly<{
-  params: { lang: string };
-}>) {
+}: {
+  params: Promise<{ lang: string }>;
+}) {
   const { lang } = await params;
   setRequestLocale(lang);
-  const t = await getTranslations({ locale: lang });
-  const doctors = await getDoctors();
-
-  // FAQ schema
-  const faqs = [
-    {
-      question: t('faq.item1.title'),
-      answer: t('faq.item1.text'),
-    },
-    {
-      question: t('faq.item2.title'),
-      answer: t('faq.item2.text'),
-    },
-    {
-      question: t('faq.item3.title'),
-      answer: t('faq.item3.text'),
-    },
-    {
-      question: t('faq.item4.title'),
-      answer: t('faq.item4.text'),
-    },
-    {
-      question: t('faq.item5.title'),
-      answer: t('faq.item5.text'),
-    },
-    {
-      question: t('faq.item6.title'),
-      answer: t('faq.item6.text'),
-    },
-  ];
-  const faqSchema = getFAQPageSchema(faqs);
+  const eventUrl = `${baseUrl}/${lang}`;
+  const eventSchema = getEventSchema(eventUrl, lang);
+  const events = await getEvents();
+  const plainEvents = events.map((e) => ({
+    id: e._id,
+    category: e.category,
+    city: e.city,
+    date: e.date,
+    time: e.time,
+    isAvailable: e.isAvailable,
+    expireAt: e.expireAt,
+  }));
 
   return (
     <>
-      <main id="mainpage">
-        <Intro />
-        <Chevron page="intro" imageName="chevronImage" />
-        <Synergy />
-        <HowCanBeUsed page="main" />
-        <Solution page="main" />
-        <Gallery />
-        <Mission />
-        <DoctorList doctors={doctors} />
-        <Faq />
-        <Contact />
-      </main>
+      <WorkShop events={plainEvents} />
       <Script
-        id="faq-schema"
+        id="event-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema),
+          __html: JSON.stringify(eventSchema),
         }}
       />
     </>

@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import styles from './Intro.module.scss';
 import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
-import { Link, usePathname, useRouter } from '@/i18n/routing';
+import { usePathname, useRouter } from '@/i18n/routing';
 import DotPagination from '../../sharedUI/DotPagination/DotPagination';
 import useAppStore from '@/store/store';
 import EventButton from '@/components/sharedUI/EventButton/EventButton';
@@ -20,14 +20,15 @@ const Intro: FC = () => {
   const router = useRouter();
   const pathname = usePathname();
   const ref = useRef<HTMLDivElement>(null);
-  const isEventPage = pathname.includes('event');
+  const isEventPage = pathname === '/';
   const isSignalPage = pathname.includes('exosignal_hair');
   const isGelPage = pathname.includes('exotechgel');
   const isSprayPage = pathname.includes('exosignalhairspray');
+  const isVTechPage = pathname.includes('v_tech');
   const { introPage, setIntroPage } = useAppStore((state) => state);
 
   useEffect(() => {
-    if (isEventPage) {
+    if (isVTechPage) {
       scrollTo(1);
       setIntroPage(1);
     } else if (isSprayPage) {
@@ -102,39 +103,6 @@ const Intro: FC = () => {
         id="scroller"
         className={styles.scrollBox}
       >
-        <div
-          className={`${styles.introMain} ${
-            locale === 'he' ? styles.reversed : ''
-          }`}
-        >
-          <div dir="ltr" className={styles.introMainContent}>
-            <div className={styles.container}>
-              <h1
-                className={`${styles.title} ${
-                  locale === 'ru' ? styles.ru : ''
-                }`}
-              >
-                {t('intro.title')}
-              </h1>
-              <p className={styles.text}>{t('intro.text')}</p>
-              <Button
-                text={t('buttons.intro')}
-                style={{
-                  marginTop: 20,
-                  width: '100%',
-                }}
-                formPage={'main'}
-              />
-              <Image
-                className={styles.leaves}
-                src="/images/leaves.svg"
-                width={90}
-                height={100}
-                alt="leavest pattern"
-              />
-            </div>
-          </div>
-        </div>
         <div className={styles.introEvent}>
           <div className={styles.eventBG}>
             <motion.div
@@ -211,11 +179,44 @@ const Intro: FC = () => {
                   url={isEventPage ? '#about' : undefined}
                   onClick={() => {
                     if (!isEventPage) {
-                      router.push('/event');
+                      router.push('/');
                     }
                   }}
                 />
               </motion.div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={`${styles.introMain} ${
+            locale === 'he' ? styles.reversed : ''
+          }`}
+        >
+          <div dir="ltr" className={styles.introMainContent}>
+            <div className={styles.container}>
+              <h1
+                className={`${styles.title} ${
+                  locale === 'ru' ? styles.ru : ''
+                }`}
+              >
+                {t('intro.title')}
+              </h1>
+              <p className={styles.text}>{t('intro.text')}</p>
+              <Button
+                text={t('buttons.intro')}
+                style={{
+                  marginTop: 20,
+                  width: '100%',
+                }}
+                formPage={'main'}
+              />
+              <Image
+                className={styles.leaves}
+                src="/images/leaves.svg"
+                width={90}
+                height={100}
+                alt="leavest pattern"
+              />
             </div>
           </div>
         </div>

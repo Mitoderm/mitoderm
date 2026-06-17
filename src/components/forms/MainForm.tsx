@@ -22,7 +22,7 @@ import {
 const MainForm: FC = () => {
   const t = useTranslations();
   const pathname = usePathname();
-  const isEventPage = pathname.includes('event');
+  const isEventPage = false;
   const locale = useLocale();
   const formRef = useRef<HTMLDivElement>(null);
   const isTabletOrMobile = useHydratedMediaQuery({ query: '(max-width: 1224px)' });

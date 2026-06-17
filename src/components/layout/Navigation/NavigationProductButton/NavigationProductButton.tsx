@@ -1,11 +1,11 @@
 'use client';
 import { FC, useState, useEffect } from 'react';
 import styles from './NavigationProductButton.module.scss';
-import Link from 'next/link';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { usePathname } from 'next/navigation';
+import { usePathname } from '@/i18n/routing';
+import { Link } from '@/i18n/routing';
 
 const variants = {
   hidden: { opacity: 0, height: 0 },
@@ -46,7 +46,7 @@ const NavigationProductButton: FC<Props> = ({
   const t = useTranslations();
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const isEventPage = pathname.includes('event') && !pathname.includes('form');
+  const isEventPage = pathname === '/' && !pathname.includes('form');
 
   useEffect(() => {
     !isMobile && setIsOpen(false);
@@ -110,7 +110,18 @@ const NavigationProductButton: FC<Props> = ({
           <Link
             onClick={handleBtnClick}
             className={`${styles.link} ${isMobile && styles.linkMobile} ${isEventPage && styles.eventLink}`}
-            href={`../${locale}/exotechgel`}
+            href="/v_tech"
+            locale={locale}
+          >
+            V-Tech System
+          </Link>
+        </motion.div>
+        <motion.div variants={itemVariants}>
+          <Link
+            onClick={handleBtnClick}
+            className={`${styles.link} ${isMobile && styles.linkMobile} ${isEventPage && styles.eventLink}`}
+            href="/exotechgel"
+            locale={locale}
           >
             Exotech Gel
           </Link>
@@ -119,7 +130,8 @@ const NavigationProductButton: FC<Props> = ({
           <Link
             onClick={handleBtnClick}
             className={`${styles.link} ${isMobile && styles.linkMobile} ${isEventPage && styles.eventLink}`}
-            href={`../${locale}/exosignalhairspray`}
+            href="/exosignalhairspray"
+            locale={locale}
           >
             Exosignal Hair Spray
           </Link>
@@ -128,7 +140,8 @@ const NavigationProductButton: FC<Props> = ({
           <Link
             onClick={handleBtnClick}
             className={`${styles.link} ${isMobile && styles.linkMobile} ${isEventPage && styles.eventLink}`}
-            href={`../${locale}/exosignal_hair`}
+            href="/exosignal_hair"
+            locale={locale}
           >
             Exosignal Hair
           </Link>

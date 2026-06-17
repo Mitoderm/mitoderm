@@ -15,7 +15,7 @@ export const navMainList: NavItem[] = [
   { text: 'navigation.about', scrollId: ScrollItems.mission },
   { text: 'navigation.info', scrollId: ScrollItems.moreInfo },
   { text: 'navigation.contact', scrollId: ScrollItems.contactUs },
-  { text: 'navigation.event', url: '/event' },
+  { text: 'navigation.event', url: '/' },
   { text: 'navigation.clinic', 
     // url: '/doctors'
     scrollId: ScrollItems.clinic
@@ -31,11 +31,11 @@ export const navEventList: NavItem[] = [
 ];
 
 export const navFormList: NavItem[] = [
-  { text: 'navigation.event', url: '/event' },
+  { text: 'navigation.event', url: '/' },
 ];
 
 export const navDoctorList: NavItem[] = [
-  { text: 'navigation.event', url: '/event' },
+  { text: 'navigation.event', url: '/' },
 ]
 
 export const howToUseItemList: HowToUseItem[] = [

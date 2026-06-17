@@ -18,7 +18,7 @@ const isFaqItem = (
 
 const Dropdown: FC<Props> = ({ data }) => {
   const pathname = usePathname();
-  const isEventPage = pathname.includes('event');
+  const isEventPage = pathname === '/';
   const t = useTranslations();
   const [isShown, setIsShown] = useState<boolean>(false);
   return (

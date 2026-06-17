@@ -22,6 +22,7 @@ const Navigation: FC<Props> = ({ isOpen, setIsOpen }) => {
   const isFormPage = pathName.includes('form');
   const isSuccessPage = pathName.includes('success');
   const isDoctorPage = pathName.includes('doctors');
+  const isEventPage = pathName === '/' && !isFormPage;
 
   let navList;
 
@@ -34,7 +35,7 @@ const Navigation: FC<Props> = ({ isOpen, setIsOpen }) => {
       navList = navDoctorList;
       break;
 
-    case pathName.includes('event'):
+    case isEventPage:
       navList = navEventList;
       break;
 

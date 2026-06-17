@@ -1,5 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
-import MainForm from '@/components/forms/MainForm';
+import EventForm from '@/components/forms/EventForm';
 
 export default async function FormPage({
   params,
@@ -10,7 +10,7 @@ export default async function FormPage({
   setRequestLocale(lang);
   return (
     <main className='formPage'>
-      <MainForm />
+      <EventForm />
     </main>
   );
 }

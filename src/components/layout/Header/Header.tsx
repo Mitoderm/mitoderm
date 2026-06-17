@@ -14,7 +14,7 @@ const Header: FC = () => {
   const isTabletOrMobile = useHydratedMediaQuery({ query: '(max-width: 1224px)' });
   const pathname = usePathname();
   const isSuccessPage = pathname.includes('success');
-  const isEventPage = pathname.includes('event') && !pathname.includes('form');
+  const isEventPage = pathname === '/' && !pathname.includes('form');
   const isAdminPage = pathname.includes('admin');
   const handleClose = (e: MouseEvent) => {
     const { target } = e;
@@ -41,7 +41,7 @@ const Header: FC = () => {
           <div className={styles.container}>
             <Link
               className={styles.logoContainer}
-              href={pathname.length > 1 ? '/' : '#intro'}
+              href={pathname.length > 1 ? '/' : '#about'}
             >
               <Image
                 src="/images/logo.svg"

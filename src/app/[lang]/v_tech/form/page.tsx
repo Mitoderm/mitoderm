@@ -1,16 +1,17 @@
 import { setRequestLocale } from 'next-intl/server';
-import EventForm from '@/components/forms/EventForm';
+import MainForm from '@/components/forms/MainForm';
 
-export default async function EventFormPage({
+export default async function VTechFormPage({
   params,
 }: {
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
   setRequestLocale(lang);
+
   return (
-    <main className='formPage'>
-      <EventForm />
+    <main className="formPage">
+      <MainForm />
     </main>
   );
 }

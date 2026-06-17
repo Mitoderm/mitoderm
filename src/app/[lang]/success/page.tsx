@@ -9,8 +9,9 @@ export default async function SuccessPage({
 }) {
   const { lang } = await params;
   setRequestLocale(lang);
+
   return (
-    <main className='successPage'>
+    <main className="successPage">
       <Suspense>
         <Success />
       </Suspense>

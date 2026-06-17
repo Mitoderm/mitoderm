@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 const Mission: FC = () => {
   const t = useTranslations();
   const pathname = usePathname();
-  const isEventPage = pathname.includes('event');
+  const isEventPage = pathname === '/';
 
   return (
     <section
