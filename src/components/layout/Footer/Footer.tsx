@@ -11,7 +11,7 @@ const Footer: FC = () => {
   const t = useTranslations();
   const pathname = usePathname();
   const isFormPage = pathname.includes('form');
-  const isEventPage = pathname.includes('event') && !pathname.includes('form');
+  const isEventPage = pathname === '/' && !pathname.includes('form');
   const isAdminPage = pathname.includes('admin');
 
   const handlePrivacyClick = () => {

@@ -238,7 +238,7 @@ ${conversationText}
             </div>
 
             <div style="text-align: center; margin: 30px 0;">
-              <a href="https://www.mitoderm.com/he/event/form" 
+              <a href="https://www.mitoderm.com/he/form" 
                  style="background: #2c5aa0; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">
                 📅 הרשמה למפגש הדרכה
               </a>

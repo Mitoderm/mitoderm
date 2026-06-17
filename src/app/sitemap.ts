@@ -6,8 +6,13 @@ const baseUrl = 'https://mitoderm.com';
 // Define all routes that should be in the sitemap
 const routes = [
   {
-    path: '', // Home page
+    path: '', // Event page
     priority: 1.0,
+    changefreq: 'weekly' as const,
+  },
+  {
+    path: 'v_tech',
+    priority: 0.9,
     changefreq: 'weekly' as const,
   },
   {
@@ -24,11 +29,6 @@ const routes = [
     path: 'exosignalhairspray',
     priority: 0.9,
     changefreq: 'weekly' as const,
-  },
-  {
-    path: 'event',
-    priority: 0.8,
-    changefreq: 'monthly' as const,
   },
 ];
 

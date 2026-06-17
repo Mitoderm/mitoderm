@@ -22,7 +22,7 @@ const containerVariants = {
 
 const BulletList: FC<Props> = ({ data, page }) => {
   const pathname = usePathname();
-  const isEventPage = pathname.includes('event');
+  const isEventPage = pathname === '/';
   return (
     <motion.div
       variants={containerVariants}

@@ -23,8 +23,8 @@ const Button: FC<Props> = ({
   const router = useRouter();
 
   const openForm = (page: 'event' | 'main') => {
-    if (page === 'event') router.push(`/event/form`);
-    if (page === 'main') router.push(`/form`);
+    if (page === 'event') router.push(`/form`);
+    if (page === 'main') router.push(`/v_tech/form`);
   };
 
   const handleClick = () => {

@@ -15,8 +15,8 @@ export default function robots(): MetadataRoute.Robots {
       '/api/',
       '/utils/',
       '/*/form',
-      '/*/event/form',
-      '/*/event/success',
+      '/*/v_tech/form',
+      '/*/success',
       '/*/doctors'
     ],
   }));

@@ -4,7 +4,7 @@ import styles from './LanguageSwitch.module.scss';
 import Image from 'next/image';
 import SwitchItem from './SwitchItem/SwitchItem';
 import useHydratedMediaQuery from '@/hooks/useHydratedMediaQuery';
-import { usePathname } from 'next/navigation';
+import { usePathname } from '@/i18n/routing';
 import { useLocale } from 'next-intl';
 
 const LanguageSwitch: FC = () => {
@@ -13,9 +13,12 @@ const LanguageSwitch: FC = () => {
   const popupRef = useRef<HTMLDivElement>(null);
   const locale = useLocale();
   const pathname = usePathname();
-  const isEventFormPage = pathname.includes('event/form');
-  const isEventPage = pathname.includes('event') && !pathname.includes('form');
-  const isFormPage = pathname.includes('form') && !pathname.includes('event');
+  const isRootPath = pathname === '/';
+  const isSuccessPage = pathname.includes('success');
+  const isEventPage = isRootPath && !pathname.includes('form');
+  const isVTechFormPage = pathname.includes('v_tech/form');
+  const isVTechPage = pathname.includes('v_tech');
+  const isFormPage = pathname === '/form';
   const isSignalPage = pathname.includes('exosignal_hair');
   const isGelPage = pathname.includes('exotechgel');
   const isSprayPage = pathname.includes('exosignalhairspray');
@@ -42,14 +45,20 @@ const LanguageSwitch: FC = () => {
   let currentUrl = '';
 
   switch (true) {
-    case isEventFormPage:
-      currentUrl = 'event/form';
+    case isVTechFormPage:
+      currentUrl = 'v_tech/form';
+      break;
+    case isSuccessPage:
+      currentUrl = 'success';
+      break;
+    case isVTechPage:
+      currentUrl = 'v_tech';
       break;
     case isFormPage:
       currentUrl = 'form';
       break;
     case isEventPage:
-      currentUrl = 'event';
+      currentUrl = '';
       break;
     case isSignalPage:
       currentUrl = 'exosignal_hair';

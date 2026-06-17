@@ -41,7 +41,7 @@ export async function sendPaymentDataToCRM(formData: EventFormDataType, eventDat
     send_invoice: true,
     pay_success_redirect_url: `https://mitoderm.com/${
       formData.lang
-    }/event/success?name=${formData.name.value.replace(' ', '_')}&phone=${
+    }/success?name=${formData.name.value.replace(' ', '_')}&phone=${
       formData.phone.value
     }&email=${formData.email.value}&amount=${totalPaymentValue}&idNumber=${
       formData.idNumber.value

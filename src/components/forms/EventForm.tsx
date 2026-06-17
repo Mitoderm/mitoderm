@@ -28,7 +28,7 @@ const EventForm: FC = () => {
   );
   const t = useTranslations();
   const pathname = usePathname();
-  const isEventPage = pathname.includes('event');
+  const isEventPage = pathname.includes('/form') && !pathname.includes('v_tech');
   const locale = useLocale();
   const router = useRouter();
   const formRef = useRef<HTMLDivElement>(null);
@@ -46,7 +46,7 @@ const EventForm: FC = () => {
   const [isSent, setIsSent] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!selectedEvent) router.push(`/${locale}/event`);
+    if (!selectedEvent) router.push(`/${locale}`);
   });
 
   const handleData = (

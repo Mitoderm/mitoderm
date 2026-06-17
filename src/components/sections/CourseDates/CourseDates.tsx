@@ -75,7 +75,7 @@ const CourseDates: FC<Props> = ({ events }) => {
           whileTap={{ scale: 0.95 }}
           className={`${styles.cta} ${!selectedEvent ? styles.ctaDisabled : ''}`}
         >
-          <Link href={'/event/form'}>{t(`v${courseVariant}.topics.cta`)}</Link>
+          <Link href={'/form'}>{t(`v${courseVariant}.topics.cta`)}</Link>
         </motion.div>
       </motion.div>
     </section>

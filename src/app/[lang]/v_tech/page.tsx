@@ -1,0 +1,177 @@
+import { setRequestLocale } from 'next-intl/server';
+import { getDoctors } from '@/lib/mongodb';
+import { Metadata } from 'next';
+import Script from 'next/script';
+import Intro from '@/components/sections/Intro/Intro';
+import HowCanBeUsed from '@/components/sections/HowCanBeUsed/HowCanBeUsed';
+import Faq from '@/components/sections/Faq/Faq';
+import Contact from '@/components/sections/Contact/Contact';
+import Gallery from '@/components/sections/Gallery/Gallery';
+import { getFAQPageSchema } from '@/utils/structuredData';
+import { getTranslations } from 'next-intl/server';
+import DoctorList from '@/components/sections/DoctorList/DoctorList/DoctorList';
+import Chevron from '@/components/sections/Chevron/Chevron';
+import Synergy from '@/components/sections/Synergy/Synergy';
+import Solution from '@/components/sections/Solution/Solution';
+import Mission from '@/components/sections/Mission/Mission';
+
+const baseUrl = 'https://mitoderm.com';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const metadataMap: Record<
+    string,
+    {
+      title: string;
+      description: string;
+      keywords: string;
+      ogLocale: string;
+    }
+  > = {
+    he: {
+      title: 'אקסוזומים V-Tech | מיטודרם - מערכת מתקדמת לקוסמטיקאיות בישראל',
+      description:
+        'מערכת V-Tech - אקסוזומים סינתטיים + PDRN פולינוקלאוטידים לקוסמטיקאיות. תוצאות מהטיפול הראשון | הכשרות מקצועיות | מיטודרם ישראל 054-762-1889',
+      keywords:
+        'אקסוזומים לקוסמטיקאיות, V-Tech System, מיטודרם, PDRN פולינוקלאוטידים, אקסוזומים סינתטיים, טיפולי אקסוזומים, צלקות פוסט אקנה',
+      ogLocale: 'he_IL',
+    },
+    en: {
+      title:
+        'V-Tech Exosomes | Mitoderm - Advanced System for Cosmetologists in Israel',
+      description:
+        'V-Tech System - Synthetic exosomes + PDRN polynucleotides for cosmetologists. Results from the first treatment | Professional training | Mitoderm Israel 054-762-1889',
+      keywords:
+        'exosomes for cosmetologists, V-Tech System, Mitoderm, PDRN polynucleotides, synthetic exosomes, exosome treatments, post-acne scars',
+      ogLocale: 'en_US',
+    },
+    ru: {
+      title:
+        'Экзосомы V-Tech | Митодерм - Продвинутая система для косметологов в Израиле',
+      description:
+        'Система V-Tech - синтетические экзосомы + PDRN полинуклеотиды для косметологов. Результаты с первого лечения | Профессиональное обучение | Митодерм Израиль 054-762-1889',
+      keywords:
+        'экзосомы для косметологов, система V-Tech, Митодерм, PDRN полинуклеотиды, синтетические экзосомы, лечение экзосомами, постакне шрамы',
+      ogLocale: 'ru_RU',
+    },
+  };
+
+  const meta = metadataMap[lang] || metadataMap.en;
+  const url = `${baseUrl}/${lang}/v_tech`;
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    keywords: meta.keywords,
+    alternates: {
+      canonical: url,
+      languages: {
+        he: `${baseUrl}/he/v_tech`,
+        en: `${baseUrl}/en/v_tech`,
+        ru: `${baseUrl}/ru/v_tech`,
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: url,
+      siteName: 'Mitoderm',
+      locale: meta.ogLocale,
+      type: 'website',
+      images: [
+        {
+          url: `${baseUrl}/images/backgrounds/introBG.png`,
+          width: 1200,
+          height: 630,
+          alt: meta.title,
+          type: 'image/jpeg',
+        },
+      ],
+      alternateLocale: [
+        lang !== 'he' ? 'he_IL' : undefined,
+        lang !== 'en' ? 'en_US' : undefined,
+        lang !== 'ru' ? 'ru_RU' : undefined,
+      ].filter(Boolean) as string[],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.title,
+      description: meta.description,
+      images: [
+        {
+          url: `${baseUrl}/images/backgrounds/introBG.png`,
+          alt: meta.title,
+        },
+      ],
+      creator: '@mitoderm',
+      site: '@mitoderm',
+    },
+  };
+}
+
+export default async function VTechPage({
+  params,
+}: Readonly<{
+  params: { lang: string };
+}>) {
+  const { lang } = await params;
+  setRequestLocale(lang);
+  const t = await getTranslations({ locale: lang });
+  const doctors = await getDoctors();
+
+  const faqs = [
+    {
+      question: t('faq.item1.title'),
+      answer: t('faq.item1.text'),
+    },
+    {
+      question: t('faq.item2.title'),
+      answer: t('faq.item2.text'),
+    },
+    {
+      question: t('faq.item3.title'),
+      answer: t('faq.item3.text'),
+    },
+    {
+      question: t('faq.item4.title'),
+      answer: t('faq.item4.text'),
+    },
+    {
+      question: t('faq.item5.title'),
+      answer: t('faq.item5.text'),
+    },
+    {
+      question: t('faq.item6.title'),
+      answer: t('faq.item6.text'),
+    },
+  ];
+  const faqSchema = getFAQPageSchema(faqs);
+
+  return (
+    <>
+      <main id="mainpage">
+        <Intro />
+        <Chevron page="intro" imageName="chevronImage" />
+        <Synergy />
+        <HowCanBeUsed page="main" />
+        <Solution page="main" />
+        <Gallery />
+        <Mission />
+        <DoctorList doctors={doctors} />
+        <Faq />
+        <Contact />
+      </main>
+      <Script
+        id="faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema),
+        }}
+      />
+    </>
+  );
+}

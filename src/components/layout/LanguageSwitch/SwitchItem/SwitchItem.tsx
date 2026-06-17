@@ -14,13 +14,13 @@ interface Props {
 
 const SwitchItem: FC<Props> = ({ url, style, imageSrc, text, locale }) => {
   const isTabletOrMobile = useHydratedMediaQuery({ query: '(max-width: 1224px)' });
+  const normalizedPath = url ? `/${url}` : '/';
+
   return (
     <Link
       className={`${styles.link} ${isTabletOrMobile && styles.linkMobile}`}
       style={style}
-      href={
-        url === 'event/form' ? `../../${locale}/${url}` : `../${locale}/${url}`
-      }
+      href={normalizedPath}
       locale={locale}
     >
       <Image
